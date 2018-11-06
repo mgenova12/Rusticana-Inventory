@@ -1,0 +1,46 @@
+
+<h1>All Products</h1>
+
+<a href="/products/new"><button type="button" class="btn btn-success">Add New Product</button></a>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement</th>
+        <th>Prepped</th>
+        <th>Item Type</th>
+        <th>Case Quantity </th>
+       	<th>Price</th>
+        <th>Distributor</th>
+        <th>Location</th>
+
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @products.each do |product| %>
+	  <tr>
+		<td><%= product.name %></td>
+      	<td><%= product.measurement %></td> 
+      	<td><%= product.prepped %> </td>
+      	<td><%= product.item_type %> </td>
+      	<td><%= product.case_quantity %> </td>	
+      	<td><%= number_to_currency(product.price) %> </td>
+
+      	<td>Distributor </td>
+      	<td>Location </td>
+
+	    <td><%= link_to 'Edit', "", class: "btn btn-primary"%></td>
+	    <td><%= link_to 'Delete', "", class: "btn btn-primary"%></td>
+
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>
