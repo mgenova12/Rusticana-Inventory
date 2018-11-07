@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   end
 
   def new 
-
+    @locations = Location.all
   end
 
   def create

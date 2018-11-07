@@ -46,6 +46,10 @@
 		  <div class="form-group">
 		    <label>Location</label>
 		    <select class="form-control" name="location" required>
+		    	<option value=""></option>
+		    	<% @locations.each do |location| %>
+		    		<option value="<%= location.id %>"><%= location.name %></option>
+		    	<% end %>
 		    </select>	 
 		  </div>		  
 
@@ -60,7 +64,7 @@
 			<input type="number" class="form-control" id="amount" maxlength="12" name="price" step="any" required/>
 		  </div>	  
 
-		  <button type="submit" class="btn btn-primary">Add Product</button>
+		  <button type="submit" class="btn btn-success">Add Product</button>
 		</form>
 	<% end %>
 

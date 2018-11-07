@@ -1,0 +1,25 @@
+<h1>All Distributors </h1>
+
+<a href="/distributors/new"><button type="button" class="btn btn-success">Add New Distributors</button></a>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @distributors.each do |distributor| %>
+	  <tr>
+		 <td><%= distributor.name %></td>
+	     <td><%= link_to 'Edit', "/distributors/#{distributor.id}/edit", class: "btn btn-primary"%></td>
+	     <td><%= button_to "Delete", { action: "destroy", id: distributor.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>

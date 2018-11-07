@@ -1,0 +1,12 @@
+<h1>Add a New Distributor</h1>
+
+	<%= form_tag "/distributors", method: :post do %>
+		<form>
+		  <div class="form-group">
+		    <label>Distributor Name</label>
+		    <input type="text" class="form-control" name="name" placeholder="Enter Distributor Name" required>
+		  </div>
+			
+		<button type="submit" class="btn btn-success">Add Distributor</button>
+		</form>
+	<% end %>

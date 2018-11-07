@@ -1,0 +1,14 @@
+<h1>Edit <%= @location.name %> </h1>
+
+
+	<%= form_tag "/locations/#{@location.id}", method: :patch do %>
+		<form>
+		  <div class="form-group">
+		    <label>Location Name</label>
+		    <input type="text" class="form-control" name="name" value="<%= @location.name %>" required>
+		  </div>
+			
+		<button type="submit" class="btn btn-primary">Edit Location</button>
+		</form>
+
+	<% end %>

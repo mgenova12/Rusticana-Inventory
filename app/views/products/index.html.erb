@@ -13,8 +13,8 @@
         <th>Item Type</th>
         <th>Case Quantity </th>
        	<th>Price</th>
-        <th>Distributor</th>
         <th>Location</th>
+        <th>Distributor</th>
 
         <th>Edit</th>
         <th>Delete</th>
@@ -24,15 +24,24 @@
 
 	<% @products.each do |product| %>
 	  <tr>
-		<td><%= product.name %></td>
+		    <td><%= product.name %></td>
       	<td><%= product.measurement %></td> 
       	<td><%= product.prepped %> </td>
       	<td><%= product.item_type %> </td>
       	<td><%= product.case_quantity %> </td>	
       	<td><%= number_to_currency(product.price) %> </td>
+        
+        <% if product.location %>
+          <td><%= product.location.name %> </td>
+        <% else %>
+          <td class="bg-danger red">Missing Location!</td>
+        <% end %>
 
-      	<td>Distributor </td>
-      	<td>Location </td>
+        <% if product.distributor %>
+          <td><%= product.distributor.name %> </td>
+        <% else %>
+          <td class="bg-danger red">Missing Distributor!</td>
+        <% end %>          
 
 	    <td><%= link_to 'Edit', "", class: "btn btn-primary"%></td>
 	    <td><%= link_to 'Delete', "", class: "btn btn-primary"%></td>
