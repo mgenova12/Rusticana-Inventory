@@ -13,7 +13,6 @@
         <th>Item Type</th>
         <th>Case Quantity </th>
        	<th>Price</th>
-        <th>Location</th>
         <th>Distributor</th>
 
         <th>Edit</th>
@@ -30,12 +29,6 @@
       	<td><%= product.item_type %> </td>
       	<td><%= product.case_quantity %> </td>	
       	<td><%= number_to_currency(product.price) %> </td>
-        
-        <% if product.location %>
-          <td><%= product.location.name %> </td>
-        <% else %>
-          <td class="bg-danger red">Missing Location!</td>
-        <% end %>
 
         <% if product.distributor %>
           <td><%= product.distributor.name %> </td>
@@ -43,9 +36,8 @@
           <td class="bg-danger red">Missing Distributor!</td>
         <% end %>          
 
-	    <td><%= link_to 'Edit', "", class: "btn btn-primary"%></td>
-	    <td><%= link_to 'Delete', "", class: "btn btn-primary"%></td>
-
+	     <td><%= link_to 'Edit', "/products/#{product.id}/edit", class: "btn btn-primary"%></td>
+       <td><%= button_to "Delete", { action: "destroy", id: product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>
 	<% end %>
 

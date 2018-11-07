@@ -7,6 +7,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Store</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -16,6 +17,13 @@
 	<% @locations.each do |location| %>
 	  <tr>
 		   <td><%= location.name %></td>
+
+        <% if location.store %>
+          <td><%= location.store.name %> </td>
+        <% else %>
+          <td class="bg-danger red">Missing Store!</td>
+        <% end %> 
+
 	     <td><%= link_to 'Edit', "/locations/#{location.id}/edit", class: "btn btn-primary"%></td>
 	     <td><%= button_to "Delete", { action: "destroy", id: location.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>

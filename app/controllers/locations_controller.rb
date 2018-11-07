@@ -4,12 +4,13 @@ class LocationsController < ApplicationController
   end
 
   def new 
-
+    @stores = Store.all
   end
 
   def create 
     @location = Location.new(
-      name: params[:name]
+      name: params[:name],
+      store_id: params[:store_id]
     )
     
     if @location.save
@@ -18,6 +19,7 @@ class LocationsController < ApplicationController
   end
 
   def edit 
+    @stores = Store.all
     @location = Location.find(params[:id])
   end
 
@@ -25,7 +27,8 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     @location.update(
-      name: params[:name]
+      name: params[:name],
+      store_id: params[:store_id]
     )
 
     redirect_to '/locations'

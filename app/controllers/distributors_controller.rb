@@ -33,6 +33,10 @@ class DistributorsController < ApplicationController
 
   def destroy
     @distributor = Distributor.find(params[:id])
+
+    @products = Product.where(distributor_id: params[:id])
+    
+    @products.update_all(distributor_id: nil)
     
     @distributor.destroy
 
