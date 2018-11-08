@@ -1,0 +1,2 @@
+module StoreGoodsHelper
+end

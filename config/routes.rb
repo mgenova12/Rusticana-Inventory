@@ -26,4 +26,11 @@ Rails.application.routes.draw do
   patch '/distributors/:id' => 'distributors#update'
   delete '/distributors/:id' => 'distributors#destroy'  
 
+  get '/:store/products' => 'store_goods#index'
+  get '/:store/products/add' => 'store_goods#add' 
+  get '/:store/products/:id/new' => 'store_goods#new'
+  
+  post '/:store/products/:id' => 'store_goods#create'
+
+
 end

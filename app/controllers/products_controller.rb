@@ -15,7 +15,6 @@ class ProductsController < ApplicationController
       prepped: params[:prepped],
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
-      distributor_id: params[:distributor],
       price: params[:price]
     )
 
@@ -38,7 +37,6 @@ class ProductsController < ApplicationController
       prepped: params[:prepped],
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
-      distributor_id: params[:distributor],
       price: params[:price]
     )
 

@@ -11,7 +11,7 @@
 	<h3>Stores</h3>
 	<ul class="list-group">
 		<% @stores.each do |store| %>
-		  <a href=""><button type="button"<li class="list-group-item list-group-item-action"><%= store.name %></li></button></a>
+		  <a href="/<%= store.name %>/products"><button type="button"<li class="list-group-item list-group-item-action"><%= store.name %></li></button></a>
 		<% end %>
 	</ul>
 </div>

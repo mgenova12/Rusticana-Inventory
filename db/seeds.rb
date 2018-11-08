@@ -27,3 +27,7 @@
 #     'Amazon', 'EcoLab', 'Espo'].sample
 #   )
 # end
+
+# 10.times do 
+#   StoreGood.create(store_id:2, product_id:rand(1..20), location_id: rand(1..20), distributor_id: rand(1..12))
+# end

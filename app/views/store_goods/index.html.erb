@@ -1,0 +1,40 @@
+<h1>All <%= params[:store] %> Products</h1>
+
+<a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement</th>
+        <th>Prepped</th>
+        <th>Item Type</th>
+        <th>Case Quantity </th>
+        <th>Max Amount </th>
+        <th>Location</th>
+        <th>Distributor</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @store_goods.each do |store_good| %>
+	  <tr>
+		<td><%= store_good.product.name %></td>
+      	<td><%= store_good.product.measurement %></td> 
+      	<td><%= store_good.product.prepped %> </td>
+      	<td><%= store_good.product.item_type %> </td>
+      	<td><%= store_good.product.case_quantity %> </td>
+      	<td> </td>
+      	<td><%= store_good.location.name %> </td>	
+      	<td><%= store_good.distributor.name %> </td>	
+
+
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>
