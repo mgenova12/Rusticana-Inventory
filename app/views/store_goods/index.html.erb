@@ -1,4 +1,4 @@
-<h1>All <%= params[:store] %> Products</h1>
+<h1>All <%= store_name_format(params[:store]) %> Products</h1>
 
 <a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
 
@@ -26,7 +26,7 @@
       	<td><%= store_good.product.prepped %> </td>
       	<td><%= store_good.product.item_type %> </td>
       	<td><%= store_good.product.case_quantity %> </td>
-      	<td> </td>
+      	<td><%= store_good.max_amount %> </td>
       	<td><%= store_good.location.name %> </td>	
       	<td><%= store_good.distributor.name %> </td>	
 

@@ -1,9 +1,8 @@
 
-<h1>Add <%= @product.name %> To <%= params[:store] %></h1>
+<h1>Add <%= @product.name %> To <%= store_name_format(params[:store]) %></h1>
 
-	<%= form_tag "/bypass/products", method: :post do %>
+	<%= form_tag "/#{params[:store]}/products/#{params[:id]}", method: :post do %>
 	<form>
-	<input type="hidden" name="id" value="<%= params[:id] %>" > 
 	  <div class="form-group">
 	    <label>Max Amount</label>
 	    <input type="number" class="form-control" name="max_amount"  required>
@@ -11,13 +10,24 @@
 
 	  <div class="form-group">
 	    <label>Location</label>
-	    <select class="form-control" name="location" required>
+	    <select class="form-control" name="location_id" required>
 	      <option value=""></option>
 	      <% @locations.each do |location| %>
-	      	<option value="<%= location.name %>"><%= location.name %></option>
+	      	<option value="<%= location.id %>"><%= location.name %></option>
 	      <% end %>
 	    </select>	 
-	  </div>	  
+	  </div>
+
+	  <div class="form-group">
+	    <label>Distributor</label>
+	    <select class="form-control" name="distributor_id" required>
+	      <option value=""></option>
+	      <% @distributors.each do |distributor| %>
+	      	<option value="<%= distributor.id %>"><%= distributor.name %></option>
+	      <% end %>
+	    </select>	 
+	  </div>
+
 
 	  <button type="submit" class="btn btn-success">Add Product</button>
 	</form>

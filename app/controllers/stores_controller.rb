@@ -11,7 +11,7 @@ class StoresController < ApplicationController
 
   def create 
     @store = Store.new(
-      name: params[:name],
+      name: params[:name].parameterize('_'),
       label: params[:label]
     )
 
