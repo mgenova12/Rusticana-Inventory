@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   patch '/products/:id' => 'products#update'
   delete '/products/:id' => 'products#destroy'
 
-  get '/locations' => 'locations#index'
-  get '/locations/new' => 'locations#new'
-  post '/locations' => 'locations#create'
-  get '/locations/:id/edit' => 'locations#edit'
-  patch '/locations/:id' => 'locations#update'
-  delete '/locations/:id' => 'locations#destroy'
+  get '/:store/locations' => 'locations#index'
+  get '/:store/locations/new' => 'locations#new'
+  post '/:store/locations' => 'locations#create'
+  get '/:store/locations/:id/edit' => 'locations#edit'
+  patch '/:store/locations/:id' => 'locations#update'
+  delete '/:store/locations/:id' => 'locations#destroy'
 
   get '/distributors' => 'distributors#index'
   get '/distributors/new' => 'distributors#new'

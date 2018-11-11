@@ -1,25 +1,27 @@
 class LocationsController < ApplicationController
   def index
-    @locations = Location.all
+    store_id = Store.find_by(name: params[:store]).id
+    @locations = Location.where(store_id: store_id)
   end
 
   def new 
-    @stores = Store.all
+    @store_id = Store.find_by(name: params[:store]).id
   end
 
   def create 
-    @location = Location.new(
+    store_id = Store.find_by(name: params[:store]).id
+
+    @location = Location.create!(
       name: params[:name],
-      store_id: params[:store_id]
+      store_id: store_id
     )
     
     if @location.save
-      redirect_to '/locations'
+      redirect_to "/#{params[:store]}/locations"
     end
   end
 
   def edit 
-    @stores = Store.all
     @location = Location.find(params[:id])
   end
 
@@ -27,11 +29,10 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     @location.update(
-      name: params[:name],
-      store_id: params[:store_id]
+      name: params[:name]
     )
 
-    redirect_to '/locations'
+    redirect_to "/#{params[:store]}/locations"
   end
 
   def destroy
@@ -39,7 +40,7 @@ class LocationsController < ApplicationController
     
     @location.destroy
 
-    redirect_to '/locations'
+    redirect_to "/#{params[:store]}/locations"
   end
 
 end
