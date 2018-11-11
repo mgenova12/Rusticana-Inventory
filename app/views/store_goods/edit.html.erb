@@ -12,20 +12,14 @@
 	  <div class="form-group">
 	    <label>Location</label>
 	    <select class="form-control" name="location_id" required>
-	      <option value="<%= @store_good.location.id %>"><%= @store_good.location.name %></option>
-	      <% @locations.each do |location| %>
-	      	<option value="<%= location.id %>"><%= location.name %></option>
-	      <% end %>
+	    	<%= locations_options(@store_good) %>
 	    </select>	 
 	  </div>
 
 	  <div class="form-group">
 	    <label>Distributor</label>
 	    <select class="form-control" name="distributor_id" required>
-	      <option value="<%= @store_good.distributor.id %>"><%= @store_good.distributor.name %></option>
-	      <% @distributors.each do |distributor| %>
-	      	<option value="<%= distributor.id %>"><%= distributor.name %></option>
-	      <% end %>
+	    	<%= distributors_options(@store_good) %>
 	    </select>	 
 	  </div>
 

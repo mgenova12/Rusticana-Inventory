@@ -30,28 +30,51 @@ module ProductsHelper
     end
   end
 
-  def distributor_options(product)
-    dist_array = []
+  def distributors_options(store_good)
+    distributor_array = []
 
       @distributors.each do |distributor| 
-        if product.distributor_id
-          if product.distributor_id == distributor.id
-            dist_array.unshift([distributor.name, distributor.id])
+        if store_good.distributor.id
+          if store_good.distributor.id == distributor.id
+            distributor_array.unshift([distributor.name, distributor.id])
           else 
-            dist_array.push([distributor.name, distributor.id])
+            distributor_array.push([distributor.name, distributor.id])
           end 
         else 
-          if dist_array.length < 1 
-            dist_array.unshift(["", nil])
-            dist_array.push([distributor.name, distributor.id])
+          if location_array.length < 1 
+            location_array.unshift(["", nil])
+            location_array.push([location.name, location.id])
           else 
-            dist_array.push([distributor.name, distributor.id])
+            location_array.push([location.name, location.id])
           end 
         end
       end
 
-      options_for_select(dist_array)
+      options_for_select(distributor_array)
   end
       
+  def locations_options(store_good)
+    location_array = []
+
+      @locations.each do |location| 
+        if store_good.location.id
+          if store_good.location.id == location.id
+            location_array.unshift([location.name, location.id])
+          else 
+            location_array.push([location.name, location.id])
+          end 
+        else 
+          if location_array.length < 1 
+            location_array.unshift(["", nil])
+            location_array.push([location.name, location.id])
+          else 
+            location_array.push([location.name, location.id])
+          end 
+        end
+      end
+
+      options_for_select(location_array)
+  end
+
 
 end
