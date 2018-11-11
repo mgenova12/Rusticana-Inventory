@@ -1,16 +1,18 @@
 
-<h1>Add <%= @product.name %> To <%= store_name_format(params[:store]) %></h1>
-	<%= form_tag "/#{params[:store]}/products/add/#{params[:id]}", method: :post do %>
+<h1>Edit <%= @store_good.product.name %> From <%= store_name_format(params[:store]) %></h1>
+
+
+	<%= form_tag "/#{params[:store]}/products/#{params[:id]}", method: :patch do %>
 	<form>
 	  <div class="form-group">
 	    <label>Max Amount</label>
-	    <input type="number" class="form-control" name="max_amount"  required>
+	    <input type="number" class="form-control" name="max_amount" value="<%= @store_good.max_amount %>"  required>
 	  </div>  
 
 	  <div class="form-group">
 	    <label>Location</label>
 	    <select class="form-control" name="location_id" required>
-	      <option value=""></option>
+	      <option value="<%= @store_good.location.id %>"><%= @store_good.location.name %></option>
 	      <% @locations.each do |location| %>
 	      	<option value="<%= location.id %>"><%= location.name %></option>
 	      <% end %>
@@ -20,7 +22,7 @@
 	  <div class="form-group">
 	    <label>Distributor</label>
 	    <select class="form-control" name="distributor_id" required>
-	      <option value=""></option>
+	      <option value="<%= @store_good.distributor.id %>"><%= @store_good.distributor.name %></option>
 	      <% @distributors.each do |distributor| %>
 	      	<option value="<%= distributor.id %>"><%= distributor.name %></option>
 	      <% end %>
@@ -28,7 +30,7 @@
 	  </div>
 
 
-	  <button type="submit" class="btn btn-success">Add Product</button>
+	  <button type="submit" class="btn btn-primary">Edit Product</button>
 	</form>
 	<% end %>
 	<br>

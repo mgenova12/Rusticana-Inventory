@@ -16,17 +16,17 @@
     </thead>
     <tbody>
 
-	<% @products.each do |product| %>
+  <% @products.each do |product| %>
     <% if !product.store_goods.find_by(store_id: @store_id) %>
-  	  <tr>
-  		    <td><%= product.name %></td>
-        	<td><%= product.measurement %></td> 
-        	<td><%= product.prepped %> </td>
-        	<td><%= product.item_type %> </td>
-        	<td><%= product.case_quantity %> </td>	
-        	<td><%= number_to_currency(product.price) %> </td>         
-  	      <td><%= link_to 'Add Product', "/#{params[:store]}/products/#{product.id}/new", class: "btn btn-success"%></td>
-  	  </tr>
+      <tr>
+          <td><%= product.name %></td>
+          <td><%= product.measurement %></td> 
+          <td><%= product.prepped %> </td>
+          <td><%= product.item_type %> </td>
+          <td><%= product.case_quantity %> </td>  
+          <td><%= number_to_currency(product.price) %> </td>         
+          <td><%= link_to 'Add Product', "/#{params[:store]}/products/add/#{product.id}/new", class: "btn btn-success"%></td>
+      </tr>
     <% end %>
 
 	<% end %>
