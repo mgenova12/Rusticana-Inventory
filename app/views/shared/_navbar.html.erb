@@ -33,7 +33,13 @@
             <li><a href="/distributors/new">Add Distributors</a></li>
           </ul>
          </li>
-         <li><a href="/prices">Update Prices</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product Prices <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/prices">View Prices</a></li> 
+            <li><a href="/prices/new">Update Prices</a></li>
+          </ul>
+         </li>         
       <% end %>
 
         <% if store %>

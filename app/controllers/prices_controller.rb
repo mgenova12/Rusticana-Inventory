@@ -22,9 +22,7 @@ class PricesController < ApplicationController
       @product.update(
         price: v['price']
       )
-    end
 
-    params[:product].each do |k, v|
       Price.create(
         amount: v['price'],
         product_id: k,
@@ -33,7 +31,6 @@ class PricesController < ApplicationController
     end
 
     redirect_to '/prices'
-
   end 
 
 
