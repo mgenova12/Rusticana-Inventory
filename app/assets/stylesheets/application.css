@@ -14,7 +14,8 @@
  *= require_self
  */
 
-.red {
-    color:red;
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
 }
-

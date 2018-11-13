@@ -13,4 +13,23 @@
     	<%= yield %>
 	</body>
 
+
+  <script type="text/javascript">
+   $('.form-control').keydown(function (e) {
+     if (e.which === 13) {
+         e.preventDefault()
+         var index = $('.form-control').index(this) + 1;
+         $('.form-control').eq(index).focus();
+     }
+  });
+
+  $('#amount').on('blur', function() {
+      var amount = $('#amount').val().replace(/^\s+|\s+$/g, '');
+      if( ($('#amount').val() != '') && (!amount.match(/^$/) )){
+          $('#amount').val( parseFloat(amount).toFixed(2));
+      }
+  }); 
+
+  </script>  
+
 </html>

@@ -4,7 +4,7 @@
 	<h3>Prep Center</h3>
 	<ul class="list-group">
 		<% @prepcenters.each do |prepcenter| %>
-			<a href=""><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(prepcenter.name) %></li></button></a>	  
+			<a href="/<%= prepcenter.name %>/products"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(prepcenter.name) %></li></button></a>	  
 		<% end %>
 	</ul>
 

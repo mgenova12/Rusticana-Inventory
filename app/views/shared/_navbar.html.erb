@@ -8,7 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span> 
       </button>
-      <a class="navbar-brand" href="/">Rusticana</a>
+      <% if store %>
+        <a class="navbar-brand" href="/"><%= store_name_format(store) %></a>
+      <% else %>
+        <a class="navbar-brand" href="">Rusticana</a>
+      <% end %>
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
@@ -16,17 +20,27 @@
 	    <li><a href="/">Choose Store</a></li>
 	    <% if !store %>
         <li class="dropdown">
-  	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Create New <span class="caret"></span></a>
+  	      <a class="dropdown-toggle" data-toggle="dropdown" href="#">View Global <span class="caret"></span></a>
   	      <ul class="dropdown-menu">
-    		    <li><a href="/products">Add New Products</a></li> 
-    		    <li><a href="/distributors">Add New Distributors</a></li>
+    		    <li><a href="/products">View Products</a></li> 
+    		    <li><a href="/distributors">View Distributors</a></li>
   	      </ul>
   	     </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Add Global <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/products/new">Add Products</a></li> 
+            <li><a href="/distributors/new">Add Distributors</a></li>
+          </ul>
+         </li>
+         <li><a href="/">Update Prices</a></li>
       <% end %>
+
         <% if store %>
-          <li><a href="/<%= store %>/products"><%= store_name_format(store) %> Products</a></li>
-          <li><a href="/<%= store %>/locations"><%= store_name_format(store) %> Locations</a>  </li>
+          <li><a href="/<%= store %>/products">Products</a></li>
+          <li><a href="/<%= store %>/locations">Product Locations</a>  </li>
         <% end %>
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
