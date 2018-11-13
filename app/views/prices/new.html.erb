@@ -1,0 +1,35 @@
+<h1> Add Updated Prices </h1>
+
+
+<%= form_tag "/prices", method: :post do %>
+	<div class="table-responsive">          
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Product Name</th>
+	        <th>Input Price</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+
+
+			<% @products.each do |product| %>
+			  <tr>
+
+			    <td><%= product.name %></td>	
+			    <%= fields_for "product[]", product do |pf| %>
+	            	<td><%= pf.number_field :price, class:"form-control", step: :any, required: "true" %> </td>
+			    <% end %>
+
+			 </tr>
+			<% end %>
+
+
+	    </tbody>
+	  </table>
+
+
+	  </div>
+	</div>
+<%= submit_tag 'Update Prices', class:"btn btn-primary" %>
+<% end %>

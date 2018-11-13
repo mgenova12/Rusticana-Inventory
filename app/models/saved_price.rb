@@ -1,0 +1,2 @@
+class SavedPrice < ApplicationRecord
+end

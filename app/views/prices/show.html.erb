@@ -1,0 +1,26 @@
+
+<h1>Prices Updated On <%= @date.strftime('%A, %d %b %Y %l:%M %p') %></h1>
+
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      	<th>Product</th>
+      	<th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @prices.each do |price| %>
+	  <tr>
+	    <td><%= price.product.name %></td>	
+	    <td><%= price.amount %></td>	
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>
+</div>

@@ -31,3 +31,16 @@
 # 10.times do 
 #   StoreGood.create(store_id:2, product_id:rand(1..20), location_id: rand(1..20), distributor_id: rand(1..12))
 # end
+
+# 10.times do 
+#   Price.create(amount: rand(11.2...76.9).round(2), product_id: rand(1..20))
+# end
+
+# 5.times do 
+#   SavedPrice.create(status: 'saved')
+# end
+
+Product.all.each do |product|
+  product.update(price: rand(11.2...76.9).round(2))
+end
+
