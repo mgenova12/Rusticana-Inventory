@@ -1,26 +1,61 @@
 
 <h1>Prices Updated On <%= @date.strftime('%A, %d %b %Y %l:%M %p') %></h1>
 
+<div class="table-responsive"> 
+  <table class="table">
+      <td>
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Product Name</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% @prices.each do |price| %>
+                    <tr>
+                       <td><%= price.product.name %></td> 
+                    </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </td>
 
-<div class="table-responsive">          
-  <table class="table table-striped">
-    <thead>
-      <tr>
-      	<th>Product</th>
-      	<th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
+      <td>
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% @prices.each do |price| %>
+                    <tr>
+                       <td><%= number_to_currency(price.amount) %></td> 
+                    </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </td>
 
-	<% @prices.each do |price| %>
-	  <tr>
-	    <td><%= price.product.name %></td>	
-	    <td><%= price.amount %></td>	
-	 </tr>
-	<% end %>
+      <td>
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                      <th>Previous Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% @previous_prices.each do |previous_price| %>
+                    <tr>
+                       <td><%= number_to_currency(previous_price.amount) %></td> 
+                    </tr>
+                <% end %>
+              </tbody>
+          </table>
+      </td>    
 
-    </tbody>
   </table>
-
-  </div>
 </div>
+
+
+

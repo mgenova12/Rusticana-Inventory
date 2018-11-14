@@ -5,6 +5,8 @@ class PricesController < ApplicationController
 
   def show 
     @prices = Price.where(saved_price_id: params[:saved_price_id])
+    @previous_prices = Price.where(saved_price_id: (params[:saved_price_id].to_i - 1))
+
     @date = SavedPrice.find(params[:saved_price_id]).created_at
   end
 
