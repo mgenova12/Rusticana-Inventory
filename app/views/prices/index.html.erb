@@ -1,27 +1,39 @@
-
-<h1>All Prices</h1>
+<h1> Prices Overview </h1>
 
 <a href="/prices/new"><button type="button" class="btn btn-primary">Update Prices</button></a>
+<a href="/prices/date"><button type="button" class="btn btn-primary">View Prices By Date</button></a>
+
+
 
 <div class="table-responsive">          
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Date Updated</th>
-        <th>View</th>
+        <th>Name</th>
+        <% @saved_price_dates.each do |saved_price_date| %>
+          <th><%= saved_price_date.created_at.strftime('%A, %d %b %Y %l:%M %p') %></th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
 
-	<% @saved_prices.each do |saved_price| %>
-	  <tr>
-	    <td><%= saved_price.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
-	    <td><a href="/prices/<%= saved_price.id %>"><button type="button" class="btn btn-info">View </button></a> </td>	
-	 </tr>
-	<% end %>
+  <% @products.each do |product| %>
+    <tr>
+      <td> <%= product.name %> </td>
+
+      <% product.prices.order(:created_at).reverse.each do |price| %>
+
+        <!-- Find previous value -->
+        <td> <%= price.amount %></td>
+
+      <% end %>
+
+    </tr>
+
+  <% end %>
 
     </tbody>
   </table>
 
-  </div>
-</div>
+
+
