@@ -10,8 +10,8 @@
     <thead>
       <tr>
         <th>Name</th>
-        <% @saved_price_dates.each do |saved_price_date| %>
-          <th><%= saved_price_date.created_at.strftime('%A, %d %b %Y %l:%M %p') %></th>
+        <% @saved_price_dates.last(7).each do |saved_price_date| %>
+          <th><%= saved_price_date.created_at.strftime('%m/%d/%Y') %></th>
         <% end %>
       </tr>
     </thead>
@@ -19,13 +19,18 @@
 
   <% @products.each do |product| %>
     <tr>
-      <td> <%= product.name %> </td>
+      <td><%= product.name %> </td>
+      <% previous_price = product.prices.first.amount %>
+      <% product.prices.order(:created_at).last(7).each do |price| %>
 
-      <% product.prices.order(:created_at).reverse.each do |price| %>
-
-        <!-- Find previous value -->
-        <td> <%= price.amount %></td>
-
+        <% if previous_price > price.amount %>
+          <td> <%= number_to_currency(price.amount) %><span class="glyphicon glyphicon-arrow-down red"></span> </td>
+        <% elsif previous_price < price.amount %>
+          <td><%= number_to_currency(price.amount) %><span class="glyphicon glyphicon-arrow-up green"></span> </td>
+        <% else %>
+          <td><%= number_to_currency(price.amount) %></td>
+        <% end %>
+        <% previous_price = price.amount %>
       <% end %>
 
     </tr>
