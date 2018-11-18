@@ -12,10 +12,12 @@
     <tbody>
 
   <% @prices.each do |price| %>
-    <tr>
-      <td><%= price.product.name %></td>  
-      <td><%= number_to_currency(price.amount) %></td>  
-   </tr>
+    <% if price.product %>
+      <tr>
+        <td><%= price.product.name %></td>  
+        <td><%= number_to_currency(price.amount) %></td>  
+     </tr>
+    <% end %>
   <% end %>
 
     </tbody>

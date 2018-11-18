@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   patch '/products/:id' => 'products#update'
   delete '/products/:id' => 'products#destroy'
 
+  get '/products/prepcenter' => 'prepcenter_products#index'
+
+  get '/products/:id/prepcenter/new' => 'prepcenter_products#new'
+
+
+
   get '/:store/locations' => 'locations#index'
   get '/:store/locations/new' => 'locations#new'
   post '/:store/locations' => 'locations#create'
@@ -39,6 +45,7 @@ Rails.application.routes.draw do
   get '/prices/date' => 'prices#date'
   post '/prices' => 'prices#create'
   get '/prices/:saved_price_id' => 'prices#show'
+
 
 
 
