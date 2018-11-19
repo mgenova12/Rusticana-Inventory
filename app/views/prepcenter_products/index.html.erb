@@ -1,2 +1,38 @@
-<h1>PrepcenterProducts#index</h1>
-<p>Find me in app/views/prepcenter_products/index.html.erb</p>
+
+<h1>All PrepCenter Products</h1>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement</th>
+        <th>Prepped</th>
+        <th>Item Type</th>
+        <th>Portion Size </th>
+        <th>Markup </th>
+       	<th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @prepcenter_products.each do |prepcenter_product| %>
+	  <tr>
+		<td><%= prepcenter_product.name %></td>
+      	<td><%= prepcenter_product.measurement %></td> 
+      	<td><%= prepcenter_product.prepped %> </td>
+      	<td><%= prepcenter_product.item_type %> </td>
+      	<td><%= prepcenter_product.portion_size %> </td>	
+        <td><%= number_to_percentage(prepcenter_product.markup, precision: 1) %></td>
+      	<td><%= number_to_currency( (prepcenter_product.product.price / prepcenter_product.portion_size) * ((prepcenter_product.markup * 0.01)+1) ) %> </td>
+        <td><%= link_to 'Edit', "/products/prepcenter/#{prepcenter_product.id}/edit", class: "btn btn-primary"%></td>
+       <td><%= button_to "Delete", { action: "destroy", id: prepcenter_product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>

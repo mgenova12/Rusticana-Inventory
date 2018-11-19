@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   delete '/products/:id' => 'products#destroy'
 
   get '/products/prepcenter' => 'prepcenter_products#index'
-
-  get '/products/:id/prepcenter/new' => 'prepcenter_products#new'
-
+  get '/products/prepcenter/:id/new' => 'prepcenter_products#new'
+  post '/products/prepcenter' => 'prepcenter_products#create'
+  get '/products/prepcenter/:id/edit' => 'prepcenter_products#edit'
+  patch '/products/prepcenter/:id' => 'prepcenter_products#update'
+  delete '/products/prepcenter/:id' => 'prepcenter_products#destroy'
 
 
   get '/:store/locations' => 'locations#index'

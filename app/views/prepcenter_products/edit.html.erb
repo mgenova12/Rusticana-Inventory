@@ -1,0 +1,50 @@
+
+<h1>Edit <%= @prepcenter_product.name %> </h1>
+
+	<%= form_tag "/products/prepcenter/#{@prepcenter_product.id}", method: :patch do %>
+		<form>
+		
+		  <div class="form-group">
+		    <label>Product Name</label>
+		    <input type="text" class="form-control" name="name" placeholder="Enter Product Name" value="<%= @prepcenter_product.name %>" required>
+		  </div>
+
+		  <div class="form-group">
+		    <label>Measurement</label>
+			   <select class="form-control" name="measurement" required>
+			   		<%= measurement_options(@prepcenter_product) %>
+			    </select>	
+		  </div>
+
+		  <div class="form-group">
+		    <label>Prepped</label>
+		    <select class="form-control" name="prepped" required>
+		    	<%= prepped_options(@prepcenter_product) %>
+		    </select>	  	
+		  </div>
+
+		  <div class="form-group">
+		    <label>Item Type</label>
+		    <select class="form-control" name="item_type" required>
+		    	<%= item_type_options(@prepcenter_product) %>
+		    </select>		 
+		  </div>	  
+
+		  <div class="form-group">
+		    <label>Portion Size</label>
+		    <input type="number" class="form-control" name="portion_size" value="<%= @prepcenter_product.portion_size %>" placeholder="1 If No portion">
+		  </div>
+
+		  <div class='form-group'>
+		  	<label>Mark Up</label>
+			<input type="number" class="form-control" maxlength="12" value="<%= @prepcenter_product.markup %>" name="markup" step="any" required/>
+		  </div>	  
+
+		  <button type="submit" class="btn btn-primary">Edit Product</button>
+		</form>
+	<% end %>
+
+	<br>
+
+
+

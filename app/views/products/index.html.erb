@@ -29,7 +29,7 @@
       	<td><%= product.case_quantity %> </td>	
       	<td><%= number_to_currency(product.price) %> </td>
 
-        <td><%= link_to 'Add', "/products/#{product.id}/prepcenter/new", class: "btn btn-success"%></td>
+        <td><%= link_to 'Add', "/products/prepcenter/#{product.id}/new", class: "btn btn-success"%></td>
 
 	     <td><%= link_to 'Edit', "/products/#{product.id}/edit", class: "btn btn-primary"%></td>
        <td><%= button_to "Delete", { action: "destroy", id: product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
