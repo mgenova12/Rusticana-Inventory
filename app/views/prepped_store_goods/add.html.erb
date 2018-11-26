@@ -26,7 +26,7 @@
         <td><%= prepped_product.portion_size %> </td>  
         <td><%= number_to_percentage(prepped_product.markup, precision: 1) %></td>
         <td><%= number_to_currency( (prepped_product.product.price / prepped_product.portion_size) * ((prepped_product.markup * 0.01)+1) ) %> </td>
-        <td><%= link_to 'Add', "/#{params[:store]}/products/prepcenter/add/#{prepped_product.id}/new", class: "btn btn-success"%></td>
+        <td><%= link_to 'Add Product', "/#{params[:store]}/products/prepcenter/add/#{prepped_product.id}/new", class: "btn btn-success"%></td>
       </tr>
     <% end %> 
 
