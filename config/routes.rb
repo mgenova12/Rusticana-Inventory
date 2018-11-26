@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   patch '/products/prepcenter/:id' => 'prepcenter_products#update'
   delete '/products/prepcenter/:id' => 'prepcenter_products#destroy'
 
-
   get '/:store/locations' => 'locations#index'
   get '/:store/locations/new' => 'locations#new'
   post '/:store/locations' => 'locations#create'
@@ -41,6 +40,15 @@ Rails.application.routes.draw do
   get '/:store/products/:id/edit' => 'store_goods#edit'
   patch '/:store/products/:id' => 'store_goods#update'
   delete '/:store/products/:id' => 'store_goods#destroy'
+
+  get '/:store/products/prepcenter' => 'prepped_store_goods#index'
+  get '/:store/products/prepcenter/add' => 'prepped_store_goods#add' 
+  get '/:store/products/prepcenter/add/:id/new' => 'prepped_store_goods#new'
+  post '/:store/products/prepcenter/add/:id' => 'prepped_store_goods#create'
+  get '/:store/products/prepcenter/:id/edit' => 'prepped_store_goods#edit'
+  patch '/:store/products/prepcenter/:id' => 'prepped_store_goods#update'
+  delete '/:store/products/prepcenter/:id' => 'prepped_store_goods#destroy'
+
 
   get '/prices' => 'prices#index'
   get '/prices/new' => 'prices#new'

@@ -19,8 +19,9 @@
     <tbody>
 
 	<% @prepcenter_products.each do |prepcenter_product| %>
-	  <tr>
-		<td><%= prepcenter_product.name %></td>
+	  
+    <tr>
+		    <td><%= prepcenter_product.name %></td>
       	<td><%= prepcenter_product.measurement %></td> 
       	<td><%= prepcenter_product.prepped %> </td>
       	<td><%= prepcenter_product.item_type %> </td>
@@ -30,6 +31,7 @@
         <td><%= link_to 'Edit', "/products/prepcenter/#{prepcenter_product.id}/edit", class: "btn btn-primary"%></td>
        <td><%= button_to "Delete", { action: "destroy", id: prepcenter_product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>
+
 	<% end %>
 
     </tbody>

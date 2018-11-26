@@ -1,0 +1,39 @@
+<h1>All <%= store_name_format(params[:store]) %> Prepcenter Products</h1>
+
+<a href="/<%= params[:store]%>/products/prepcenter/add"><button type="button" class="btn btn-success">Add New Product</button></a>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Measurement</th>
+        <th>Prepped</th>
+        <th>Item Type</th>
+        <th>Max Amount </th>
+        <th>Location</th>
+        <th>Edit</th>
+        <th>Delete </th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @prepped_store_goods.each do |prepped_store_good| %>
+  <% if prepped_store_good.prepcenter_product %>
+  	  <tr>
+  		    <td><%= prepped_store_good.prepcenter_product.name %></td>
+        	<td><%= prepped_store_good.prepcenter_product.measurement %></td> 
+        	<td><%= prepped_store_good.prepcenter_product.prepped %> </td>
+        	<td><%= prepped_store_good.prepcenter_product.item_type %> </td>
+        	<td><%= prepped_store_good.max_amount %> </td>
+        	<td><%= prepped_store_good.location.name %> </td>	
+          <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{prepped_store_good.id}/edit", class: "btn btn-primary"%></td>
+          <td><%= button_to "Delete", { action: "destroy", id: prepped_store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+  	 </tr>
+  <% end %>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>
