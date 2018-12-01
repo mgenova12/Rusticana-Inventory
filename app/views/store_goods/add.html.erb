@@ -1,5 +1,5 @@
 
-<h1>All Products</h1>
+<h1>Add Products</h1>
 
 <div class="table-responsive">          
   <table class="table table-striped">
@@ -28,8 +28,29 @@
           <td><%= link_to 'Add Product', "/#{params[:store]}/products/add/#{product.id}/new", class: "btn btn-success"%></td>
       </tr>
     <% end %>
-
 	<% end %>
+    
+    <thead>
+      <tr> 
+        <td align="center" colspan="7">Prepped Products </td>
+      </tr>
+    </thead> 
+
+  <% @prepped_products.each do |prepped_product| %>
+    <% if !prepped_product.prepped_store_goods.find_by(store_id: @store_id) %>
+      <tr>
+          <td><%= prepped_product.name %></td>
+          <td><%= prepped_product.measurement %></td> 
+          <td><%= prepped_product.prepped %> </td>
+          <td><%= prepped_product.item_type %> </td>
+          <td><%= prepped_product.try(:case_quantity) %> </td>  
+          <td><%= number_to_currency(prepped_product.product.price) %> </td>         
+          <td><%= link_to 'Add Product', "/#{params[:store]}/products/prepcenter/add/#{prepped_product.id}/new", class: "btn btn-success"%></td>          
+      </tr>
+    <% end %>
+  <% end %>
+
+
 
     </tbody>
   </table>

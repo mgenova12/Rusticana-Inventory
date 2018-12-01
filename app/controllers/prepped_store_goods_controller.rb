@@ -1,14 +1,5 @@
 class PreppedStoreGoodsController < ApplicationController
 
-  def index
-    @prepped_store_goods = Store.find_by(name: params[:store]).prepped_store_goods.order(created_at: :desc)
-  end
-
-  def add 
-    @prepped_products = PrepcenterProduct.order(:name)
-    @store_id = Store.find_by(name: params[:store]).id
-  end
-
   def new 
     @prepped_product = PrepcenterProduct.find(params[:id])
     store_id = Store.find_by(name: params[:store]).id
@@ -26,7 +17,7 @@ class PreppedStoreGoodsController < ApplicationController
     )
 
     if @prepped_store_good.save
-      redirect_to "/#{params[:store]}/products/prepcenter"
+      redirect_to "/#{params[:store]}/products"
     end
   end
 
@@ -44,7 +35,7 @@ class PreppedStoreGoodsController < ApplicationController
       location_id: params[:location_id]
     )
 
-    redirect_to "/#{params[:store]}/products/prepcenter"
+    redirect_to "/#{params[:store]}/products"
   end
 
 
@@ -53,7 +44,7 @@ class PreppedStoreGoodsController < ApplicationController
 
     prepped_store_good.destroy
 
-    redirect_to "/#{params[:store]}/products/prepcenter"
+    redirect_to "/#{params[:store]}/products"
   end
 
 

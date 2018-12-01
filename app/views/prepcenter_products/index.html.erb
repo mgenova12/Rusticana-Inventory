@@ -1,5 +1,5 @@
 
-<h1>All PrepCenter Products</h1>
+<h1>All Prepped Products</h1>
 
 <div class="table-responsive">          
   <table class="table table-striped">
@@ -26,8 +26,8 @@
       	<td><%= prepcenter_product.prepped %> </td>
       	<td><%= prepcenter_product.item_type %> </td>
       	<td><%= prepcenter_product.portion_size %> </td>	
-        <td><%= number_to_percentage(prepcenter_product.markup, precision: 1) %></td>
-      	<td><%= number_to_currency( (prepcenter_product.product.price / prepcenter_product.portion_size) * ((prepcenter_product.markup * 0.01)+1) ) %> </td>
+        <td><%= number_to_percentage(prepcenter_product.product.markup, precision: 1) %></td>
+      	<td><%= number_to_currency( (prepcenter_product.product.price / prepcenter_product.portion_size) * ((prepcenter_product.product.markup * 0.01)+1) ) %> </td>
         <td><%= link_to 'Edit', "/products/prepcenter/#{prepcenter_product.id}/edit", class: "btn btn-primary"%></td>
        <td><%= button_to "Delete", { action: "destroy", id: prepcenter_product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>

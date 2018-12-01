@@ -1,10 +1,12 @@
 class StoreGoodsController < ApplicationController
   def index
     @store_goods = Store.find_by(name: params[:store]).store_goods.order(created_at: :desc)
+    @prepped_store_goods = Store.find_by(name: params[:store]).prepped_store_goods.order(created_at: :desc)
   end
 
   def add 
     @products = Product.order(:name)
+    @prepped_products = PrepcenterProduct.order(:name)
     @store_id = Store.find_by(name: params[:store]).id
   end
 
@@ -53,6 +55,7 @@ class StoreGoodsController < ApplicationController
 
 
   def destroy
+    
     store_good = StoreGood.find(params[:id])
 
     store_good.destroy

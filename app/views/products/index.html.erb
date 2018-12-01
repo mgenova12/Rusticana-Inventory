@@ -1,5 +1,5 @@
 
-<h1>All Distributor Products</h1>
+<h1>All Non-prepped Products</h1>
 
 <a href="/products/new"><button type="button" class="btn btn-success">Add New Product</button></a>
 
@@ -12,8 +12,10 @@
         <th>Prepped</th>
         <th>Item Type</th>
         <th>Case Quantity </th>
-       	<th>Price</th>
-        <th>Prepcenter </th>
+        <th>Price</th>
+       	<th>Markup</th>
+        <th>Markup Price </th>
+        <th>Prepped </th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -28,11 +30,13 @@
       	<td><%= product.item_type %> </td>
       	<td><%= product.case_quantity %> </td>	
       	<td><%= number_to_currency(product.price) %> </td>
+        <td><%= number_to_percentage(product.markup, precision: 1) %> </td>
+        <td><%= number_to_currency( (product.price) * ((product.markup * 0.01)+1)) %> </td>
 
         <td><%= link_to 'Add', "/products/prepcenter/#{product.id}/new", class: "btn btn-success"%></td>
 
-	     <td><%= link_to 'Edit', "/products/#{product.id}/edit", class: "btn btn-primary"%></td>
-       <td><%= button_to "Delete", { action: "destroy", id: product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+	      <td><%= link_to 'Edit', "/products/#{product.id}/edit", class: "btn btn-primary"%></td>
+        <td><%= button_to "Delete", { action: "destroy", id: product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>
 	<% end %>
 

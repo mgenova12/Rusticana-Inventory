@@ -41,8 +41,7 @@ Rails.application.routes.draw do
   patch '/:store/products/:id' => 'store_goods#update'
   delete '/:store/products/:id' => 'store_goods#destroy'
 
-  get '/:store/products/prepcenter' => 'prepped_store_goods#index'
-  get '/:store/products/prepcenter/add' => 'prepped_store_goods#add' 
+
   get '/:store/products/prepcenter/add/:id/new' => 'prepped_store_goods#new'
   post '/:store/products/prepcenter/add/:id' => 'prepped_store_goods#create'
   get '/:store/products/prepcenter/:id/edit' => 'prepped_store_goods#edit'

@@ -16,7 +16,6 @@ class PrepcenterProductsController < ApplicationController
       prepped: params[:prepped], 
       item_type: params[:item_type], 
       portion_size: params[:portion_size], 
-      markup: params[:markup], 
       product_id: params[:id]
     )
 
@@ -38,8 +37,7 @@ class PrepcenterProductsController < ApplicationController
       measurement: params[:measurement], 
       prepped: params[:prepped], 
       item_type: params[:item_type], 
-      portion_size: params[:portion_size], 
-      markup: params[:markup]
+      portion_size: params[:portion_size]
     )
 
     redirect_to '/products/prepcenter'

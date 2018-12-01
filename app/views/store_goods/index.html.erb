@@ -1,4 +1,4 @@
-<h1>All <%= store_name_format(params[:store]) %> Distributor Products</h1>
+<h1>All <%= store_name_format(params[:store]) %> Products</h1>
 
 <a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
 
@@ -20,22 +20,50 @@
     </thead>
     <tbody>
 
-	<% @store_goods.each do |store_good| %>
-  <% if store_good.product %>
-  	  <tr>
-  		    <td><%= store_good.product.name %></td>
-        	<td><%= store_good.product.measurement %></td> 
-        	<td><%= store_good.product.prepped %> </td>
-        	<td><%= store_good.product.item_type %> </td>
-        	<td><%= store_good.product.case_quantity %> </td>
-        	<td><%= store_good.max_amount %> </td>
-        	<td><%= store_good.location.name %> </td>	
-        	<td><%= store_good.distributor.name %> </td>	
-          <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
-          <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
-  	 </tr>
+  	<% @store_goods.each do |store_good| %>
+      <% if store_good.product %>
+      	  <tr>
+      		    <td><%= store_good.product.name %></td>
+            	<td><%= store_good.product.measurement %></td> 
+            	<td><%= store_good.product.prepped %> </td>
+            	<td><%= store_good.product.item_type %> </td>
+            	<td><%= store_good.product.case_quantity %> </td>
+            	<td><%= store_good.max_amount %> </td>
+            	<td><%= store_good.location.name %> </td>	
+            	<td><%= store_good.distributor.name %> </td>	
+              <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
+              <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+      	 </tr>
+      <% end %>
+  	<% end %>
+    
+    <thead>
+      <tr> 
+        <td align="center" colspan="10">Prepped Products </td>
+      </tr>
+    </thead>
+
+
+  <% @prepped_store_goods.each do |prepped_store_good| %>
+    <% if prepped_store_good.prepcenter_product %>
+        <tr>
+            <td><%= prepped_store_good.prepcenter_product.name %></td>
+            <td><%= prepped_store_good.prepcenter_product.measurement %></td> 
+            <td><%= prepped_store_good.prepcenter_product.prepped %> </td>
+            <td><%= prepped_store_good.prepcenter_product.item_type %> </td>
+            <td> </td>
+            <td><%= prepped_store_good.max_amount %> </td>
+            <td><%= prepped_store_good.location.name %> </td>
+            <td>Prep Center </td>
+            <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{prepped_store_good.id}/edit", class: "btn btn-primary"%></td>
+            <td><%= button_to "Delete", { action: "destroy", controller:"prepped_store_goods", id: prepped_store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+       </tr>
+    <% end %>
   <% end %>
-	<% end %>
+
+
+
+
 
     </tbody>
   </table>
