@@ -8,7 +8,6 @@
       <tr>
         <th>Name</th>
         <th>Measurement</th>
-        <th>Prepped</th>
         <th>Item Type</th>
         <th>Case Quantity </th>
         <th>Max Amount </th>
@@ -25,7 +24,6 @@
       	  <tr>
       		    <td><%= store_good.product.name %></td>
             	<td><%= store_good.product.measurement %></td> 
-            	<td><%= store_good.product.prepped %> </td>
             	<td><%= store_good.product.item_type %> </td>
             	<td><%= store_good.product.case_quantity %> </td>
             	<td><%= store_good.max_amount %> </td>
@@ -49,12 +47,11 @@
         <tr>
             <td><%= prepped_store_good.prepcenter_product.name %></td>
             <td><%= prepped_store_good.prepcenter_product.measurement %></td> 
-            <td><%= prepped_store_good.prepcenter_product.prepped %> </td>
             <td><%= prepped_store_good.prepcenter_product.item_type %> </td>
             <td> </td>
             <td><%= prepped_store_good.max_amount %> </td>
             <td><%= prepped_store_good.location.name %> </td>
-            <td>Prep Center </td>
+            <td>PREP CENTER </td>
             <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{prepped_store_good.id}/edit", class: "btn btn-primary"%></td>
             <td><%= button_to "Delete", { action: "destroy", controller:"prepped_store_goods", id: prepped_store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
        </tr>

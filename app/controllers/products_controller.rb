@@ -12,7 +12,6 @@ class ProductsController < ApplicationController
     @product = Product.new(
       name: params[:name],
       measurement: params[:measurement],
-      prepped: params[:prepped],
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
       price: params[:price],
@@ -36,7 +35,6 @@ class ProductsController < ApplicationController
     @product.update(
       name: params[:name],
       measurement: params[:measurement],
-      prepped: params[:prepped],
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
       price: params[:price],

@@ -13,7 +13,6 @@ class PrepcenterProductsController < ApplicationController
     @product = PrepcenterProduct.new(
       name: params[:name],
       measurement: params[:measurement], 
-      prepped: params[:prepped], 
       item_type: params[:item_type], 
       portion_size: params[:portion_size], 
       product_id: params[:id]
@@ -35,7 +34,6 @@ class PrepcenterProductsController < ApplicationController
     @prepcenter_product.update(
       name: params[:name],
       measurement: params[:measurement], 
-      prepped: params[:prepped], 
       item_type: params[:item_type], 
       portion_size: params[:portion_size]
     )

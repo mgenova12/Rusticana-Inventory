@@ -6,7 +6,6 @@
       <tr>
         <th>Name</th>
         <th>Measurement</th>
-        <th>Prepped</th>
         <th>Item Type</th>
         <th>Portion Size</th>
         <th>Mark Up </th>
@@ -21,7 +20,6 @@
       <tr>
         <td><%= prepped_product.name %></td>
         <td><%= prepped_product.measurement %></td> 
-        <td><%= prepped_product.prepped %> </td>
         <td><%= prepped_product.item_type %> </td>
         <td><%= prepped_product.portion_size %> </td>  
         <td><%= number_to_percentage(prepped_product.markup, precision: 1) %></td>
