@@ -8,6 +8,7 @@
     <thead>
       <tr>
         <th>Name</th>
+        <th>Distributor </th>
         <th>Measurement</th>
         <th>Item Type</th>
         <th>Case Quantity </th>
@@ -23,7 +24,8 @@
 
 	<% @products.each do |product| %>
 	  <tr>
-		    <td><%= product.name %></td>
+        <td><%= product.name %></td>
+		    <td><%= product.distributor %></td>
       	<td><%= product.measurement %></td> 
       	<td><%= product.item_type %> </td>
       	<td><%= product.case_quantity %> </td>	

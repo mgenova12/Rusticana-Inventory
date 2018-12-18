@@ -30,6 +30,30 @@ module ProductsHelper
     end
   end
 
+  def product_distributors_options(product)
+    distributor_array = []
+
+      @distributors.each do |distributor| 
+        if product.distributor
+          if product.distributor == distributor.name
+            distributor_array.unshift([distributor.name, distributor.name])
+          else 
+            distributor_array.push([distributor.name, distributor.name])
+          end 
+        else 
+          if distributor_array.length < 1 
+            distributor_array.unshift(["", nil])
+            distributor_array.push([distributor.name, distributor.name])
+          else 
+            distributor_array.push([distributor.name, distributor.name])
+          end 
+        end
+      end
+
+      options_for_select(distributor_array)
+  end
+
+
   def distributors_options(store_good)
     distributor_array = []
 
@@ -41,11 +65,11 @@ module ProductsHelper
             distributor_array.push([distributor.name, distributor.id])
           end 
         else 
-          if location_array.length < 1 
-            location_array.unshift(["", nil])
-            location_array.push([location.name, location.id])
+          if distributor_array.length < 1 
+            distributor_array.unshift(["", nil])
+            distributor_array.push([distributor.name, distributor.id])
           else 
-            location_array.push([location.name, location.id])
+            distributor_array.push([distributor.name, distributor.id])
           end 
         end
       end

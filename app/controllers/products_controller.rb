@@ -15,8 +15,8 @@ class ProductsController < ApplicationController
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
       price: params[:price],
-      markup: params[:markup]
-
+      markup: params[:markup],
+      distributor: params[:distributor]
     )
 
     if @product.save
@@ -38,7 +38,8 @@ class ProductsController < ApplicationController
       item_type: params[:item_type],
       case_quantity: params[:case_quantity],
       price: params[:price],
-      markup: params[:markup]      
+      markup: params[:markup],
+      distributor: params[:distributor]      
     )
 
     redirect_to '/products'

@@ -7,6 +7,7 @@
 	    <thead>
 	      <tr>
 	        <th>Product Name</th>
+	        <th>Previous Price </th>
 	        <th>Input Price</th>
 	      </tr>
 	    </thead>
@@ -16,6 +17,7 @@
 			  <tr>
 
 			    <td><%= product.name %></td>	
+			    <td><%= number_to_currency(product.price) %></td>	
 			    <%= fields_for "product[]", product do |pf| %>
 	            	<td><%= pf.number_field :price, :value => nil, class:"form-control", step: :any, required: "true" %> </td>
 			    <% end %>
