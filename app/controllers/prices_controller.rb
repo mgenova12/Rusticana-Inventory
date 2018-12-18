@@ -1,7 +1,5 @@
 class PricesController < ApplicationController
   def index
-    # last_record_date = Price.maximum(:created_at)
-    # @prices = Price.where(:created_at => (last_record_date.at_beginning_of_day)..(last_record_date.end_of_day))
     @saved_price_dates = SavedPrice.all
     @products = Product.order(:name)
   end
@@ -17,6 +15,8 @@ class PricesController < ApplicationController
 
   def new
     @products = Product.order(:name)
+
+    @p = Product.new
   end
 
   def create 

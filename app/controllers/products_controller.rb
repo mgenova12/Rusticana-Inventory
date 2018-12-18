@@ -46,7 +46,9 @@ class ProductsController < ApplicationController
 
   def destroy
     @product = Product.find(params[:id])
+    @prepped_product = PrepcenterProduct.find_by(product_id: params[:id])
 
+    @prepped_product.destroy
     @product.destroy
 
     redirect_to '/products'

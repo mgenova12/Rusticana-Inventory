@@ -12,13 +12,12 @@
 	    </thead>
 	    <tbody>
 
-
 			<% @products.each do |product| %>
 			  <tr>
 
 			    <td><%= product.name %></td>	
 			    <%= fields_for "product[]", product do |pf| %>
-	            	<td><%= pf.number_field :price, class:"form-control", step: :any, required: "true" %> </td>
+	            	<td><%= pf.number_field :price, :value => nil, class:"form-control", step: :any, required: "true" %> </td>
 			    <% end %>
 
 			 </tr>
@@ -27,7 +26,6 @@
 
 	    </tbody>
 	  </table>
-
 
 	  </div>
 	</div>
