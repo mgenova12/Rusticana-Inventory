@@ -14,6 +14,7 @@ class PricesController < ApplicationController
   end
 
   def new
+    @distributors = Distributor.all
     @products = Product.order(:name)
 
     @p = Product.new

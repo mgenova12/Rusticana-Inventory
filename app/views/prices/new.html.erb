@@ -1,5 +1,14 @@
-<h1> Add Updated Product Prices </h1>
 
+<h1> Add Updated Product Prices <%= params[:distributor] %> </h1>
+
+
+	<div class='supplier'>
+		<ul> 
+			<% @distributors.each do |distributor|  %>
+				<li><a href="/prices/<%= distributor.name %>/new"><%= distributor.name %> </a> </li>
+			<% end %>
+		</ul>
+	</div>
 
 <%= form_tag "/prices", method: :post do %>
 	<div class="table-responsive">          
@@ -14,15 +23,17 @@
 	    <tbody>
 
 			<% @products.each do |product| %>
-			  <tr>
+			  <% if params[:distributor] == product.distributor %>
+				  <tr>
 
-			    <td><%= product.name %></td>	
-			    <td><%= number_to_currency(product.price) %></td>	
-			    <%= fields_for "product[]", product do |pf| %>
-	            	<td><%= pf.number_field :price, :value => nil, class:"form-control", step: :any, required: "true" %> </td>
-			    <% end %>
+				    <td><%= product.name %></td>	
+				    <td><%= number_to_currency(product.price) %></td>	
+				    <%= fields_for "product[]", product do |pf| %>
+		            	<td><%= pf.number_field :price, :value => nil, class:"form-control", step: :any, required: "true" %> </td>
+				    <% end %>
 
-			 </tr>
+				 </tr>
+			 <% end %>
 			<% end %>
 
 
