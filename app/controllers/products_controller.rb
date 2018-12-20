@@ -46,11 +46,21 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
-    @prepped_product = PrepcenterProduct.find_by(product_id: params[:id])
+    product = Product.find(params[:id])
+    product.destroy
 
-    @prepped_product.destroy
-    @product.destroy
+    store_goods = StoreGood.where(product_id: params[:id])
+    store_goods.destroy_all
+
+    prepped_product = PrepcenterProduct.find_by(product_id: params[:id])
+
+    if prepped_product
+      prepped_store_good = PreppedStoreGood.find_by(prepcenter_product_id: prepped_product.id)
+      prepped_store_good.destroy
+      prepped_product.destroy
+    end
+
+
 
     redirect_to '/products'
   end

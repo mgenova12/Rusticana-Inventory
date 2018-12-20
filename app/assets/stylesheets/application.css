@@ -27,3 +27,7 @@
 .green {
 	color:green;
 }
+
+thead td {
+	background-color: #4975bc;
+}

@@ -42,9 +42,11 @@ class PrepcenterProductsController < ApplicationController
   end
 
   def destroy
-    @prepcenter_product = PrepcenterProduct.find(params[:id])
+    prepcenter_product = PrepcenterProduct.find(params[:id])
+    prepped_store_good = PreppedStoreGood.find_by(prepcenter_product_id: params[:id])
 
-    @prepcenter_product.destroy
+    prepped_store_good.destroy
+    prepcenter_product.destroy
 
     redirect_to '/products/prepcenter'
   end

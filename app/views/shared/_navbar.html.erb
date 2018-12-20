@@ -46,13 +46,20 @@
 
         <% if store %>
           <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/<%= store %>/inventory/new">New Inventory</a></li>
+            </ul>
+           </li>  
+
+          <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/<%= store %>/products">View Products</a></li>
               <li><a href="/<%= store %>/products/add">Add Products</a></li>
             </ul>
            </li>          
-
+          
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product Locations <span class="caret"></span></a>
             <ul class="dropdown-menu">

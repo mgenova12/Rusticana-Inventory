@@ -9,7 +9,7 @@ class PreppedStoreGoodsController < ApplicationController
   def create
     store_id = Store.find_by(name: params[:store]).id
 
-    @prepped_store_good = PreppedStoreGood.create!(
+    @prepped_store_good = PreppedStoreGood.new(
       store_id: store_id,
       prepcenter_product_id: params[:id],
       location_id: params[:location_id],

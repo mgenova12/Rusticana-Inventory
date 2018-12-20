@@ -49,12 +49,13 @@ Rails.application.routes.draw do
 
   get '/prices' => 'prices#index'
   get '/prices/new' => 'prices#new'
-
   get '/prices/:distributor/new' => 'prices#new'
-
   get '/prices/date' => 'prices#date'
   post '/prices' => 'prices#create'
   get '/prices/:saved_price_id' => 'prices#show'
+
+  # get '/inventory' => 'inventories#index'
+  get '/:store/inventory/new' => 'inventories#new'
 
 
 end
