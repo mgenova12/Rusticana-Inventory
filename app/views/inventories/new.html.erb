@@ -1,6 +1,8 @@
 
 <h1><%= store_name_format(params[:store]) %> Inventory</h1>
 
+<%= form_tag "/#{params[:store]}/inventory", method: :post do %>
+
   <div class="form-group">
    <label>Select Order Day</label>
    <select class="form-control" name="order_day" required>
@@ -10,40 +12,66 @@
     </select> 
   </div>
 
+	<div class="table-responsive">          
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th>Product</th>
+	        <th>Count By</th>
+	        <th>Inventory</th>
+	      </tr>     
+	    </thead> 
 
-<div class="table-responsive">          
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Product</th>
-        <th>Count By</th>
-        <th>Inventory</th>
-      </tr>     
-    </thead> 
+		<% @locations.each do |location|  %>
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="3"><%= location.name %></td>
+	        </tr>
+	     </thead>
 
+			<% @all_store_goods.each do |store_good| %>
+				<% if store_good.location_id == location.id %>
 
+					<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>
+						<% if store_good.try(:product) %>
+							<td><%= store_good.product.name %></td>
+							<td><%= store_good.product.measurement %> </td>
+							<td>
+								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
+								<%= sg.hidden_field :product_id, :value => store_good.product_id %>
 
+								<%= sg.hidden_field :case_quantity, :value => store_good.product.case_quantity %>
+								<%= sg.hidden_field :measurement, :value => store_good.product.measurement %>
+								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
+							 </td>						
+						<% else %>	
+							<td><%= store_good.prepcenter_product.name %></td>
+							<td><%= store_good.prepcenter_product.measurement %></td>
+							<td>
+								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
+								<%= sg.hidden_field :prepcenter_product_id, :value => store_good.prepcenter_product_id %>
 
-	<% @locations.each do |location|  %>
-     <thead>
-        <tr> 
-          <td align="center" colspan="3"><%= location.name %></td>
-        </tr>
-     </thead>
-		<% @all_store_goods.each do |store_good| %>
-			<% if store_good.location_id == location.id %>
-				<tr>
-					<% if store_good.try(:product) %>
-						<td><%= store_good.product.name %></td>
-						<td><%= store_good.product.measurement %> </td>
-					<% else %>	
-						<td><%= store_good.prepcenter_product.name %></td>
-						<td><%= store_good.prepcenter_product.measurement %></td>
+								<%= sg.hidden_field :measurement, :value => store_good.prepcenter_product.measurement %>
+								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>								
+							 </td>							
+						<% end %>
+					</tr>
 					<% end %>
-				</tr>
-			<% end %>
-		<% end %>
 
-	<% end %>
-  </table>
-</div>
+				<% end %>
+			<% end %>
+
+		<% end %>
+	  </table>
+	</div>
+
+      <div class="form-group">
+        <label>Notes:</label>
+        <textarea class="form-control" rows="5" name="message"></textarea>
+      </div>	
+
+	<button type="submit" class="btn btn-success">Submit Inventory</button>
+<% end %>
+<br>
+

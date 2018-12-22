@@ -56,6 +56,8 @@ Rails.application.routes.draw do
 
   # get '/inventory' => 'inventories#index'
   get '/:store/inventory/new' => 'inventories#new'
+  post '/:store/inventory' => 'inventories#create'
+
 
 
 end
