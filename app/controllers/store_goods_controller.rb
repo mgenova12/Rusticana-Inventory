@@ -1,13 +1,15 @@
 class StoreGoodsController < ApplicationController
   def index
-    @store_goods = Store.find_by(name: params[:store]).store_goods.order(created_at: :desc)
-    @prepped_store_goods = Store.find_by(name: params[:store]).prepped_store_goods.order(created_at: :desc)
+    store_id = Store.find_by(name: params[:store]).id
+    @store_goods = StoreGood.where(store_id: store_id)
+    # @store_goods = Store.find_by(name: params[:store]).store_goods.order(created_at: :desc)
+    # @prepped_store_goods = Store.find_by(name: params[:store]).prepped_store_goods.order(created_at: :desc)
   end
 
   def add 
+    @store_id = Store.find_by(name: params[:store]).id
     @products = Product.order(:name)
     @prepped_products = PrepcenterProduct.order(:name)
-    @store_id = Store.find_by(name: params[:store]).id
   end
 
   def new 

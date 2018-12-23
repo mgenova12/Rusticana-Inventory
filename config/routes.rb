@@ -54,9 +54,11 @@ Rails.application.routes.draw do
   post '/prices' => 'prices#create'
   get '/prices/:saved_price_id' => 'prices#show'
 
-  # get '/inventory' => 'inventories#index'
+  get '/:store/inventory' => 'inventories#index'
   get '/:store/inventory/new' => 'inventories#new'
   post '/:store/inventory' => 'inventories#create'
+  get '/:store/inventory/:order_id' => 'inventories#show'
+  get '/:store/inventory/:distributor/:order_id' => 'inventories#show'
 
 
 

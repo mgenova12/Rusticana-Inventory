@@ -29,7 +29,7 @@
 	        </tr>
 	     </thead>
 
-			<% @all_store_goods.each do |store_good| %>
+			<% @store_goods.each do |store_good| %>
 				<% if store_good.location_id == location.id %>
 
 					<%= fields_for "inventory[]", @inventory do |sg| %>
@@ -39,21 +39,21 @@
 							<td><%= store_good.product.measurement %> </td>
 							<td>
 								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
-								<%= sg.hidden_field :product_id, :value => store_good.product_id %>
 
 								<%= sg.hidden_field :case_quantity, :value => store_good.product.case_quantity %>
 								<%= sg.hidden_field :measurement, :value => store_good.product.measurement %>
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
+								<%= sg.hidden_field :store_good_id, :value => store_good.id %>
 							 </td>						
 						<% else %>	
 							<td><%= store_good.prepcenter_product.name %></td>
 							<td><%= store_good.prepcenter_product.measurement %></td>
 							<td>
 								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
-								<%= sg.hidden_field :prepcenter_product_id, :value => store_good.prepcenter_product_id %>
 
 								<%= sg.hidden_field :measurement, :value => store_good.prepcenter_product.measurement %>
-								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>								
+								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
+								<%= sg.hidden_field :store_good_id, :value => store_good.id %>	
 							 </td>							
 						<% end %>
 					</tr>

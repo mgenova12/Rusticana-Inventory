@@ -31,35 +31,31 @@
             	<td><%= store_good.distributor.name %> </td>	
               <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
               <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
-      	 </tr>
+      	 </tr> 
       <% end %>
   	<% end %>
     
-    <thead>
-      <tr> 
-        <td align="center" colspan="10">Prepped Products </td>
-      </tr>
-    </thead>
-
-
-  <% @prepped_store_goods.each do |prepped_store_good| %>
-    <% if prepped_store_good.prepcenter_product %>
-        <tr>
-            <td><%= prepped_store_good.prepcenter_product.name %></td>
-            <td><%= prepped_store_good.prepcenter_product.measurement %></td> 
-            <td><%= prepped_store_good.prepcenter_product.item_type %> </td>
-            <td> </td>
-            <td><%= prepped_store_good.max_amount %> </td>
-            <td><%= prepped_store_good.location.name %> </td>
-            <td>PREP CENTER </td>
-            <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{prepped_store_good.id}/edit", class: "btn btn-primary"%></td>
-            <td><%= button_to "Delete", { action: "destroy", controller:"prepped_store_goods", id: prepped_store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
-       </tr>
+      <thead>
+        <tr> 
+          <td align="center" colspan="10">Prepped Products </td>
+        </tr>
+      </thead> 
+    
+    <% @store_goods.each do |store_good| %>
+      <% if store_good.prepcenter_product %>
+          <tr>
+              <td><%= store_good.prepcenter_product.name %></td>
+              <td><%= store_good.prepcenter_product.measurement %></td> 
+              <td><%= store_good.prepcenter_product.item_type %> </td>
+              <td> N/A </td>
+              <td><%= store_good.max_amount %> </td>
+              <td><%= store_good.location.name %> </td> 
+              <td><%= store_good.distributor.name %> </td>  
+              <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{store_good.id}/edit", class: "btn btn-primary"%></td>
+              <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+         </tr> 
+      <% end %>
     <% end %>
-  <% end %>
-
-
-
 
 
     </tbody>

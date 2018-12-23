@@ -33,7 +33,7 @@
     </thead> 
 
   <% @prepped_products.each do |prepped_product| %>
-    <% if !prepped_product.prepped_store_goods.find_by(store_id: @store_id) %>
+    <% if !prepped_product.store_goods.find_by(store_id: @store_id) %>
       <tr>
           <td><%= prepped_product.name %></td>
           <td><%= prepped_product.measurement %></td> 

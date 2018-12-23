@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181221171109) do
+ActiveRecord::Schema.define(version: 20181223215446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,15 +22,13 @@ ActiveRecord::Schema.define(version: 20181221171109) do
   end
 
   create_table "inventories", force: :cascade do |t|
-    t.integer  "product_id"
-    t.integer  "prepcenter_product_id"
     t.integer  "quantity"
     t.integer  "quantity_needed"
     t.integer  "order_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "message"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "store_id"
+    t.integer  "store_good_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -45,6 +43,8 @@ ActiveRecord::Schema.define(version: 20181221171109) do
     t.string   "order_day"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "message"
+    t.integer  "store_id"
   end
 
   create_table "prepcenter_products", force: :cascade do |t|
@@ -55,15 +55,6 @@ ActiveRecord::Schema.define(version: 20181221171109) do
     t.integer  "product_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-  end
-
-  create_table "prepped_store_goods", force: :cascade do |t|
-    t.integer  "store_id"
-    t.integer  "prepcenter_product_id"
-    t.integer  "location_id"
-    t.integer  "max_amount"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
   end
 
   create_table "prices", force: :cascade do |t|
@@ -97,9 +88,10 @@ ActiveRecord::Schema.define(version: 20181221171109) do
     t.integer  "product_id"
     t.integer  "location_id"
     t.integer  "distributor_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
     t.integer  "max_amount"
+    t.integer  "prepcenter_product_id"
   end
 
   create_table "stores", force: :cascade do |t|

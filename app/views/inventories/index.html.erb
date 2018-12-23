@@ -1,0 +1,28 @@
+<h1>All <%= store_name_format(params[:store]) %> orders</h1>
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Date placed</th>
+        <th>Order Day</th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @orders.each do |order| %>
+	  <tr>
+	    <td><%= order.id %></td>
+	    <td><%= order.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
+      <td><%= order.order_day %> </td>
+	    <td><%= link_to 'View', "/#{params[:store]}/inventory/all/#{order.id}", class: "btn btn-primary"%></td> </td>	
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+
+  </div>
+</div>

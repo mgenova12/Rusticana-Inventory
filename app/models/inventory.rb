@@ -1,5 +1,3 @@
 class Inventory < ApplicationRecord
-
-  belongs_to :product, optional: true
-  belongs_to :prepcenter_product, optional: true
+  belongs_to :store_good
 end
