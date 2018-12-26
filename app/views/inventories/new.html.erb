@@ -2,16 +2,16 @@
 <h1><%= store_name_format(params[:store]) %> Inventory</h1>
 
 <%= form_tag "/#{params[:store]}/inventory", method: :post do %>
-
-  <div class="form-group">
-   <label>Select Order Day</label>
-   <select class="form-control" name="order_day" required>
-      <option value=""></option>
-      <option value="Monday">Monday</option>
-      <option value="Thursday">Thursday</option>
-    </select> 
-  </div>
-
+	<% if @store.label != 'PrepCenter' %>
+	  <div class="form-group">
+	   <label>Select Delivery Day</label>
+	   <select class="form-control" name="order_day" required>
+	      <option value=""></option>
+	      <option value="Monday">Monday</option>
+	      <option value="Thursday">Thursday</option>
+	    </select> 
+	  </div>
+	<% end %>
 	<div class="table-responsive">          
 	  <table class="table table-striped">
 	    <thead>
@@ -38,7 +38,7 @@
 							<td><%= store_good.product.name %></td>
 							<td><%= store_good.product.measurement %> </td>
 							<td>
-								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
+								<%= sg.number_field :quantity, class:"form-control", :placeholder => store_good.product.case_quantity ? "#{store_good.product.case_quantity} in each case. Count by Item!" : nil, required: "true" %>
 
 								<%= sg.hidden_field :case_quantity, :value => store_good.product.case_quantity %>
 								<%= sg.hidden_field :measurement, :value => store_good.product.measurement %>

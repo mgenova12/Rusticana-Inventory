@@ -2,7 +2,7 @@
 <h1> Add Updated Product Prices <%= params[:distributor] %> </h1>
 
 
-	<div class='supplier'>
+	<div class='sub-list'>
 		<ul> 
 			<% @distributors.each do |distributor|  %>
 				<li><a href="/prices/<%= distributor.name %>/new"><%= distributor.name %> </a> </li>

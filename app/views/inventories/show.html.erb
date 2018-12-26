@@ -1,14 +1,22 @@
 
 <h1><%= store_name_format(params[:store]) %> Inventory</h1>
 
-	<div class='supplier'>
+	<div class='sub-list'>
 		<ul> 
 			<li> <a href="/<%= params[:store] %>/inventory/all/<%= params[:order_id] %>">All </a> </li>
-			<% @distributors.each do |distributor|  %>
+			<% @inventories.map{|inv| inv.store_good.distributor}.uniq.each do |distributor| %>
 				<li><a href="/<%= params[:store] %>/inventory/<%= distributor.name %>/<%= params[:order_id] %>"><%= distributor.name %> </a> </li>
 			<% end %>
 		</ul>
 	</div>
+
+	<div class="sub-list">
+		<ul> 
+			<li><a href="/<%= params[:store]%>/inventory/<%= params[:distributor] %>/zeros/<%= params[:order_id] %>"> Show Zeros </a></li>
+		</ul>
+	</div>
+
+	<div class=""
 
 	<div class="table-responsive">          
 	  <table class="table table-striped">
@@ -28,41 +36,74 @@
 	     </thead>
 
 			<% @inventories.each do |inventory| %>
-				<% if params[:distributor] == inventory.store_good.distributor.name %>
-					<% if inventory.store_good.location_id == location.id %>
-						<tr>	
-							<% if inventory.store_good.product %>
-								<td><%= inventory.store_good.product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% else %>
-								<td><%= inventory.store_good.prepcenter_product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% end %>
-						</tr>
+					<% if (params[:distributor] == inventory.store_good.distributor.name) && ((params[:zeros] != 'zeros') && (inventory.quantity_needed > 0))%>
+						<% if inventory.store_good.location_id == location.id %>
+							<tr>	
+								<% if inventory.store_good.product %>
+									<td><%= inventory.store_good.product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% else %>
+									<td><%= inventory.store_good.prepcenter_product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% end %>
+							</tr>
+						<% end %>
+
+					
+					<% elsif (params[:distributor] == 'all') && ((params[:zeros] != 'zeros') && (inventory.quantity_needed > 0)) %>
+						<% if inventory.store_good.location_id == location.id %>
+							<tr>	
+								<% if inventory.store_good.product %>
+									<td><%= inventory.store_good.product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% else %>
+									<td><%= inventory.store_good.prepcenter_product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% end %>
+							</tr>
+						<% end %>	
+
+
+					<% elsif (params[:distributor] == 'all') && (params[:zeros] == 'zeros')%>
+						<% if inventory.store_good.location_id == location.id %>
+							<tr>	
+								<% if inventory.store_good.product %>
+									<td><%= inventory.store_good.product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% else %>
+									<td><%= inventory.store_good.prepcenter_product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% end %>
+							</tr>
+						<% end %>			
+
+
+					<% elsif (params[:distributor] == inventory.store_good.distributor.name) && (params[:zeros] == 'zeros')%>
+						<% if inventory.store_good.location_id == location.id %>
+							<tr>	
+								<% if inventory.store_good.product %>
+									<td><%= inventory.store_good.product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% else %>
+									<td><%= inventory.store_good.prepcenter_product.name %> </td>
+									<td><%= inventory.quantity %> </td>
+									<td><%= inventory.quantity_needed %> </td>
+								<% end %>
+							</tr>
+						<% end %>								
+
 					<% end %>
-				
-				<% elsif params[:distributor] == 'all' %>
-					<% if inventory.store_good.location_id == location.id %>
-						<tr>	
-							<% if inventory.store_good.product %>
-								<td><%= inventory.store_good.product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% else %>
-								<td><%= inventory.store_good.prepcenter_product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% end %>
-						</tr>
-					<% end %>					
+
+
 
 				<% end %>
-
-
-
-			<% end %>
 		<% end %>
 
 	  </table>

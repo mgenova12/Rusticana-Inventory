@@ -10,7 +10,10 @@ class InventoriesController < ApplicationController
   def new 
     @inventory = Inventory.new
 
-    store_id = Store.find_by(name: params[:store]).id 
+    store_id = Store.find_by(name: params[:store]).id
+
+    @store = Store.find(store_id)
+
     @store_goods = StoreGood.where(store_id: store_id)
 
     @locations = Location.where(store_id: store_id)
@@ -55,7 +58,10 @@ class InventoriesController < ApplicationController
     store_id = Store.find_by(name: params[:store]).id
     @locations = Location.where(store_id: store_id)
     @inventories = Inventory.where(store_id: store_id, order_id: params[:order_id])
+
     @distributors = Distributor.all
+    # @distributors = StoreGood.inventories
+
     @message = Order.find(params[:order_id]).message
 
   end
