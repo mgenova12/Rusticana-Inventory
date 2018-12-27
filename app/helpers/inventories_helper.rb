@@ -14,4 +14,8 @@ module InventoriesHelper
     end
   end
 
+
+
+
+
 end

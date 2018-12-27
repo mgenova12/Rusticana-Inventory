@@ -61,6 +61,6 @@ Rails.application.routes.draw do
   get '/:store/inventory/:distributor/:order_id' => 'inventories#show'
   get '/:store/inventory/:distributor/:zeros/:order_id' => 'inventories#show'
 
-
+  get '/:store/orders' => 'orders#index'
 
 end

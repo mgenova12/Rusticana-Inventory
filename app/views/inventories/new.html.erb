@@ -2,7 +2,8 @@
 <h1><%= store_name_format(params[:store]) %> Inventory</h1>
 
 <%= form_tag "/#{params[:store]}/inventory", method: :post do %>
-	<% if @store.label != 'PrepCenter' %>
+	
+	<% if store %>
 	  <div class="form-group">
 	   <label>Select Delivery Day</label>
 	   <select class="form-control" name="order_day" required>
@@ -12,6 +13,7 @@
 	    </select> 
 	  </div>
 	<% end %>
+
 	<div class="table-responsive">          
 	  <table class="table table-striped">
 	    <thead>

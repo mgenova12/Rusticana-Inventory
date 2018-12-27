@@ -1,4 +1,6 @@
-<h1>All <%= store_name_format(params[:store]) %> Inventories</h1>
+
+<h1> Store Orders </h1>
+
 
 <div class="table-responsive">          
   <table class="table table-striped">
@@ -6,9 +8,8 @@
       <tr>
         <th>Order ID</th>
         <th>Date placed</th>
-        <% if store %>
-          <th>Delivery Day </th> 
-        <% end %>
+        <th>Store </th>
+        <th>Status </th>
         <th>View</th>
       </tr>
     </thead>
@@ -18,10 +19,9 @@
 	  <tr>
 	    <td><%= order.id %></td>
 	    <td><%= order.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
-      <% if store %>
-      <td><%= order.order_day %> </td>
-      <% end %>
-	    <td><%= link_to 'View', "/#{params[:store]}/inventory/all/#{order.id}", class: "btn btn-primary"%></td> </td>	
+	    <td><%= store_name_format(order.store.name) %> </td>
+	   	<%= status_color(order.status) %>
+	    <td><%= link_to 'View', "", class: "btn btn-primary"%></td> </td>	
 	 </tr>
 	<% end %>
 

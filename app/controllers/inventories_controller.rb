@@ -24,7 +24,7 @@ class InventoriesController < ApplicationController
     store_id = Store.find_by(name: params[:store]).id
 
     order = Order.create!(
-      status: 'Complete',
+      status: 'Pending',
       order_day: params[:order_day],
       message: params[:message],
       store_id: store_id
@@ -57,10 +57,10 @@ class InventoriesController < ApplicationController
   def show 
     store_id = Store.find_by(name: params[:store]).id
     @locations = Location.where(store_id: store_id)
-    @inventories = Inventory.where(store_id: store_id, order_id: params[:order_id])
+
+    @inventories = Inventory.where(order_id: params[:order_id])
 
     @distributors = Distributor.all
-    # @distributors = StoreGood.inventories
 
     @message = Order.find(params[:order_id]).message
 
