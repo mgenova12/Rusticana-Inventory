@@ -21,7 +21,7 @@
 	    <td><%= order.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
 	    <td><%= store_name_format(order.store.name) %> </td>
 	   	<%= status_color(order.status) %>
-	    <td><%= link_to 'View', "", class: "btn btn-primary"%></td> </td>	
+	    <td><%= link_to 'View', "/#{params[:store]}/orders/#{order.id}/new", class: "btn btn-primary"%></td> </td>
 	 </tr>
 	<% end %>
 

@@ -35,3 +35,7 @@
 thead td {
 	background-color: #4975bc;
 }
+
+input[type=checkbox] {
+  transform: scale(1.25);
+}	

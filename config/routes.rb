@@ -62,5 +62,10 @@ Rails.application.routes.draw do
   get '/:store/inventory/:distributor/:zeros/:order_id' => 'inventories#show'
 
   get '/:store/orders' => 'orders#index'
+  get '/:store/orders/:id/new' => 'orders#new'
+  post '/:store/orders' => 'orders#create'
+
+
+
 
 end
