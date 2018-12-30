@@ -20,7 +20,7 @@ module ApplicationHelper
     end
   end
 
-  def out_of_stock(inventory)
+  def out_of_stock_helper(inventory)
     if inventory
       content_tag(:td, 'OUT OF STOCK', class: 'red')
     else 
