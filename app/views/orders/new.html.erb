@@ -18,7 +18,7 @@
 			<% @inventories.each do |inventory| %>
 				<%= fields_for "inventory[]", @inventory do |sg| %>
 					<tr>	
-						<% if inventory.store_good.distributor.name == params[:store] %>
+						<% if inventory.store_good.distributor.name.parameterize('_') == params[:store] %>
 							<% if inventory.store_good.product %>
 								<td><%= sg.check_box :out_of_stock %></td>
 								<td><%= inventory.store_good.product.name %> </td>

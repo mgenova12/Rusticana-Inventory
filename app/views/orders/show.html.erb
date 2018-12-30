@@ -14,7 +14,7 @@
 
 			<% @inventories.each do |inventory| %>
 				<tr>	
-					<% if inventory.store_good.distributor.name == params[:store] %>
+					<% if inventory.store_good.distributor.name.parameterize('_') == params[:store] %>
 						<% if inventory.store_good.product %>
 							<%= out_of_stock_helper(inventory.out_of_stock) %>
 							<td><%= inventory.store_good.product.name %> </td>

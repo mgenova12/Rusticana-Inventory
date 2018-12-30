@@ -36,16 +36,16 @@ module ProductsHelper
       @distributors.each do |distributor| 
         if product.distributor
           if product.distributor == distributor.name
-            distributor_array.unshift([distributor.name.upcase, distributor.name])
+            distributor_array.unshift([distributor.name, distributor.name])
           else 
-            distributor_array.push([distributor.name.upcase, distributor.name])
+            distributor_array.push([distributor.name, distributor.name])
           end 
         else 
           if distributor_array.length < 1 
             distributor_array.unshift(["", nil])
-            distributor_array.push([distributor.name.upcase, distributor.name])
+            distributor_array.push([distributor.name, distributor.name])
           else 
-            distributor_array.push([distributor.name.upcase, distributor.name])
+            distributor_array.push([distributor.name, distributor.name])
           end 
         end
       end
@@ -60,16 +60,16 @@ module ProductsHelper
       @distributors.each do |distributor| 
         if store_good.distributor.id
           if store_good.distributor.id == distributor.id
-            distributor_array.unshift([distributor.name.upcase, distributor.id])
+            distributor_array.unshift([distributor.name, distributor.id])
           else 
-            distributor_array.push([distributor.name.upcase, distributor.id])
+            distributor_array.push([distributor.name, distributor.id])
           end 
         else 
           if distributor_array.length < 1 
             distributor_array.unshift(["", nil])
-            distributor_array.push([distributor.name.upcase, distributor.id])
+            distributor_array.push([distributor.name, distributor.id])
           else 
-            distributor_array.push([distributor.name.upcase, distributor.id])
+            distributor_array.push([distributor.name, distributor.id])
           end 
         end
       end

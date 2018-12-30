@@ -17,7 +17,7 @@ class StoresController < ApplicationController
 
     if params[:label] == 'PrepCenter'
       Distributor.create(
-        name: params[:name].parameterize('_')
+        name: params[:name]
       )
     end
 
