@@ -15,7 +15,7 @@
 
 	<% @distributors.each do |distributor| %>
 	  <tr>
-		   <td><%= distributor.name %></td>
+		   <td><%= store_name_format(distributor.name) %></td>
 	     <td><%= link_to 'Edit', "/distributors/#{distributor.id}/edit", class: "btn btn-primary"%></td>
 	     <td><%= button_to "Delete", { action: "destroy", id: distributor.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
 	 </tr>

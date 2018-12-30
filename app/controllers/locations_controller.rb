@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
   def create 
     store_id = Store.find_by(name: params[:store]).id
 
-    @location = Location.create!(
+    @location = Location.new(
       name: params[:name],
       store_id: store_id
     )

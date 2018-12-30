@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   def new
     @inventory = Inventory.new
+    
     @inventories = Inventory.where(order_id: params[:id])
 
     @message = Order.find(params[:id]).message   
@@ -16,7 +17,7 @@ class OrdersController < ApplicationController
   def create 
     order = Order.find(params[:order_id])
 
-    order.update!(
+    order.update(
       status: 'Complete'
     )
 
@@ -24,7 +25,7 @@ class OrdersController < ApplicationController
       if inventory[:inventory_id]
         current_inv = Inventory.find(inventory[:inventory_id])
 
-        current_inv.update!(
+        current_inv.update(
           out_of_stock: inventory[:out_of_stock]
         )
 

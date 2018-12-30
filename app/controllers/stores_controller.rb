@@ -15,6 +15,12 @@ class StoresController < ApplicationController
       label: params[:label]
     )
 
+    if params[:label] == 'PrepCenter'
+      Distributor.create(
+        name: params[:name].parameterize('_')
+      )
+    end
+
     if @store.save
       redirect_to '/'
     end

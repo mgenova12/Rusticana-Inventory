@@ -1,6 +1,7 @@
 
 <h1>Place Order </h1>
 
+<%= form_tag "/#{params[:store]}/orders", method: :post do %>
 
 <div class="table-responsive">          
 	  <table class="table table-striped">
@@ -13,25 +14,26 @@
 	      </tr>     
 	    </thead> 
 
-		<%= form_tag "/#{params[:store]}/orders", method: :post do %>
 			<input type="hidden" name="order_id" value="<%= params[:id] %>">
 			<% @inventories.each do |inventory| %>
 				<%= fields_for "inventory[]", @inventory do |sg| %>
 					<tr>	
-						<% if inventory.store_good.product %>
-							<td><%= sg.check_box :out_of_stock %></td>
-							<td><%= inventory.store_good.product.name %> </td>
-							<td><%= inventory.quantity %> </td>
-							<td><%= inventory.quantity_needed %> </td>
+						<% if inventory.store_good.distributor.name == params[:store] %>
+							<% if inventory.store_good.product %>
+								<td><%= sg.check_box :out_of_stock %></td>
+								<td><%= inventory.store_good.product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> </td>
 
-							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
-						<% else %>
-							<td><%= sg.check_box :out_of_stock %></td>
-							<td><%= inventory.store_good.prepcenter_product.name %> </td>
-							<td><%= inventory.quantity %> </td>
-							<td><%= inventory.quantity_needed %> </td>
+								<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+							<% elsif inventory.store_good.prepcenter_product %>
+								<td><%= sg.check_box :out_of_stock %></td>
+								<td><%= inventory.store_good.prepcenter_product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> </td>
 
-							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+								<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+							<% end %>
 						<% end %>
 					</tr>
 				<% end %>
@@ -45,8 +47,8 @@
         <%= @message %>
       </div>
 
-		<button type="submit" class="btn btn-success">Complete Order</button>
-	<% end %>
+	<button type="submit" class="btn btn-success">Complete Order</button>
+<% end %>
 
 
 

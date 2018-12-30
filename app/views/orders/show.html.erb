@@ -14,16 +14,18 @@
 
 			<% @inventories.each do |inventory| %>
 				<tr>	
-					<% if inventory.store_good.product %>
-						<%= out_of_stock_helper(inventory.out_of_stock) %>
-						<td><%= inventory.store_good.product.name %> </td>
-						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
-					<% else %>
-						<%= out_of_stock_helper(inventory.out_of_stock) %>
-						<td><%= inventory.store_good.prepcenter_product.name %> </td>
-						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+					<% if inventory.store_good.distributor.name == params[:store] %>
+						<% if inventory.store_good.product %>
+							<%= out_of_stock_helper(inventory.out_of_stock) %>
+							<td><%= inventory.store_good.product.name %> </td>
+							<td><%= inventory.quantity %> </td>
+							<td><%= inventory.quantity_needed %> </td>
+						<% else %>
+							<%= out_of_stock_helper(inventory.out_of_stock) %>
+							<td><%= inventory.store_good.prepcenter_product.name %> </td>
+							<td><%= inventory.quantity %> </td>
+							<td><%= inventory.quantity_needed %> </td>
+						<% end %>
 					<% end %>
 				</tr>
 			<% end %>
