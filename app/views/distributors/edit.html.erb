@@ -4,7 +4,7 @@
 		<form>
 		  <div class="form-group">
 		    <label>Distributor Name</label>
-		    <input type="text" class="form-control" name="name" value="<%= store_name_format(@distributor.name) %>" required>
+		    <input type="text" class="form-control" name="name" value="<%= @distributor.name.upcase %>" required>
 		  </div>
 			
 		<button type="submit" class="btn btn-primary">Edit Distributor</button>
