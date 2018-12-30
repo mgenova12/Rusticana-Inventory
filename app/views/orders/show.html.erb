@@ -1,0 +1,38 @@
+<h1>Final order </h1>
+
+
+<div class="table-responsive">          
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	      	<th>Out of Stock</th>
+	        <th>Product</th>
+	        <th>Current Quantity</th>
+	        <th>Quantity Needed</th>
+	      </tr>     
+	    </thead> 
+
+			<% @inventories.each do |inventory| %>
+				<tr>	
+					<% if inventory.store_good.product %>
+						<%= out_of_stock(inventory.out_of_stock) %>
+						<td><%= inventory.store_good.product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+					<% else %>
+						<%= out_of_stock(inventory.out_of_stock) %>
+						<td><%= inventory.store_good.prepcenter_product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+					<% end %>
+				</tr>
+			<% end %>
+
+	  </table>
+	</div>
+
+      <div class="form-group">
+        <label>Notes:</label>
+        <%= @message %>
+      </div>
+

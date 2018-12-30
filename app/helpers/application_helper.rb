@@ -18,7 +18,15 @@ module ApplicationHelper
     else 
       content_tag(:td, 'Complete', class: 'green')
     end
-
   end
+
+  def out_of_stock(inventory)
+    if inventory
+      content_tag(:td, 'OUT OF STOCK', class: 'red')
+    else 
+      content_tag(:td, '')
+    end
+  end
+
 
 end

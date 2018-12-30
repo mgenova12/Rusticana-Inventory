@@ -64,6 +64,7 @@ Rails.application.routes.draw do
   get '/:store/orders' => 'orders#index'
   get '/:store/orders/:id/new' => 'orders#new'
   post '/:store/orders' => 'orders#create'
+  get '/:store/orders/:id' => 'orders#show'
 
 
 

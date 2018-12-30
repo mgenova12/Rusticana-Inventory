@@ -34,4 +34,8 @@ class OrdersController < ApplicationController
     redirect_to "/#{params[:store]}/orders"
   end
 
+  def show 
+    @inventories = Inventory.where(order_id: params[:id])
+  end
+
 end
