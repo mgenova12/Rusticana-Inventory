@@ -20,7 +20,7 @@
     <tbody>
 
   	<% @store_goods.each do |store_good| %>
-      <% if store_good.product %>
+      <% if store_good.product && store_good.distributor %>
       	  <tr>
       		    <td><%= store_good.product.name %></td>
             	<td><%= store_good.product.measurement %></td> 
