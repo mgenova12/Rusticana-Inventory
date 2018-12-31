@@ -4,7 +4,7 @@ class InventoriesController < ApplicationController
   def index 
     store_id = Store.find_by(name: params[:store]).id 
     
-    @orders = Order.where(store_id: store_id).reverse_order 
+    @orders = Order.where(store_id: store_id).reverse_order.page(params[:page]).per(15)
   end
 
   def new 
