@@ -2,13 +2,15 @@ module ProductsHelper
 
   def measurement_options(product)
     if product.measurement == 'EA'
-      options_for_select([["EA", "EA"], ["BIN", "BIN"], ["SLEEVE", "SLEEVE"], ["%", "%"]])
+      options_for_select([["EA", "EA"], ["BIN", "BIN"], ["SLEEVE", "SLEEVE"], ["%", "%"], ["CASE", "CASE"]])
     elsif product.measurement == 'BIN'
-      options_for_select([["BIN", "BIN"], ["EA", "EA"], ["SLEEVE", "SLEEVE"], ["%", "%"]])
+      options_for_select([["BIN", "BIN"], ["EA", "EA"], ["SLEEVE", "SLEEVE"], ["%", "%"], ["CASE", "CASE"]])
     elsif product.measurement == 'SLEEVE'
-      options_for_select([["SLEEVE", "SLEEVE"], ["BIN", "BIN"], ["EA", "EA"], ["%", "%"]])          
+      options_for_select([["SLEEVE", "SLEEVE"], ["BIN", "BIN"], ["EA", "EA"], ["%", "%"], ["CASE", "CASE"]])          
+    elsif product.measurement == '%'
+      options_for_select([["%", "%"], ["SLEEVE", "SLEEVE"], ["BIN", "BIN"], ["EA", "EA"], ["CASE", "CASE"]])          
     else 
-      options_for_select([["%", "%"], ["SLEEVE", "SLEEVE"], ["BIN", "BIN"], ["EA", "EA"]])          
+      options_for_select([["CASE", "CASE"],["%", "%"], ["SLEEVE", "SLEEVE"], ["BIN", "BIN"], ["EA", "EA"]])          
     end
   end
 
