@@ -1,9 +1,7 @@
 class StoreGoodsController < ApplicationController
   def index
     store_id = Store.find_by(name: params[:store]).id
-    @store_goods = StoreGood.where(store_id: store_id)
-    # @store_goods = Store.find_by(name: params[:store]).store_goods.order(created_at: :desc)
-    # @prepped_store_goods = Store.find_by(name: params[:store]).prepped_store_goods.order(created_at: :desc)
+    @store_goods = StoreGood.where(store_id: store_id).joins(:product).merge(Product.order(name: :asc))
   end
 
   def add 
@@ -27,7 +25,8 @@ class StoreGoodsController < ApplicationController
       product_id: params[:id],
       location_id: params[:location_id],
       distributor_id: params[:distributor_id],
-      max_amount: params[:max_amount]
+      max_amount: params[:max_amount],
+      measurement: params[:measurement]
     )
 
     if @store_good.save
@@ -48,7 +47,8 @@ class StoreGoodsController < ApplicationController
     @store_good.update(
       max_amount: params[:max_amount],
       location_id: params[:location_id],
-      distributor_id: params[:distributor_id]
+      distributor_id: params[:distributor_id],
+      measurement: params[:measurement]
     )
 
     redirect_to "/#{params[:store]}/products"

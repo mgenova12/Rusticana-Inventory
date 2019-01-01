@@ -23,7 +23,7 @@
       <% if store_good.product && store_good.distributor %>
       	  <tr>
       		    <td><%= store_good.product.name %></td>
-            	<td><%= store_good.product.measurement %></td> 
+            	<td><%= store_good.measurement %></td> 
             	<td><%= store_good.product.item_type %> </td>
             	<td><%= store_good.product.case_quantity %> </td>
             	<td><%= store_good.max_amount %> </td>
@@ -45,7 +45,7 @@
       <% if store_good.prepcenter_product %>
           <tr>
               <td><%= store_good.prepcenter_product.name %></td>
-              <td><%= store_good.prepcenter_product.measurement %></td> 
+              <td><%= store_good.measurement %></td> 
               <td><%= store_good.prepcenter_product.item_type %> </td>
               <td> N/A </td>
               <td><%= store_good.max_amount %> </td>
