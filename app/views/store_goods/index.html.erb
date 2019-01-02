@@ -41,7 +41,7 @@
         </tr>
       </thead> 
     
-    <% @store_goods.each do |store_good| %>
+    <% @prepped_store_goods.each do |store_good| %>
       <% if store_good.prepcenter_product %>
           <tr>
               <td><%= store_good.prepcenter_product.name %></td>

@@ -2,6 +2,7 @@ class StoreGoodsController < ApplicationController
   def index
     store_id = Store.find_by(name: params[:store]).id
     @store_goods = StoreGood.where(store_id: store_id).joins(:product).merge(Product.order(name: :asc))
+    @prepped_store_goods = StoreGood.where(store_id: store_id).joins(:prepcenter_product).merge(PrepcenterProduct.order(name: :asc))
   end
 
   def add 

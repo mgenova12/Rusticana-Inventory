@@ -15,7 +15,8 @@ class PreppedStoreGoodsController < ApplicationController
       prepcenter_product_id: params[:id],
       location_id: params[:location_id],
       max_amount: params[:max_amount],
-      distributor_id: params[:distributor_id]
+      distributor_id: params[:distributor_id],
+      measurement: params[:measurement]
     )
 
     if @prepped_store_good.save
@@ -36,7 +37,8 @@ class PreppedStoreGoodsController < ApplicationController
     @prepped_store_good.update(
       max_amount: params[:max_amount],
       location_id: params[:location_id],
-      distributor_id: params[:distributor_id]
+      distributor_id: params[:distributor_id],
+      measurement: params[:measurement]
     )
 
     redirect_to "/#{params[:store]}/products"

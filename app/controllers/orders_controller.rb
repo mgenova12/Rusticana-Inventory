@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
 
   def index     
     store_id = Store.find_by(name: params[:store]).id
+
     @orders = Order.where.not(store_id: store_id).reverse_order.page(params[:page]).per(15)
   end
 
@@ -37,6 +38,8 @@ class OrdersController < ApplicationController
 
   def show 
     @inventories = Inventory.where(order_id: params[:id])
+
+    # @inv = Inventory.where(order_id: params[:id])
 
     @message = Order.find(params[:id]).message
   end

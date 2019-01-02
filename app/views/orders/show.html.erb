@@ -1,7 +1,7 @@
 <h1>Final order </h1>
 
 
-<div class="table-responsive">          
+	<div class="table-responsive">          
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
@@ -12,8 +12,14 @@
 	      </tr>     
 	    </thead> 
 
+
+
+
+
 			<% @inventories.each do |inventory| %>
-				<% if inventory.store_good %>
+				<% if inventory.store_good %>			     			     
+
+
 					<tr>	
 						<% if inventory.store_good.distributor.name.parameterize('_') == params[:store] %>
 							<% if inventory.store_good.product %>
@@ -30,6 +36,9 @@
 						<% end %>
 					</tr>
 				<% end %>
+
+
+
 			<% end %>
 
 	  </table>
