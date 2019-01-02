@@ -37,9 +37,9 @@ class OrdersController < ApplicationController
   end
 
   def show 
-    @inventories = Inventory.where(order_id: params[:id])
+    store_name = params[:store].split("_").map(&:capitalize).join(' ')
 
-    # @inv = Inventory.where(order_id: params[:id])
+    @inventories = Inventory.where(order_id: params[:id]).joins({:store_good => :distributor }).where("distributors.name = '#{store_name}'")
 
     @message = Order.find(params[:id]).message
   end

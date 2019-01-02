@@ -12,34 +12,109 @@
 	      </tr>     
 	    </thead> 
 
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4">Non-Prepped Frozen</td>
+	        </tr>
+	     </thead>
+	     
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.product && (inventory.store_good.product.item_type == 'frozen') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>
 
 
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4">Non-Prepped Dry</td>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.product && (inventory.store_good.product.item_type == 'dry') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>
 
 
-			<% @inventories.each do |inventory| %>
-				<% if inventory.store_good %>			     			     
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4"> Non-Prepped Refrigerated</td>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.product && (inventory.store_good.product.item_type == 'refrigerated') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>
 
 
-					<tr>	
-						<% if inventory.store_good.distributor.name.parameterize('_') == params[:store] %>
-							<% if inventory.store_good.product %>
-								<%= out_of_stock_helper(inventory.out_of_stock) %>
-								<td><%= inventory.store_good.product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% else %>
-								<%= out_of_stock_helper(inventory.out_of_stock) %>
-								<td><%= inventory.store_good.prepcenter_product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
-							<% end %>
-						<% end %>
-					</tr>
-				<% end %>
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4">Prepped Frozen</td>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'frozen') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>
 
 
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4">Prepped Dry</td>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'dry') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>
 
-			<% end %>
+
+	     <thead>
+	        <tr> 
+	          <td align="center" colspan="4"> Prepped Refrigerated</td>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'refrigerated') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> </td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>	     
+
+
 
 	  </table>
 	</div>
