@@ -37,7 +37,7 @@ class OrdersController < ApplicationController
   end
 
   def show 
-    store_name = params[:store].split("_").map(&:capitalize).join(' ')
+    store_name = params[:store].upcase
 
     @inventories = Inventory.where(order_id: params[:id]).joins({:store_good => :distributor }).where("distributors.name = '#{store_name}'")
 
