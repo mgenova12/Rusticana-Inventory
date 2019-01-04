@@ -18,22 +18,20 @@
 			<% @inventories.each do |inventory| %>
 				<%= fields_for "inventory[]", @inventory do |sg| %>
 					<tr>	
-						<% if inventory.store_good.distributor.name.parameterize('_') == params[:store] %>
-							<% if inventory.store_good.product %>
-								<td><%= sg.check_box :out_of_stock %></td>
-								<td><%= inventory.store_good.product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
+						<% if inventory.store_good.product %>
+							<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+							<td><%= inventory.store_good.product.name %> </td>
+							<td><%= inventory.quantity %> </td>
+							<td><%= inventory.quantity_needed %> </td>
 
-								<%= sg.hidden_field :inventory_id, :value => inventory.id %>
-							<% elsif inventory.store_good.prepcenter_product %>
-								<td><%= sg.check_box :out_of_stock %></td>
-								<td><%= inventory.store_good.prepcenter_product.name %> </td>
-								<td><%= inventory.quantity %> </td>
-								<td><%= inventory.quantity_needed %> </td>
+							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+						<% elsif inventory.store_good.prepcenter_product %>
+							<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+							<td><%= inventory.store_good.prepcenter_product.name %> </td>
+							<td><%= inventory.quantity %> </td>
+							<td><%= inventory.quantity_needed %> </td>
 
-								<%= sg.hidden_field :inventory_id, :value => inventory.id %>
-							<% end %>
+							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 						<% end %>
 					</tr>
 				<% end %>
