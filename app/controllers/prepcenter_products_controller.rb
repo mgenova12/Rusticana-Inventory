@@ -19,7 +19,7 @@ class PrepcenterProductsController < ApplicationController
     )
 
     if @product.save
-      redirect_to '/products/prepcenter'
+      redirect_to '/globals/products/prepcenter'
     end
 
   end
@@ -38,17 +38,20 @@ class PrepcenterProductsController < ApplicationController
       portion_size: params[:portion_size]
     )
 
-    redirect_to '/products/prepcenter'
+    redirect_to '/globals/products/prepcenter'
   end
 
   def destroy
     prepcenter_product = PrepcenterProduct.find(params[:id])
-    prepped_store_good = PreppedStoreGood.find_by(prepcenter_product_id: params[:id])
+    prepped_store_good = StoreGood.find_by(prepcenter_product_id: params[:id])
 
-    prepped_store_good.destroy
+    if prepped_store_good
+      prepped_store_good.destroy
+    end
+
     prepcenter_product.destroy
 
-    redirect_to '/products/prepcenter'
+    redirect_to '/globals/products/prepcenter'
   end
 
 

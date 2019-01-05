@@ -13,7 +13,7 @@ class DistributorsController < ApplicationController
     )
     
     if @distributor.save
-      redirect_to '/distributors'
+      redirect_to '/globals/distributors'
     end
   end
 
@@ -28,7 +28,7 @@ class DistributorsController < ApplicationController
       name: params[:name]
     )
 
-    redirect_to '/distributors'
+    redirect_to '/globals/distributors'
   end
 
   def destroy
@@ -40,6 +40,6 @@ class DistributorsController < ApplicationController
     
     @distributor.destroy
 
-    redirect_to '/distributors'
+    redirect_to '/globals/distributors'
   end
 end

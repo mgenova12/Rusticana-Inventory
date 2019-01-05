@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
     )
 
     if @product.save
-      redirect_to '/products'
+      redirect_to '/globals/products'
     end
   end
 
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
       distributor: params[:distributor]      
     )
 
-    redirect_to '/products'
+    redirect_to '/globals/products'
   end
 
   def destroy
@@ -62,7 +62,7 @@ class ProductsController < ApplicationController
 
 
 
-    redirect_to '/products'
+    redirect_to '/globals/products'
   end
 
 end

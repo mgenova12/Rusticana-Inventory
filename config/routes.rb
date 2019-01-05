@@ -5,19 +5,37 @@ Rails.application.routes.draw do
   get '/stores/new' => 'stores#new'
   post '/stores' => 'stores#create'
 
-  get '/products' => 'products#index'
-  get '/products/new' => 'products#new'
-  post '/products' => 'products#create'
-  get '/products/:id/edit' => 'products#edit'
-  patch '/products/:id' => 'products#update'
-  delete '/products/:id' => 'products#destroy'
+  scope :globals do
+    get '/products' => 'products#index'
+    get '/products/new' => 'products#new'
+    post '/products' => 'products#create'
+    get '/products/:id/edit' => 'products#edit'
+    patch '/products/:id' => 'products#update'
+    delete '/products/:id' => 'products#destroy'
 
-  get '/products/prepcenter' => 'prepcenter_products#index'
-  get '/products/prepcenter/:id/new' => 'prepcenter_products#new'
-  post '/products/prepcenter' => 'prepcenter_products#create'
-  get '/products/prepcenter/:id/edit' => 'prepcenter_products#edit'
-  patch '/products/prepcenter/:id' => 'prepcenter_products#update'
-  delete '/products/prepcenter/:id' => 'prepcenter_products#destroy'
+    get '/products/prepcenter' => 'prepcenter_products#index'
+    get '/products/prepcenter/:id/new' => 'prepcenter_products#new'
+    post '/products/prepcenter' => 'prepcenter_products#create'
+    get '/products/prepcenter/:id/edit' => 'prepcenter_products#edit'
+    patch '/products/prepcenter/:id' => 'prepcenter_products#update'
+    delete '/products/prepcenter/:id' => 'prepcenter_products#destroy'
+
+    get '/distributors' => 'distributors#index'
+    get '/distributors/new' => 'distributors#new'
+    post '/distributors' => 'distributors#create'
+    get '/distributors/:id/edit' => 'distributors#edit'
+    patch '/distributors/:id' => 'distributors#update'
+    delete '/distributors/:id' => 'distributors#destroy'  
+  end
+
+  scope :product_prices do
+    get '/prices' => 'prices#index'
+    get '/prices/new' => 'prices#new'
+    get '/prices/:distributor/new' => 'prices#new'
+    get '/prices/date' => 'prices#date'
+    post '/prices' => 'prices#create'
+    get '/prices/:saved_price_id' => 'prices#show'
+  end
 
   get '/:store/locations' => 'locations#index'
   get '/:store/locations/new' => 'locations#new'
@@ -25,13 +43,6 @@ Rails.application.routes.draw do
   get '/:store/locations/:id/edit' => 'locations#edit'
   patch '/:store/locations/:id' => 'locations#update'
   delete '/:store/locations/:id' => 'locations#destroy'
-
-  get '/distributors' => 'distributors#index'
-  get '/distributors/new' => 'distributors#new'
-  post '/distributors' => 'distributors#create'
-  get '/distributors/:id/edit' => 'distributors#edit'
-  patch '/distributors/:id' => 'distributors#update'
-  delete '/distributors/:id' => 'distributors#destroy'  
 
   get '/:store/products' => 'store_goods#index'
   get '/:store/products/add' => 'store_goods#add' 
@@ -46,13 +57,6 @@ Rails.application.routes.draw do
   get '/:store/products/prepcenter/:id/edit' => 'prepped_store_goods#edit'
   patch '/:store/products/prepcenter/:id' => 'prepped_store_goods#update'
   delete '/:store/products/prepcenter/:id' => 'prepped_store_goods#destroy'
-
-  get '/prices' => 'prices#index'
-  get '/prices/new' => 'prices#new'
-  get '/prices/:distributor/new' => 'prices#new'
-  get '/prices/date' => 'prices#date'
-  post '/prices' => 'prices#create'
-  get '/prices/:saved_price_id' => 'prices#show'
 
   get '/:store/inventory' => 'inventories#index'
   get '/:store/inventory/new' => 'inventories#new'

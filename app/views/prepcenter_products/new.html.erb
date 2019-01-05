@@ -1,7 +1,7 @@
 
 <h1>Add <%= @product.name %> To Prep Center</h1>
 
-	<%= form_tag "/products/prepcenter", method: :post do %>
+	<%= form_tag "/globals/products/prepcenter", method: :post do %>
 		<form>
 		
 		  <input type="hidden" name="id" value="<%= params[:id] %>" >

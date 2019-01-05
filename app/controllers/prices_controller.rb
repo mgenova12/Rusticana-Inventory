@@ -38,7 +38,7 @@ class PricesController < ApplicationController
       )
     end
 
-    redirect_to '/prices'
+    redirect_to '/product_prices/prices'
   end 
 
 

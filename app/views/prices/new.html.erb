@@ -5,12 +5,12 @@
 	<div class='sub-list'>
 		<ul> 
 			<% @distributors.each do |distributor|  %>
-				<li><a href="/prices/<%= distributor.name %>/new"><%= distributor.name %> </a> </li>
+				<li><a href="/product_prices/prices/<%= distributor.name %>/new"><%= distributor.name %> </a> </li>
 			<% end %>
 		</ul>
 	</div>
 
-<%= form_tag "/prices", method: :post do %>
+<%= form_tag "/product_prices/prices", method: :post do %>
 	<div class="table-responsive">          
 	  <table class="table table-striped">
 	    <thead>
