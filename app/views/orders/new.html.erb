@@ -13,29 +13,139 @@
 	        <th>Quantity Needed</th>
 	      </tr>     
 	    </thead> 
-
 			<input type="hidden" name="order_id" value="<%= params[:id] %>">
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Non-Prepped Frozen</td>
+		        </tr>
+		     </thead>			
 			<% @inventories.each do |inventory| %>
+			    
 				<%= fields_for "inventory[]", @inventory do |sg| %>
 					<tr>	
-						<% if inventory.store_good.product %>
-							<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-							<td><%= inventory.store_good.product.name %> </td>
-							<td><%= inventory.quantity %> </td>
-							<td><%= inventory.quantity_needed %> </td>
+					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'frozen') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
 
-							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
-						<% elsif inventory.store_good.prepcenter_product %>
-							<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-							<td><%= inventory.store_good.prepcenter_product.name %> </td>
-							<td><%= inventory.quantity %> </td>
-							<td><%= inventory.quantity_needed %> </td>
-
-							<%= sg.hidden_field :inventory_id, :value => inventory.id %>
-						<% end %>
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
+					<% end %>
 				<% end %>
 			<% end %>
+
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Non-Prepped Dry</td>
+		        </tr>
+		     </thead>			
+			<% @inventories.each do |inventory| %>
+			    
+				<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>	
+					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'dry') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+					</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Non-Prepped Refrigerated</td>
+		        </tr>
+		     </thead>			
+			<% @inventories.each do |inventory| %>
+			    
+				<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>	
+					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'refrigerated') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+					</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Prepped Frozen</td>
+		        </tr>
+		     </thead>			
+			<% @inventories.each do |inventory| %>
+			    
+				<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>	
+					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'frozen') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.prepcenter_product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+					</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Prepped Dry</td>
+		        </tr>
+		     </thead>			
+			<% @inventories.each do |inventory| %>
+			    
+				<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>	
+					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'dry') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.prepcenter_product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+					</tr>
+					<% end %>
+				<% end %>
+			<% end %>
+
+		     <thead>
+		        <tr> 
+		          <td align="center" colspan="4">Prepped Refrigerated</td>
+		        </tr>
+		     </thead>			
+			<% @inventories.each do |inventory| %>
+			    
+				<%= fields_for "inventory[]", @inventory do |sg| %>
+					<tr>	
+					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'refrigerated') %>
+						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
+						<td><%= inventory.store_good.prepcenter_product.name %> </td>
+						<td><%= inventory.quantity %> </td>
+						<td><%= inventory.quantity_needed %> </td>
+
+						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
+					</tr>
+					<% end %>
+				<% end %>
+			<% end %>			
+
+
 
 	  </table>
 	</div>
