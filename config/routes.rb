@@ -37,6 +37,11 @@ Rails.application.routes.draw do
     get '/prices/:saved_price_id' => 'prices#show'
   end
 
+  scope :financials do 
+    get '/sales' => 'sales#index'
+  end
+
+
   get '/:store/locations' => 'locations#index'
   get '/:store/locations/new' => 'locations#new'
   post '/:store/locations' => 'locations#create'

@@ -1,8 +1,7 @@
 class PrepcenterProductsController < ApplicationController
   def index
-    @prepcenter_products = PrepcenterProduct.all
+    @prepcenter_products = PrepcenterProduct.order(:name)
   end
-
 
   def new 
     @product = Product.find(params[:id])
@@ -15,7 +14,8 @@ class PrepcenterProductsController < ApplicationController
       measurement: params[:measurement], 
       item_type: params[:item_type], 
       portion_size: params[:portion_size], 
-      product_id: params[:id]
+      product_id: params[:id],
+      case_quantity: params[:case_quantity]
     )
 
     if @product.save
@@ -35,7 +35,8 @@ class PrepcenterProductsController < ApplicationController
       name: params[:name],
       measurement: params[:measurement], 
       item_type: params[:item_type], 
-      portion_size: params[:portion_size]
+      portion_size: params[:portion_size],
+      case_quantity: params[:case_quantity]
     )
 
     redirect_to '/globals/products/prepcenter'

@@ -10,8 +10,14 @@
       </button>
       <% if store %>
         <a class="navbar-brand" href="/"><%= store_name_format(store) %></a>
+      <% elsif controller.class == ProductsController || controller.class == PrepcenterProductsController || controller.class == DistributorsController %>
+        <a class="navbar-brand" href="/">Globals</a>
+      <% elsif controller.class == PricesController %>
+        <a class="navbar-brand" href="/">Prices</a>
+      <% elsif controller.class == SalesController %> 
+        <a class="navbar-brand" href="/">Finanicals</a>             
       <% else %>
-        <a class="navbar-brand" href="">Rusticana</a>
+        <a class="navbar-brand" href="/">Rusticana</a>
       <% end %>
     </div>
 
