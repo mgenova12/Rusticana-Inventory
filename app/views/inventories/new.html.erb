@@ -52,6 +52,7 @@
 							<td>
 								<%= sg.number_field :quantity, class:"form-control", required: "true" %>
 
+								<%= sg.hidden_field :case_quantity, :value => store_good.prepcenter_product.case_quantity %>
 								<%= sg.hidden_field :measurement, :value => store_good.measurement %>
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
 								<%= sg.hidden_field :store_good_id, :value => store_good.id %>	
