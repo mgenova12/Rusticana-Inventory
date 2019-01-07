@@ -14,21 +14,6 @@ module InventoriesHelper
     end
   end
 
-  def measurement_label(inventory)
-    if (inventory.store_good.measurement == '%') || inventory.store_good.product.case_quantity
-      'CASE'
-    else 
-      inventory.store_good.measurement
-    end
-  end
-
-  def prepped_measurement_label(inventory)
-    if (inventory.store_good.measurement == '%') || inventory.store_good.prepcenter_product.case_quantity
-      'CASE'
-    else 
-      inventory.store_good.measurement
-    end
-  end
 
 
 

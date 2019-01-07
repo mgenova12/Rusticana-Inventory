@@ -24,7 +24,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>
@@ -41,7 +41,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>
@@ -58,7 +58,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>
@@ -75,7 +75,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>
@@ -92,7 +92,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>
@@ -109,7 +109,7 @@
 	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
 	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
 				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> </td>	     		
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
 	     	<% end %>
 	     </tr>
 	     <% end %>	     

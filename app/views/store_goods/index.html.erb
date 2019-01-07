@@ -1,20 +1,22 @@
 <h1>All <%= store_name_format(params[:store]) %> Products</h1>
 
 <a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
+<br> 
+<br> 
 
-<div class="table-responsive">          
+
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Measurement</th>
-        <th>Item Type</th>
-        <th>Case Quantity </th>
-        <th>Max Amount </th>
-        <th>Location</th>
-        <th>Distributor</th>
-        <th>Edit</th>
-        <th>Delete </th>
+        <th class="sticky">Name</th>
+        <th class="sticky">Measurement</th>
+        <th class="sticky">Item Type</th>
+        <th class="sticky">Case Quantity </th>
+        <th class="sticky">Max Amount </th>
+        <th class="sticky">Location</th>
+        <th class="sticky">Distributor</th>
+        <th class="sticky">Edit</th>
+        <th class="sticky">Delete </th>
       </tr>
     </thead>
     <tbody>
@@ -61,4 +63,3 @@
     </tbody>
   </table>
 
-  </div>

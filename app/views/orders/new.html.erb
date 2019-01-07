@@ -28,7 +28,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -50,7 +50,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -72,7 +72,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -94,7 +94,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -116,7 +116,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -137,7 +137,7 @@
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
-						<td><%= inventory.quantity_needed %> </td>
+						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>

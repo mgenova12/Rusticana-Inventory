@@ -43,9 +43,17 @@ input[type=checkbox] {
 th.sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 3.55rem;
     z-index: 10;
     background-color: #4975bc;
-    /*background-color: #ef263f;*/
+    
+}
+
+th.sticky2 {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    background-color: #ef263f;
 }
 
