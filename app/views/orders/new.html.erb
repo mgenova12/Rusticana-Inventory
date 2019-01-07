@@ -3,21 +3,20 @@
 
 <%= form_tag "/#{params[:store]}/orders", method: :post do %>
 
-<div class="table-responsive">          
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
-	      	<th>Out of Stock</th>
-	        <th>Product</th>
-	        <th>Current Quantity</th>
-	        <th>Quantity Needed</th>
+	      	<th class="sticky2">Out of Stock</th>
+	        <th class="sticky2">Product</th>
+	        <th class="sticky2">Current Quantity</th>
+	        <th class="sticky2">Quantity Needed</th>
 	      </tr>     
 	    </thead> 
 			<input type="hidden" name="order_id" value="<%= params[:id] %>">
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Non-Prepped Frozen</td>
+		          <th class="sticky text-center" colspan="4">Non-Prepped Frozen</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -39,7 +38,7 @@
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Non-Prepped Dry</td>
+		          <th class="sticky text-center" colspan="4">Non-Prepped Dry</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -61,7 +60,7 @@
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Non-Prepped Refrigerated</td>
+		          <th class="sticky text-center" colspan="4">Non-Prepped Refrigerated</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -83,7 +82,7 @@
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Prepped Frozen</td>
+		          <th class="sticky text-center" colspan="4">Prepped Frozen</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -105,7 +104,7 @@
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Prepped Dry</td>
+		          <th class="sticky text-center" colspan="4">Prepped Dry</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -126,7 +125,7 @@
 
 		     <thead>
 		        <tr> 
-		          <td align="center" colspan="4">Prepped Refrigerated</td>
+		          <th class="sticky text-center" colspan="4">Prepped Refrigerated</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -148,7 +147,6 @@
 
 
 	  </table>
-	</div>
 
       <div class="form-group">
         <label>Notes:</label>
