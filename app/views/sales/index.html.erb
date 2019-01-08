@@ -1,2 +1,30 @@
 
-Sales
+<h1> Sales Orders </h1>
+
+
+<div class="table-responsive">          
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Date placed</th>
+        <th>Store </th>
+        <th>View</th>
+      </tr>
+    </thead>
+    <tbody>
+
+	<% @sales.each do |sale| %>
+	  <tr>
+	    <td><%= sale.id %></td>
+	    <td><%= sale.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
+	    <td><%= store_name_format(sale.store.name) %> </td>
+        <td><%= link_to 'View', "/financials/sales/#{sale.id}", class: "btn btn-primary"%></td> </td>
+	 </tr>
+	<% end %>
+
+    </tbody>
+  </table>
+</div>
+
+<%= paginate @sales %>

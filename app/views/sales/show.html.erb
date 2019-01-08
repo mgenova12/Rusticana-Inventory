@@ -1,0 +1,35 @@
+<h1>Review Sales Order </h1>
+
+
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th class="sticky2">Product</th>
+	        <th class="sticky2">Current Quantity</th>
+	        <th class="sticky2">Quantity Needed</th>
+	        <th class="sticky2">Price</th>
+	      </tr>     
+	    </thead> 
+
+	     
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.product %>
+	     		<td><%= inventory.store_good.product.name %> </td>
+				<td><%= inventory.quantity %> </td>	
+				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+				<td><%= number_to_currency(inventory.store_good.product.price * inventory.quantity_needed) %> </td>
+			<% else %>	     		
+				<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+				<td><%= number_to_currency( (inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1) * inventory.quantity_needed ) %> </td>
+	     	<% end %>
+	     </tr>
+	     <% end %>
+   
+
+
+	  </table>
+
+

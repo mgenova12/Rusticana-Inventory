@@ -15,7 +15,7 @@
       <% elsif controller.class == PricesController %>
         <a class="navbar-brand" href="/">Prices</a>
       <% elsif controller.class == SalesController %> 
-        <a class="navbar-brand" href="/">Finanicals</a>             
+        <a class="navbar-brand" href="/">Financials</a>             
       <% else %>
         <a class="navbar-brand" href="/">Rusticana</a>
       <% end %>
@@ -56,6 +56,15 @@
          </li>         
       <% end %>
 
+    <% if controller.class == SalesController %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Sales Orders <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/financials/sales">All Orders</a></li> 
+          </ul>
+         </li> 
+    <% end %>
+
         <% if store %>
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Inventory <span class="caret"></span></a>
@@ -72,8 +81,6 @@
                 <li><a href="/<%= store %>/orders">All Orders</a></li>
               </ul>
             </li>             
-
-
            <% end %>
 
           <li class="dropdown">
