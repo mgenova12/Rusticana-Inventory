@@ -11,23 +11,28 @@
 	      </tr>     
 	    </thead> 
 
-	     
+	    <% sum = 0 %>
 	     <% @inventories.each do |inventory| %>
-	     <tr>
-	     	<% if inventory.store_good.product %>
-	     		<td><%= inventory.store_good.product.name %> </td>
-				<td><%= inventory.quantity %> </td>	
-				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
-				<td><%= number_to_currency(inventory.store_good.product.price * inventory.quantity_needed) %> </td>
-			<% else %>	     		
-				<td><%= inventory.store_good.prepcenter_product.name %> </td>
-				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
-				<td><%= number_to_currency( (inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1) * inventory.quantity_needed ) %> </td>
-	     	<% end %>
-	     </tr>
+		     <tr>
+		     	<% if inventory.store_good.product %>
+		     		<td><%= inventory.store_good.product.name %> </td>
+					<td><%= inventory.quantity %> </td>	
+
+					<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+					<td><%= number_to_currency(product_sale_total(inventory)) %> </td>
+					<% sum += product_sale_total(inventory) %>
+				<% else %>	     		
+					<td><%= inventory.store_good.prepcenter_product.name %> </td>
+					<td><%= inventory.quantity %> </td>
+
+					<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+					<td><%= number_to_currency(product_sale_total(inventory)) %> </td>
+					<% sum += product_sale_total(inventory) %>
+		     	<% end %>
+		     </tr>
 	     <% end %>
    
+		<h3>Total: <%= number_to_currency(sum) %> </h3>
 
 
 	  </table>

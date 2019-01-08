@@ -44,5 +44,13 @@ module ApplicationHelper
     end
   end
 
+  def product_sale_total(inventory)
+    if inventory.store_good.product
+      inventory.store_good.product.price * inventory.quantity_needed
+    else 
+       (inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1) * inventory.quantity_needed 
+    end
+  end
+
 
 end
