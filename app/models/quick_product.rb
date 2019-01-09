@@ -1,0 +1,2 @@
+class QuickProduct < ApplicationRecord
+end

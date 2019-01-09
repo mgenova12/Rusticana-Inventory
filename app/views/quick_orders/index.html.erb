@@ -1,0 +1,40 @@
+<h1> Quick Order </h1>
+
+<%= @error %>
+
+<%= form_tag "/#{params[:store]}/quick_order", method: :post do %>
+  <%= text_field_tag 'term', params[:term], placeholder: "Enter a Products Name", class: "form-control" %>
+  <br>
+  <%= submit_tag 'Search!', class: "btn btn-primary" %>
+<% end %>
+
+
+	<br>
+	<%= form_tag "/#{params[:store]}/quick_order/edit", method: :patch do %>
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	        <th class="sticky2">Product</th>
+	        <th class="sticky2">Count By</th>
+	        <th class="sticky2">Amount Needed</th>
+	        <th class="sticky2">Remove</th>
+	      </tr>     
+	    </thead> 
+
+		<% @quick_products.each do |quick_product| %>
+			<%= fields_for "inventory[]", @quick_product do |sg| %>
+			    <tr> 
+			    	<td><%= quick_product.name %> </td>
+			    	<td><%= quick_product.measurement %> </td>
+
+			    	<td><%= sg.number_field :quantity_needed, class:"form-control", required: "true" %> </td>
+					<%= sg.hidden_field :id, :value => quick_product.id %>
+
+			    	<td><%= link_to "Delete", { action: "destroy", id: quick_product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+			    </tr>
+		    <% end %>
+		<% end %>
+
+	   </table>	
+	   <button type="submit" class="btn btn-success">Place Order</button>
+	<% end %>

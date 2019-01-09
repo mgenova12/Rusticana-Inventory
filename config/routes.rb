@@ -76,7 +76,9 @@ Rails.application.routes.draw do
   post '/:store/orders' => 'orders#create'
   get '/:store/orders/:id' => 'orders#show'
 
-
-
+  get '/:store/quick_order' => 'quick_orders#index'
+  post '/:store/quick_order' => 'quick_orders#create'
+  patch '/:store/quick_order/edit' => 'quick_orders#update'
+  delete '/:store/quick_order/:id' => 'quick_orders#destroy'
 
 end
