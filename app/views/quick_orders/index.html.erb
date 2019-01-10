@@ -30,7 +30,7 @@
 			    	<td><%= sg.number_field :quantity_needed, class:"form-control", required: "true" %> </td>
 					<%= sg.hidden_field :id, :value => quick_product.id %>
 
-			    	<td><%= link_to "Delete", { action: "destroy", id: quick_product.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+			    	<td><%= link_to "Delete", { action: "destroy", id: quick_product.id }, method: :delete, class: "btn btn-danger" %> </td>
 			    </tr>
 		    <% end %>
 		<% end %>

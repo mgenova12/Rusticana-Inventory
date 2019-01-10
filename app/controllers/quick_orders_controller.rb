@@ -7,9 +7,10 @@ class QuickOrdersController < ApplicationController
 
   def create 
       store_id = Store.find_by(name: params[:store]).id 
+    if (Product.find_by("lower(name) LIKE ?", "%#{params[:term].downcase}%")) || (PrepcenterProduct.find_by("lower(name) LIKE ?", "%#{params[:term].downcase}%"))
 
-      if Product.find_by("name LIKE ?", "%#{params[:term]}%")
-        product_ids = Product.where("name LIKE ?", "%#{params[:term]}%").ids
+      if Product.find_by("lower(name) LIKE ?", "%#{params[:term].downcase}%")
+        product_ids = Product.where("lower(name) LIKE ?", "%#{params[:term].downcase}%").ids
 
         product_ids.each do |product_id|
           store_good = StoreGood.find_by(store_id: store_id, product_id: product_id)
@@ -20,10 +21,10 @@ class QuickOrdersController < ApplicationController
             )
           end
         end
-        redirect_to "/#{params[:store]}/quick_order"
+      end
 
-      elsif PrepcenterProduct.find_by("name LIKE ?", "%#{params[:term]}%")
-        product_ids = PrepcenterProduct.where("name LIKE ?", "%#{params[:term]}%").ids
+      if PrepcenterProduct.find_by("lower(name) LIKE ?", "%#{params[:term].downcase}%")
+        product_ids = PrepcenterProduct.where("lower(name) LIKE ?", "%#{params[:term].downcase}%").ids
       
         product_ids.each do |product_id|
           store_good = StoreGood.find_by(store_id: store_id, prepcenter_product_id: product_id)
@@ -33,15 +34,14 @@ class QuickOrdersController < ApplicationController
               measurement: store_good.prepcenter_product.measurement
             )
           end
-        end
-        redirect_to "/#{params[:store]}/quick_order"  
-
-      else 
-        #ERROR
-        redirect_to "/#{params[:store]}/quick_order"        
+        end        
       end
       
-
+      redirect_to "/#{params[:store]}/quick_order"        
+    else 
+      #Error
+      redirect_to "/#{params[:store]}/quick_order"        
+    end
   end
 
   def update 
