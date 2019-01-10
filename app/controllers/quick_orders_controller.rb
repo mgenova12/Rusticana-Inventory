@@ -2,7 +2,7 @@ class QuickOrdersController < ApplicationController
 
   def index 
       @quick_products = QuickProduct.where(quantity_needed: nil)
-      @quick_product= QuickProduct.new
+      @quick_product = QuickProduct.new
   end
 
   def create 
@@ -45,12 +45,46 @@ class QuickOrdersController < ApplicationController
   end
 
   def update 
-    params[:inventory].each do |inventory|
+    store_id = Store.find_by(name: params[:store]).id
+    
+    order = Order.create!(
+      status: 'Pending',
+      order_day: 'Quick Order',
+      message: nil,
+      store_id: store_id
+    )
+
+    params[:inventory].each do |inventory|  
+      product_id = Product.find_by(name: inventory[:name]).id
+      store_good_id = StoreGood.find_by(store_id: store_id, product_id: product_id).id
+      
       QuickProduct.find(inventory[:id]).update!(
         quantity_needed: inventory[:quantity_needed]
       )
+
+      if inventory[:product_id]
+        Inventory.create!(
+          store_id: store_id,
+          quantity: nil,
+          order_id: order.id,
+          quantity_needed: inventory[:quantity_needed],
+          store_good_id: store_good_id
+        )
+      else 
+        Inventory.create!(
+          store_id: store_id,
+          quantity: nil,
+          order_id: order.id,
+          quantity_needed: inventory[:quantity_needed],
+          store_good_id: store_good_id
+        )
+      end
+
     end
-        
+    
+
+
+
     redirect_to "/#{params[:store]}/quick_order"        
   end
 

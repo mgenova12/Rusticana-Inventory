@@ -29,6 +29,7 @@
 
 			    	<td><%= sg.number_field :quantity_needed, class:"form-control", required: "true" %> </td>
 					<%= sg.hidden_field :id, :value => quick_product.id %>
+					<%= sg.hidden_field :name, :value => quick_product.name %>
 
 			    	<td><%= link_to "Delete", { action: "destroy", id: quick_product.id }, method: :delete, class: "btn btn-danger" %> </td>
 			    </tr>
