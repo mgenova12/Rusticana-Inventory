@@ -100,13 +100,31 @@
               
             </ul>
            </li>
-
-          <li><a href="/<%= store %>/quick_order">Quick Order</a></li>
+           
+           <% if !prepcenter %>
+            <li><a href="/<%= store %>/quick_order">Quick Order</a></li>
+           <% end %>
            
         <% end %>
 
       </ul>
+
+<style type="text/css">
+   .badge-notify{
+     background:red;
+     position:relative;
+     -moz-transform: translate(-40%, -60%); /* For Firefox */
+     -ms-transform: translate(-40%, -60%); /* for IE */
+     -webkit-transform: translate(-40%, -60%); /* For Safari, Chrome, iOS */
+     -o-transform: translate(-40%, -60%); /* For Opera */
+     border-radius: 50%;
+   }
+
+</style>
+
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-bell"><span class="badge badge-notify"></span></span></a></li>
+
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Login Out</a></li>
       </ul>
@@ -114,3 +132,5 @@
 
   </div>
 </nav>
+
+
