@@ -52,5 +52,23 @@ module ApplicationHelper
     end
   end
 
+  def notification_count
+    Order.where(status: 'Pending').count
+  end
+
+  def notification_dropdown
+    orders = Order.where(status: 'Pending').reverse
+
+      orders.map do |order|
+      store = Store.find(order.store_id)
+        content_tag :li do
+          content_tag :a, :href => "/trappe/orders/#{order.id}/new" do
+            "#{order.order_day} #{store_name_format(store.name)} Order is Pending"
+          end
+        end        
+      end.join("\n").html_safe
+
+  end
+
 
 end

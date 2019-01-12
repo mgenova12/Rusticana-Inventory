@@ -111,19 +111,32 @@
 
 <style type="text/css">
    .badge-notify{
+     /*z-index: 1;*/
      background:red;
      position:relative;
-     -moz-transform: translate(-40%, -60%); /* For Firefox */
-     -ms-transform: translate(-40%, -60%); /* for IE */
-     -webkit-transform: translate(-40%, -60%); /* For Safari, Chrome, iOS */
-     -o-transform: translate(-40%, -60%); /* For Opera */
      border-radius: 50%;
+     -moz-transform: translate(150%, -60%); 
+     -ms-transform: translate(150%, -60%);
+     -webkit-transform: translate(150%, -60%); /* For Safari, Chrome, iOS */
+     -o-transform: translate(150%, -60%); 
    }
 
 </style>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-bell"><span class="badge badge-notify"></span></span></a></li>
+      <% if store %>
+        <% if prepcenter %>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+              <span class="badge badge-notify"><%= notification_count %></span>
+              <span class="glyphicon glyphicon-bell"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <%= notification_dropdown %>
+            </ul>
+          </li> 
+        <% end %> 
+      <% end %>
 
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Login Out</a></li>
