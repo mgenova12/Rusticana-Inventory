@@ -57,3 +57,13 @@ th.sticky2 {
     background-color: #ef263f;
 }
 
+ .badge-notify{
+   /*z-index: 1;*/
+   background:red;
+   position:relative;
+   border-radius: 50%;
+   -moz-transform: translate(150%, -60%); 
+   -ms-transform: translate(150%, -60%);
+   -webkit-transform: translate(150%, -60%); /* For Safari, Chrome, iOS */
+   -o-transform: translate(150%, -60%); 
+ }
