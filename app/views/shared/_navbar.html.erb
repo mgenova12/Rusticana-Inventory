@@ -118,9 +118,13 @@
               <span class="badge badge-notify"><%= notification_count %></span>
               <span class="glyphicon glyphicon-bell"></span>
             </a>
-            <ul class="dropdown-menu">
-              <%= notification_dropdown %>
-            </ul>
+
+            <% if notification_count %>
+              <ul class="dropdown-menu">
+                <%= notification_dropdown %>
+              </ul>
+            <% end %>
+            
           </li> 
         <% end %> 
       <% end %>

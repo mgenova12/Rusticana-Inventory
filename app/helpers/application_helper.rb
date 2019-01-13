@@ -53,7 +53,10 @@ module ApplicationHelper
   end
 
   def notification_count
-    Order.where(status: 'Pending').count
+    count = Order.where(status: 'Pending').count
+    if count > 0 
+      count
+    end
   end
 
   def notification_dropdown
