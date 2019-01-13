@@ -1,6 +1,5 @@
 
 <h1><%= store_name_format(params[:store]) %> <%= params[:distributor] %> Inventory</h1>
-
 	<div class='sub-list'>
 		<ul> 
 			<li> <a href="/<%= params[:store] %>/inventory/all/<%= params[:order_id] %>">All </a> </li>
@@ -26,74 +25,79 @@
 	      </tr>     
 	    </thead> 
 
-		<% @locations.each do |location|  %>
+		<% @item_types.each do |location|  %>
 	     <thead>
 	        <tr> 
-	          <th class="sticky text-center" colspan="3"><%= location.name %></th>
+	          <th class="sticky text-center" colspan="3"><%= location.capitalize %></th>
 	        </tr>
 	     </thead>
 
 			<% @inventories.each do |inventory| %>
 					<% if (params[:distributor] == inventory.store_good.distributor.name) && ((params[:zeros] != 'zeros') && (inventory.quantity_needed > 0))%>
-						<% if inventory.store_good.location_id == location.id %>
+						
+						<% if inventory.store_good.product && (inventory.store_good.product.item_type == location) %>
 							<tr>	
-								<% if inventory.store_good.product %>
-									<td><%= inventory.store_good.product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
-								<% else %>
-									<td><%= inventory.store_good.prepcenter_product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
-								<% end %>
+								<td><%= inventory.store_good.product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+							</tr>
+
+							<% elsif inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == location) %>
+							<tr>
+								<td><%= inventory.store_good.prepcenter_product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 							</tr>
 						<% end %>
 
 					
 					<% elsif (params[:distributor] == 'all') && ((params[:zeros] != 'zeros') && (inventory.quantity_needed > 0)) %>
-						<% if inventory.store_good.location_id == location.id %>
+						<% if inventory.store_good.product && (inventory.store_good.product.item_type == location) %>
 							<tr>	
-								<% if inventory.store_good.product %>
-									<td><%= inventory.store_good.product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %> </td>
-								<% else %>
-									<td><%= inventory.store_good.prepcenter_product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
-								<% end %>
+								<td><%= inventory.store_good.product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+							</tr>
+
+							<% elsif inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == location) %>
+							<tr>
+								<td><%= inventory.store_good.prepcenter_product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 							</tr>
 						<% end %>	
 
 
 					<% elsif (params[:distributor] == 'all') && (params[:zeros] == 'zeros')%>
-						<% if inventory.store_good.location_id == location.id %>
+						<% if inventory.store_good.product && (inventory.store_good.product.item_type == location) %>
 							<tr>	
-								<% if inventory.store_good.product %>
-									<td><%= inventory.store_good.product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %> </td>
-								<% else %>
-									<td><%= inventory.store_good.prepcenter_product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
-								<% end %>
+								<td><%= inventory.store_good.product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
 							</tr>
-						<% end %>			
+
+							<% elsif inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == location) %>
+							<tr>
+								<td><%= inventory.store_good.prepcenter_product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+							</tr>
+						<% end %>		
 
 
 					<% elsif (params[:distributor] == inventory.store_good.distributor.name) && (params[:zeros] == 'zeros')%>
-						<% if inventory.store_good.location_id == location.id %>
+						<% if inventory.store_good.product && (inventory.store_good.product.item_type == location) %>
 							<tr>	
-								<% if inventory.store_good.product %>
-									<td><%= inventory.store_good.product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %> </td>
-								<% else %>
-									<td><%= inventory.store_good.prepcenter_product.name %> </td>
-									<td><%= inventory.quantity %> </td>
-									<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
-								<% end %>
+								<td><%= inventory.store_good.product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+							</tr>
+
+							<% elsif inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == location) %>
+							<tr>
+								<td><%= inventory.store_good.prepcenter_product.name %> </td>
+								<td><%= inventory.quantity %> </td>
+								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 							</tr>
 						<% end %>								
 
