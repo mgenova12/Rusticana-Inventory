@@ -10,7 +10,7 @@ class PreppedStoreGoodsController < ApplicationController
   def create
     store_id = Store.find_by(name: params[:store]).id
 
-    @prepped_store_good = StoreGood.new(
+    prepped_store_good = StoreGood.new(
       store_id: store_id,
       prepcenter_product_id: params[:id],
       location_id: params[:location_id],
@@ -19,7 +19,7 @@ class PreppedStoreGoodsController < ApplicationController
       measurement: params[:measurement]
     )
 
-    if @prepped_store_good.save
+    if prepped_store_good.save
       redirect_to "/#{params[:store]}/products"
     end
   end
