@@ -3,8 +3,18 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div class="form-group">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, class:"form-control" %>
+  </div>  
+
+  <div class="form-group">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, class:"form-control" %>
+  </div>
+
+   <div class="form-group">
+    <%= f.label :role %><br />
+    <%= f.select :role, [['Super Admin', 'super_admin'], ['Admin', 'admin'], ['Store Manager - Trappe', 'trappe'], ['Store Manager - Dover Rd', 'dover_rd'], ['Store Manager - Cambridge', 'cambridge'], ['Store Manager - Easton Bypass', 'easton_bypass']], {autofocus: true}, {class:"form-control"} %>
   </div>
 
   <div class="form-group">
@@ -21,7 +31,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up", class:"btn btn-primary" %>
+    <%= f.submit "Create User", class:"btn btn-primary" %>
   </div>
 <% end %>
 

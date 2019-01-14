@@ -2,10 +2,12 @@ Rails.application.routes.draw do
   #rails d devise:controllers users
 
   root :to => 'stores#index'
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout'}
-  resources :users, except: :create
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', edit: 'edit_user'}, controllers: { registrations: "users/registrations" }
+  
+  # devise_for :users, controllers: { registrations: "registrations" }, skip: [:sessions]
 
-  post 'create_user' => 'users#create', as: :create_user
+  resources :users, only: [:index, :destroy]
+  # post 'create_user' => 'users#create', as: :create_user
 
   
   get '/stores/new' => 'stores#new'

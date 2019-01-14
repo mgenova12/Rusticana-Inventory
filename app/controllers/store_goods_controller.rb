@@ -61,8 +61,10 @@ class StoreGoodsController < ApplicationController
   def destroy
     
     store_good = StoreGood.find(params[:id])
-
     store_good.destroy
+
+    inventory = Inventory.find_by(store_good_id: params[:id])
+    inventory.destroy
 
     redirect_to "/#{params[:store]}/products"
   end

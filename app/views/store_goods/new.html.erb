@@ -2,7 +2,6 @@
 <h1>Add <%= @product.name %> To <%= store_name_format(params[:store]) %></h1>
 	
 	<%= form_tag "/#{params[:store]}/products/add/#{params[:id]}", method: :post do %>
-	<form>
 	  <div class="form-group">
 	    <label>Max Amount</label>
 	    <input type="number" class="form-control" name="max_amount"  required>
@@ -42,6 +41,5 @@
 
 
 	  <button type="submit" class="btn btn-success">Add Product</button>
-	</form>
 	<% end %>
 	<br>

@@ -65,6 +65,16 @@
          </li> 
     <% end %>
 
+    <% if controller.class == UsersController || controller.class == Users::RegistrationsController %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/users">View Users</a></li> 
+            <li><a href="/sign_up">Add New Users</a></li> 
+          </ul>
+         </li> 
+    <% end %>
+
         <% if store %>
 
           <li class="dropdown">
@@ -117,6 +127,7 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <span class="badge badge-notify"><%= notification_count %></span>
               <span class="glyphicon glyphicon-bell"></span>
+              
             </a>
 
             <% if notification_count %>
@@ -129,16 +140,35 @@
         <% end %> 
       <% end %>
 
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li>
-          <%= link_to destroy_user_session_path, method: :delete do %> 
-            <span class="glyphicon glyphicon-log-out"></span> Log Out
-          <% end %>
-        </li>
+        <% if current_user %>
+            <li>
+              <a href="/edit_user">
+                <span class="glyphicon glyphicon-cog"></span>
+              </a>
+            </li>
+        <% end %>
+        <% if !current_user %>
+          <li>
+            <a href="/login">
+            <span class="glyphicon glyphicon-log-in"></span> Login
+            </a>
+          </li>
+        <% end %>
+
+        <% if current_user %>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %> 
+              <span class="glyphicon glyphicon-log-out"></span> Log Out
+            <% end %>
+          </li>
+        <% end %>
+
       </ul>
     </div>
 
   </div>
 </nav>
 
-
+<% if current_user %>
+  <%= current_user.username %> - <%= current_user.role %>
+<% end %>

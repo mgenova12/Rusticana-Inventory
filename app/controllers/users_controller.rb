@@ -3,20 +3,16 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  def create    
-    @user = User.new(sign_up_params)
+  # def create    
+  #   @user = User.new(sign_up_params)
 
-    if @user.save
-      redirect_to '/users'
-    else 
-      redirect_to '/users/new'
-    end
-  end
+  #   if @user.save
+  #     redirect_to '/users'
+  #   else 
+  #     redirect_to '/users/new'
+  #   end
+  # end
 
-  def edit
-    @user = User.find(params[:id])
-    
-  end
 
   def destroy
     user = User.find(params[:id])
@@ -26,10 +22,10 @@ class UsersController < ApplicationController
   end
 
 
-  private
+  # private
 
-  def sign_up_params
-    params.require(:user).permit(:email, :role, :password, :password_confirmation)
-  end
+  # def sign_up_params
+  #   params.require(:user).permit(:username, :email, :role, :password, :password_confirmation)
+  # end
   
 end
