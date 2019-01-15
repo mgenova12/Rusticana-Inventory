@@ -1,15 +1,23 @@
 
 
 <div>		
-
+	<% if can? [:index, :show], :sale or can? :manage, [Product, PrepcenterProduct] or can? :manage, SavedPrice or can? :manage, User %>
 	<h3><u>Management Center </u></h3>
-	<ul class="list-group">
-		<a href="/financials/sales"><button type="button"<li class="list-group-item list-group-item-action">Financials</li></button></a>	  
-		<a href="/globals/products"><button type="button"<li class="list-group-item list-group-item-action">Globals</li></button></a>	  
-		<a href="/product_prices/prices"><button type="button"<li class="list-group-item list-group-item-action">Product Prices</li></button></a>
-		<a href="/users"><button type="button"<li class="list-group-item list-group-item-action">Manage Users</li></button></a>	  
-	</ul>				
-
+		<ul class="list-group">
+		<% if can? [:index, :show], :sale %>
+			<a href="/financials/sales"><button type="button"<li class="list-group-item list-group-item-action">Financials</li></button></a>	  
+		<% end %>
+		<% if can? :manage, [Product, PrepcenterProduct] %>
+			<a href="/globals/products"><button type="button"<li class="list-group-item list-group-item-action">Globals</li></button></a>	  
+		<% end %>
+		<% if can? :manage, SavedPrice %>
+			<a href="/product_prices/prices"><button type="button"<li class="list-group-item list-group-item-action">Product Prices</li></button></a>
+		<% end %>
+		<% if can? :manage, User %>
+			<a href="/users"><button type="button"<li class="list-group-item list-group-item-action">Manage Users</li></button></a>	  
+		<% end %>			
+		</ul>	
+	<% end %>
 
 	<h3><u>Prep Center</u></h3>
 	<ul class="list-group">
@@ -26,4 +34,4 @@
 	</ul>
 </div>
 
-<a href="/stores/new"><button type="button" class="btn btn-success">Add New Location</button></a>
+<%= create_link @store, "Add New Location", stores_new_path %>

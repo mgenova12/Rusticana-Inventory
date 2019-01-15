@@ -4,10 +4,10 @@ class StoresController < ApplicationController
   def index
     @stores = Store.where(label: 'Store')
     @prepcenters = Store.where(label: 'PrepCenter')
+    @store = Store.new
   end
 
   def new 
-
   end
 
   def create 

@@ -41,6 +41,7 @@ class Ability
 
   def trappe_store_manager_abilites 
     return unless @user.trappe?
+    can [:edit, :update], :registration
     can [:index], Store
     
     if @params == 'trappe'
@@ -51,6 +52,7 @@ class Ability
 
   def cambridge_store_manager_abilites 
     return unless @user.cambridge?
+    can [:edit, :update], :registration
     can [:index], Store
 
     if @params == 'cambridge'
@@ -60,6 +62,7 @@ class Ability
   
   def easton_bypass_store_manager_abilites 
     return unless @user.easton_bypass?
+    can [:edit, :update], :registration
     can [:index], Store
     if @params == 'easton_bypass'
       can :manage, [Inventory, Order]
@@ -68,6 +71,7 @@ class Ability
 
   def dover_rd_store_manager_abilites 
     return unless @user.dover_rd?
+    can [:edit, :update], :registration
     can [:index], Store
     if @params == 'dover_rd'
       can :manage, [Inventory, Order]

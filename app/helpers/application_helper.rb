@@ -73,5 +73,24 @@ module ApplicationHelper
 
   end
 
+  def show_link(object, content = "Show", path)
+    link_to(content, path) if can?(:read, object)
+  end
+
+  # def edit_link(object, content = "Edit")
+  #   link_to(content, [:edit, object]) if can?(:update, object)
+  # end
+
+  # def destroy_link(object, content = "Destroy")
+  #   link_to(content, object, :method => :delete, :confirm => "Are you sure?") if can?(:destroy, object)
+  # end
+
+  def create_link(object, content = "New", path)
+    if can?(:create, object)
+      # object_class = (object.kind_of?(Class) ? object : object.class)
+      link_to(content, path, :class => "btn btn-success")
+    end
+  end
+
 
 end
