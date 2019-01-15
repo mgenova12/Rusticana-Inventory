@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  authorize_resource
   def index
     store_id = Store.find_by(name: params[:store]).id
     @locations = Location.where(store_id: store_id)

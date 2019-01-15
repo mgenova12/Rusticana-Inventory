@@ -1,4 +1,5 @@
 class InventoriesController < ApplicationController
+  authorize_resource
   include InventoriesHelper
 
   def index 
@@ -31,23 +32,13 @@ class InventoriesController < ApplicationController
     )
 
     params[:inventory].each do |inventory|
-      if inventory[:product_id]
-        Inventory.create!(
-          store_id: store_id,
-          quantity: inventory[:quantity],
-          order_id: order.id,
-          quantity_needed: quantity_needed(inventory),
-          store_good_id: inventory[:store_good_id]
-        )
-      else 
-        Inventory.create!(
-          store_id: store_id,
-          quantity: inventory[:quantity],
-          order_id: order.id,
-          quantity_needed: quantity_needed(inventory),
-          store_good_id: inventory[:store_good_id]
-        )
-      end
+      Inventory.create!(
+        store_id: store_id,
+        quantity: inventory[:quantity],
+        order_id: order.id,
+        quantity_needed: quantity_needed(inventory),
+        store_good_id: inventory[:store_good_id]
+      )
     end
 
     redirect_to "/#{params[:store]}/inventory/all/#{order.id}"

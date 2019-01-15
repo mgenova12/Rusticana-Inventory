@@ -1,8 +1,6 @@
 class SalesController < ApplicationController
-  before_action :authenticate_user!
-  
+  authorize_resource :class => false
   def index 
-
     @sales = Order.where(status: 'Complete').reverse_order.page(params[:page]).per(15)
   end
 

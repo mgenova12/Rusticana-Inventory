@@ -1,5 +1,5 @@
 class QuickOrdersController < ApplicationController
-
+  authorize_resource
   def index 
       store_id = Store.find_by(name: params[:store]).id 
       @quick_products = QuickProduct.where(quantity_needed: nil, store_id: store_id)

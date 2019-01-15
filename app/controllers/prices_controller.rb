@@ -1,4 +1,5 @@
 class PricesController < ApplicationController
+  authorize_resource
   def index
     @saved_price_dates = SavedPrice.all
     @products = Product.order(:name)

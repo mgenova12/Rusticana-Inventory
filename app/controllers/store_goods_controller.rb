@@ -1,4 +1,5 @@
 class StoreGoodsController < ApplicationController
+  authorize_resource
   def index
     store_id = Store.find_by(name: params[:store]).id
     @store_goods = StoreGood.where(store_id: store_id).joins(:product).merge(Product.order(name: :asc))

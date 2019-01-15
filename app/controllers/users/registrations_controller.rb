@@ -1,4 +1,5 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  authorize_resource :class => false
   before_action :configure_sign_up_params, only: [:create]
   skip_before_filter :require_no_authentication, only: [:new, :create]
   # before_action :configure_account_update_params, only: [:update]
@@ -37,7 +38,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def sign_up(resource_name, resource)
+    true
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -51,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # The path used after sign up.
   def after_sign_up_path_for(resource)
-    super(resource)
+    "/users"
   end
 
   # The path used after sign up for inactive accounts.

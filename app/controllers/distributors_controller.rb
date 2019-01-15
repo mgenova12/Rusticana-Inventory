@@ -1,4 +1,5 @@
 class DistributorsController < ApplicationController
+  authorize_resource
   def index
     @distributors = Distributor.all
   end

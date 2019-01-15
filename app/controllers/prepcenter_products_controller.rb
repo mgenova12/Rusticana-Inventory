@@ -1,4 +1,5 @@
 class PrepcenterProductsController < ApplicationController
+  authorize_resource
   def index
     @prepcenter_products = PrepcenterProduct.order(:name)
   end

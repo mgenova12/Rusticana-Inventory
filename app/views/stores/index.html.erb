@@ -14,14 +14,14 @@
 	<h3><u>Prep Center</u></h3>
 	<ul class="list-group">
 		<% @prepcenters.each do |prepcenter| %>
-			<a href="/<%= prepcenter.name %>/products"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(prepcenter.name) %></li></button></a>	  
+			<a href="/<%= prepcenter.name %>/inventory/new"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(prepcenter.name) %></li></button></a>	  
 		<% end %>
 	</ul>
 
 	<h3><u> Stores</u></h3>
 	<ul class="list-group">
 		<% @stores.each do |store| %>
-		  <a href="/<%= store.name %>/products"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(store.name) %></li></button></a>
+		  <a href="/<%= store.name %>/inventory/new"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(store.name) %></li></button></a>
 		<% end %>
 	</ul>
 </div>

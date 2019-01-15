@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+  authorize_resource 
   
   def index
     @stores = Store.where(label: 'Store')

@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-
+  authorize_resource
+  
   def index
     @products = Product.order(:name)
   end

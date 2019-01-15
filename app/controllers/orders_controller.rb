@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-
+  authorize_resource
   def index     
     store_id = Store.find_by(name: params[:store]).id
 
