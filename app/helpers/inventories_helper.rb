@@ -1,7 +1,7 @@
 module InventoriesHelper
 
   def quantity_needed(inventory)
-    if inventory[:replenish_by_each]
+    if inventory[:replenish_by_each].nil?
       result = inventory[:max_amount].to_i - inventory[:quantity].to_i
       result > 0 ? result : 0
     elsif inventory[:case_quantity].presence

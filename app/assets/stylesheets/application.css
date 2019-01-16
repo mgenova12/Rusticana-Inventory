@@ -45,7 +45,7 @@ th.sticky {
     position: -moz-sticky;
     position: -ms-sticky;
     position: sticky;
-    top: 5.9vh;
+    top: 0px;
     z-index: 1;
     background-color: #4975bc;
     -webkit-transform: translateZ(0);
