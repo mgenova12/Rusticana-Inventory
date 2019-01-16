@@ -30,6 +30,13 @@
 	    </select>	
 	  </div>
 
+		<div class="form-check">
+		  <label class="form-check-label">
+		  	<span> Replenish By Each &nbsp</span>
+		  </label>
+		  <%= check_box_tag 'replenish_by_each', "true" , @store_good.replenish_by_each %>
+		</div>	  
+
 
 	  <button type="submit" class="btn btn-primary">Edit Product</button>
 	</form>

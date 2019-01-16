@@ -29,7 +29,8 @@ class StoreGoodsController < ApplicationController
       location_id: params[:location_id],
       distributor_id: params[:distributor_id],
       max_amount: params[:max_amount],
-      measurement: params[:measurement]
+      measurement: params[:measurement],
+      replenish_by_each: params[:replenish_by_each]
     )
 
     if store_good.save
@@ -51,7 +52,8 @@ class StoreGoodsController < ApplicationController
       max_amount: params[:max_amount],
       location_id: params[:location_id],
       distributor_id: params[:distributor_id],
-      measurement: params[:measurement]
+      measurement: params[:measurement],
+      replenish_by_each: params[:replenish_by_each]
     )
 
     redirect_to "/#{params[:store]}/products"

@@ -45,6 +45,7 @@
 								<%= sg.hidden_field :measurement, :value => store_good.measurement %>
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
 								<%= sg.hidden_field :store_good_id, :value => store_good.id %>
+								<%= sg.hidden_field :replenish_by_each, :value => store_good.replenish_by_each %>
 							 </td>						
 						<% else %>	
 							<td><%= store_good.prepcenter_product.name %></td>
@@ -56,6 +57,7 @@
 								<%= sg.hidden_field :measurement, :value => store_good.measurement %>
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
 								<%= sg.hidden_field :store_good_id, :value => store_good.id %>	
+								<%= sg.hidden_field :replenish_by_each, :value => store_good.replenish_by_each %>	
 							 </td>							
 						<% end %>
 					</tr>
