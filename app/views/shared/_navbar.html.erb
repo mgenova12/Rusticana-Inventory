@@ -98,19 +98,22 @@
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Products <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="/<%= store %>/products">View Products</a></li>
-              <li><a href="/<%= store %>/products/add">Add Products</a></li>
+              <% if can? :manage, StoreGood %>
+                <li><a href="/<%= store %>/products/add">Add Products</a></li>
+              <% end %>
             </ul>
            </li>          
           
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product Locations <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="/<%= store %>/locations">View Locations</a></li>
-              <li><a href="/<%= store %>/locations/new">Add Locations</a></li>
-              
-            </ul>
-           </li>
-           
+          <% if can? :manage, :location %>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Product Locations <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/<%= store %>/locations">View Locations</a></li>
+                <li><a href="/<%= store %>/locations/new">Add Locations</a></li>
+              </ul>
+            </li>
+          <% end %>
+
            <% if !prepcenter %>
             <li><a href="/<%= store %>/quick_order">Quick Order</a></li>
            <% end %>
@@ -169,6 +172,3 @@
   </div>
 </nav>
 
-<% if current_user %>
-  <%= current_user.username %> - <%= current_user.role %> 
-<% end %>

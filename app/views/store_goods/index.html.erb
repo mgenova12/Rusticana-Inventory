@@ -1,6 +1,9 @@
 <h1>All <%= store_name_format(params[:store]) %> Products</h1>
 
-<a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
+<% if can? :manage, StoreGood %>
+  <a href="/<%= params[:store]%>/products/add"><button type="button" class="btn btn-success">Add New Product</button></a>
+<% end %>
+
 <br> 
 <br> 
 
@@ -15,8 +18,10 @@
         <th class="sticky2">Max Amount </th>
         <th class="sticky2">Location</th>
         <th class="sticky2">Distributor</th>
-        <th class="sticky2">Edit</th>
-        <th class="sticky2">Delete </th>
+        <% if can? :manage, StoreGood %> 
+          <th class="sticky2">Edit</th>
+          <th class="sticky2">Delete </th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -31,8 +36,10 @@
             	<td><%= store_good.max_amount %> </td>
             	<td><%= store_good.location.name %> </td>	
             	<td><%= store_good.distributor.name %> </td>	
-              <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
-              <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+              <% if can? :manage, StoreGood %>
+                <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
+                <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+              <% end %>
       	 </tr> 
       <% end %>
   	<% end %>
@@ -53,8 +60,10 @@
               <td><%= store_good.max_amount %> </td>
               <td><%= store_good.location.name %> </td> 
               <td><%= store_good.distributor.name %> </td>  
-              <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{store_good.id}/edit", class: "btn btn-primary"%></td>
-              <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+              <% if can? :manage, StoreGood %>
+                <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{store_good.id}/edit", class: "btn btn-primary"%></td>
+                <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
+              <% end %>
          </tr> 
       <% end %>
     <% end %>

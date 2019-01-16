@@ -36,6 +36,7 @@ class Ability
     return unless @user.admin?
     can [:edit, :update], :registration
     can [:index], Store
+    can :manage, :quick_order
     can :manage, [Inventory, Order]
   end
 
@@ -45,9 +46,10 @@ class Ability
     can [:index], Store
     
     if @params == 'trappe'
+      can :manage, :quick_order
       can :manage, [Inventory, Order]
+      can :read, StoreGood
     end
-
   end
 
   def cambridge_store_manager_abilites 
@@ -56,7 +58,9 @@ class Ability
     can [:index], Store
 
     if @params == 'cambridge'
+      can :manage, :quick_order
       can :manage, [Inventory, Order]
+      can :read, StoreGood
     end    
   end
   
@@ -64,8 +68,11 @@ class Ability
     return unless @user.easton_bypass?
     can [:edit, :update], :registration
     can [:index], Store
+
     if @params == 'easton_bypass'
+      can :manage, :quick_order
       can :manage, [Inventory, Order]
+      can :read, StoreGood
     end    
   end
 
@@ -73,8 +80,11 @@ class Ability
     return unless @user.dover_rd?
     can [:edit, :update], :registration
     can [:index], Store
+
     if @params == 'dover_rd'
+      can :manage, :quick_order
       can :manage, [Inventory, Order]
+      can :read, StoreGood
     end    
   end
 
