@@ -13,6 +13,7 @@
       <tr>
         <th class="sticky2">Name</th>
         <th class="sticky2">Measurement</th>
+        <th class="sticky2">Replenish by EA</th>
         <th class="sticky2">Item Type</th>
         <th class="sticky2">Case Quantity </th>
         <th class="sticky2">Max Amount </th>
@@ -30,7 +31,8 @@
       <% if store_good.product && store_good.distributor %>
       	  <tr>
       		    <td><%= store_good.product.name %></td>
-            	<td><%= store_good.measurement %></td> 
+              <td><%= store_good.measurement %></td> 
+            	<td><%= store_good.replenish_by_each %></td> 
             	<td><%= store_good.product.item_type %> </td>
             	<td><%= store_good.product.case_quantity %> </td>
             	<td><%= store_good.max_amount %> </td>
@@ -54,7 +56,8 @@
       <% if store_good.prepcenter_product %>
           <tr>
               <td><%= store_good.prepcenter_product.name %></td>
-              <td><%= store_good.measurement %></td> 
+              <td><%= store_good.measurement %></td>
+              <td><%= store_good.replenish_by_each %></td> 
               <td><%= store_good.prepcenter_product.item_type %> </td>
               <td><%= store_good.prepcenter_product.case_quantity %></td>
               <td><%= store_good.max_amount %> </td>
