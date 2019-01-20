@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     prepped_product = PrepcenterProduct.find_by(product_id: params[:id])
 
     if prepped_product
-      prepped_store_good = PreppedStoreGood.find_by(prepcenter_product_id: prepped_product.id)
+      prepped_store_good = StoreGood.find_by(prepcenter_product_id: prepped_product.id)
       prepped_store_good.destroy
       prepped_product.destroy
     end

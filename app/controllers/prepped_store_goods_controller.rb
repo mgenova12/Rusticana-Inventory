@@ -1,5 +1,5 @@
 class PreppedStoreGoodsController < ApplicationController
-  authorize_resource
+  authorize_resource :class => false
   def new 
     @prepped_product = PrepcenterProduct.find(params[:id])
     store_id = Store.find_by(name: params[:store]).id

@@ -41,14 +41,14 @@ input[type=checkbox] {
 }	
 
 th.sticky {
-    position: -webkit-sticky;
+/*    position: -webkit-sticky;
     position: -moz-sticky;
     position: -ms-sticky;
     position: sticky;
     top: 0px;
-    z-index: 1;
+    z-index: 1;*/
     background-color: #4975bc;
-    -webkit-transform: translateZ(0);
+    /*-webkit-transform: translateZ(0);*/
 }
 
 th.sticky2 {

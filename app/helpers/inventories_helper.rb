@@ -1,7 +1,7 @@
 module InventoriesHelper
 
   def quantity_needed(inventory)
-    if inventory[:replenish_by_each].nil?
+    if inventory[:replenish_by_each].presence
       result = inventory[:max_amount].to_i - inventory[:quantity].to_i
       result > 0 ? result : 0
     elsif inventory[:case_quantity].presence
@@ -11,8 +11,11 @@ module InventoriesHelper
     elsif inventory[:measurement] == '%'
       percent = (inventory[:quantity].to_i * 0.01)
       percent <= 0.25 ? 1 : 0
-
+    else 
+      result = inventory[:max_amount].to_i - inventory[:quantity].to_i
+      result > 0 ? result : 0      
     end
+    
   end
 
 
