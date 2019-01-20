@@ -31,8 +31,10 @@ module ApplicationHelper
   def measurement_label(inventory)
     if inventory.store_good.replenish_by_each
       'EA'
-    elsif (inventory.store_good.measurement == '%') || inventory.store_good.product.case_quantity
+    elsif inventory.store_good.product.case_quantity
       'CASE'
+    elsif inventory.store_good.measurement == '%'
+      inventory.store_good.product.measurement
     else 
       inventory.store_good.measurement
     end
@@ -41,8 +43,10 @@ module ApplicationHelper
   def prepped_measurement_label(inventory)
     if inventory.store_good.replenish_by_each
       'EA'    
-    elsif (inventory.store_good.measurement == '%') || inventory.store_good.prepcenter_product.case_quantity
+    elsif inventory.store_good.prepcenter_product.case_quantity
       'CASE'
+    elsif inventory.store_good.measurement == '%'
+        inventory.store_good.prepcenter_product.measurement
     else 
       inventory.store_good.measurement
     end
