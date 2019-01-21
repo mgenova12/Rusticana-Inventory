@@ -61,14 +61,16 @@ module ApplicationHelper
   end
 
   def notification_count
-    count = Order.where(status: 'Pending').count
+    prepcenter_store_id = Store.find_by(label:'PrepCenter').id
+    count = Order.where(status: 'Pending').where.not(store_id: prepcenter_store_id).count
     if count > 0 
       count
     end
   end
 
   def notification_dropdown
-    orders = Order.where(status: 'Pending').reverse
+    prepcenter_store_id = Store.find_by(label:'PrepCenter').id
+    orders = Order.where(status: 'Pending').where.not(store_id: prepcenter_store_id).reverse
 
       orders.map do |order|
       store = Store.find(order.store_id)
