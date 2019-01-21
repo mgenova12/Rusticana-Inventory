@@ -48,7 +48,6 @@ class InventoriesController < ApplicationController
   def show 
     # store_id = Store.find_by(name: params[:store]).id
     # @locations = Location.where(store_id: store_id)
-
     @item_types = Product.distinct.pluck(:item_type)
 
     @inventories = Inventory.where(order_id: params[:order_id])

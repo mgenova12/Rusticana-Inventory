@@ -3,7 +3,7 @@ class QuickOrdersController < ApplicationController
   
   def index 
       store_id = Store.find_by(name: params[:store]).id 
-      @quick_products = QuickProduct.where(quantity_needed: nil, store_id: store_id)
+      @quick_products = QuickProduct.where(quantity_needed: nil, store_id: store_id).reverse
       @quick_product = QuickProduct.new
   end
 
