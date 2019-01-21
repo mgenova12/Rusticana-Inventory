@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   authorize_resource
   def index
     store_id = Store.find_by(name: params[:store]).id
-    @locations = Location.where(store_id: store_id)
+    @locations = Location.where(store_id: store_id).order(:row_num)
   end
 
   def new 
@@ -30,7 +30,8 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:id])
 
     @location.update(
-      name: params[:name]
+      name: params[:name],
+      row_num: params[:row_num]
     )
 
     redirect_to "/#{params[:store]}/locations"

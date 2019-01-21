@@ -38,6 +38,7 @@ class Ability
     can [:index], Store
     can :manage, :quick_order
     can :manage, [Inventory, Order]
+    can :read, StoreGood
   end
 
   def trappe_store_manager_abilites 

@@ -17,7 +17,7 @@ class InventoriesController < ApplicationController
 
     @store_goods = StoreGood.where(store_id: store_id)
 
-    @locations = Location.where(store_id: store_id)
+    @locations = Location.where(store_id: store_id).order(:row_num)
 
   end
 
