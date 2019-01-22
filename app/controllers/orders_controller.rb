@@ -27,10 +27,16 @@ class OrdersController < ApplicationController
       if inventory[:inventory_id]
         current_inv = Inventory.find(inventory[:inventory_id])
 
-        current_inv.update(
-          out_of_stock: inventory[:out_of_stock]
-        )
-
+        if !inventory[:quantity_needed].empty?
+          current_inv.update(
+            out_of_stock: inventory[:out_of_stock],
+            quantity_needed: inventory[:quantity_needed]
+          )
+        else
+          current_inv.update(
+            out_of_stock: inventory[:out_of_stock]
+          )
+        end
       end
     end
 
