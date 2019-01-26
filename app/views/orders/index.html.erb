@@ -20,11 +20,7 @@
 	  <tr>
 	    <td><%= order.id %></td>
 	    <td><%= order.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
-      <% if order.order_day == 'Quick Order' %>
-       <td><%= store_name_format(order.store.name) %> - Quick Order</td>
-      <% else %>
-	     <td><%= store_name_format(order.store.name) %></td>
-      <% end %>
+      <%= quick_order_format(order) %>
 
 	   	<%= status_color(order.status) %>
 	    <% if order.status == 'Complete' %>

@@ -102,5 +102,16 @@ module ApplicationHelper
     end
   end
 
+  def quick_order_format(order)
+    if order.order_day == 'Quick Order'
+      content_tag(:td, "#{store_name_format(order.store.name)} - Quick Order")
+    else 
+      content_tag(:td, "#{store_name_format(order.store.name)}")
+    end
+
+  end
+
+
+
 
 end

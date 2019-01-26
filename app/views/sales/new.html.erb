@@ -1,4 +1,4 @@
-<h1>Final Paid Sales Order </h1>
+<h1>Review Sales Order </h1>
 
 
 	  <table class="table table-striped">
@@ -11,6 +11,7 @@
 	      </tr>     
 	    </thead> 
 
+	    <% sum = 0 %>
 	     <% @inventories.each do |inventory| %>
 		     <tr>
 		     	<% if inventory.store_good.product %>
@@ -19,17 +20,29 @@
 
 					<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
 					<td><%= number_to_currency(product_sale_total(inventory)) %> </td>
+					<% sum += product_sale_total(inventory) %>
 				<% else %>	     		
 					<td><%= inventory.store_good.prepcenter_product.name %> </td>
 					<td><%= inventory.quantity %> </td>
 
 					<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
 					<td><%= number_to_currency(product_sale_total(inventory)) %> </td>
+					<% sum += product_sale_total(inventory) %>
 		     	<% end %>
 		     </tr>
 	     <% end %>
    
 
-		<h3>Total: <%= number_to_currency(@sale_total) %> </h3>
+		<h3>Total: <%= number_to_currency(sum) %> </h3>
 
 	</table>
+	
+	<%= form_tag "/financials/sales", method: :post do %>   		
+		<input type="hidden" name="sale_total" value="<%= sum %>">
+		<input type="hidden" name="order_id" value="<%= params[:id] %>">
+		<button type="submit" class="btn btn-danger">Mark as Paid</button>
+		<br>
+		<br>
+	<% end %>
+
+

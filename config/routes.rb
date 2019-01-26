@@ -47,7 +47,9 @@ Rails.application.routes.draw do
 
   scope :financials do 
     get '/sales' => 'sales#index'
+    get '/sales/:id/new' => 'sales#new'
     get '/sales/:id' => 'sales#show'
+    post '/sales' => 'sales#create'
   end
 
 
