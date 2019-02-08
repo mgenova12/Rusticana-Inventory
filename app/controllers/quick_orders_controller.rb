@@ -55,7 +55,7 @@ class QuickOrdersController < ApplicationController
     order = Order.create!(
       status: 'Pending',
       order_day: 'Quick Order',
-      message: nil,
+      message: params[:message],
       store_id: store_id
     )
 

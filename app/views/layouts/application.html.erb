@@ -21,7 +21,8 @@
          var index = $('.form-control').index(this) + 1;
          $('.form-control').eq(index).focus();
      }
-  });
+    });
+
 
   $('#amount').on('blur', function() {
       var amount = $('#amount').val().replace(/^\s+|\s+$/g, '');
@@ -29,6 +30,13 @@
           $('#amount').val( parseFloat(amount).toFixed(2));
       }
   }); 
+
+    $('#term').keypress(function(e){
+      if(e.which == 13){
+           $(this).closest('form').submit();
+       }
+    });
+
 
   </script>  
 

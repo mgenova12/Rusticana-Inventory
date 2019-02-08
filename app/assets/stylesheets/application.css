@@ -71,3 +71,12 @@ th.sticky2 {
    -webkit-transform: translate(150%, -60%); /* For Safari, Chrome, iOS */
    -o-transform: translate(150%, -60%); 
  }
+
+input[type=text].term {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+
