@@ -1,5 +1,6 @@
 
-<h1>Place Order </h1>
+<h1>Place Order for <%= @store_name %></h1>
+<h4> <%= @date.strftime('%A, %d %b %Y %l:%M %p') %> </h4>
 
 <%= form_tag "/#{params[:store]}/orders", method: :post do %>
 
@@ -7,7 +8,7 @@
 	    <thead>
 	      <tr>
 	      	<th class="sticky2">Out of Stock</th>
-	      	<th class="sticky2">Amount In Stock</th>
+	      	<th class="sticky2">Adjusted Quantity Delivered</th>
 	        <th class="sticky2">Product</th>
 	        <th class="sticky2">Current Quantity</th>
 	        <th class="sticky2">Quantity Needed</th>

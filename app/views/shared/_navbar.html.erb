@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <% if controller.class != StoresController && current_user %>
-	     <li><a href="/">Choose Store</a></li>
+	     <li><a href="/"><span class="glyphicon glyphicon-home"></span></a></li>
       <% end %>
 
 	    <% if controller.class == ProductsController || controller.class == PrepcenterProductsController || controller.class == DistributorsController %>
