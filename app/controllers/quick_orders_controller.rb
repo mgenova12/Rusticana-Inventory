@@ -2,9 +2,9 @@ class QuickOrdersController < ApplicationController
   authorize_resource :class => false
   
   def index 
-      store_id = Store.find_by(name: params[:store]).id 
-      @quick_products = QuickProduct.where(quantity_needed: nil, store_id: store_id).reverse
-      @quick_product = QuickProduct.new
+    store_id = Store.find_by(name: params[:store]).id 
+    @quick_products = QuickProduct.where(quantity_needed: nil, store_id: store_id).reverse
+    @quick_product = QuickProduct.new
   end
 
   def create 
@@ -16,7 +16,11 @@ class QuickOrdersController < ApplicationController
       product_ids = Product.where("lower(name) LIKE ?", "%#{params[:term].downcase}%").ids
       if product_ids.length > 0
         product_ids.each do |product_id|
-          store_good = StoreGood.find_by(store_id: store_id, product_id: product_id, distributor_id: trappe_id)
+          if params[:search_all]
+            store_good = StoreGood.find_by(product_id: product_id, distributor_id: trappe_id)
+          else   
+            store_good = StoreGood.find_by(store_id: store_id, product_id: product_id, distributor_id: trappe_id)
+          end
           if store_good
             QuickProduct.create!(
               name: store_good.product.name,
@@ -31,7 +35,12 @@ class QuickOrdersController < ApplicationController
         product_ids = PrepcenterProduct.where("lower(name) LIKE ?", "%#{params[:term].downcase}%").ids
       
         product_ids.each do |product_id|
-          store_good = StoreGood.find_by(store_id: store_id, prepcenter_product_id: product_id, distributor_id: trappe_id)
+          if params[:search_all]
+            store_good = StoreGood.find_by(prepcenter_product_id: product_id, distributor_id: trappe_id)
+          else
+            store_good = StoreGood.find_by(store_id: store_id, prepcenter_product_id: product_id, distributor_id: trappe_id)
+          end
+          
           if store_good
             QuickProduct.create!(
               name: store_good.prepcenter_product.name,

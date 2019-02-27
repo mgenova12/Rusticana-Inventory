@@ -4,6 +4,14 @@
 
 <%= form_tag "/#{params[:store]}/quick_order", method: :post do %>
   <%= text_field_tag 'term', params[:term], placeholder: "Search a Products Name", class: 'term' %>
+
+	<div class="form-check">
+	  <label class="form-check-label">
+	  	<span> Search All Products</span>
+	  </label>
+	  <%= check_box_tag 'search_all', "true" %>
+	</div>	
+
   <br>
 <% end %>
 
