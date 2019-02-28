@@ -40,7 +40,7 @@ class QuickOrdersController < ApplicationController
           else
             store_good = StoreGood.find_by(store_id: store_id, prepcenter_product_id: product_id, distributor_id: trappe_id)
           end
-          
+
           if store_good
             QuickProduct.create!(
               name: store_good.prepcenter_product.name,
@@ -76,7 +76,13 @@ class QuickOrdersController < ApplicationController
 
       if Product.find_by(name: inventory[:name])
         product_id = Product.find_by(name: inventory[:name]).id
-        store_good_id = StoreGood.find_by(store_id: store_id, product_id: product_id).id
+        
+        if StoreGood.find_by(store_id: store_id, product_id: product_id)
+          store_good_id = StoreGood.find_by(store_id: store_id, product_id: product_id).id
+        else 
+          store_good_id = StoreGood.find_by(product_id: product_id).id
+        end
+
         Inventory.create!(
           store_id: store_id,
           quantity: nil,
@@ -86,7 +92,12 @@ class QuickOrdersController < ApplicationController
         )
       else 
         prepped_product_id = PrepcenterProduct.find_by(name: inventory[:name]).id
-        prepped_store_good_id = StoreGood.find_by(store_id: store_id, prepcenter_product_id: prepped_product_id).id
+
+        if StoreGood.find_by(store_id: store_id, prepcenter_product_id: prepped_product_id)
+          prepped_store_good_id = StoreGood.find_by(store_id: store_id, prepcenter_product_id: prepped_product_id).id
+        else 
+          prepped_store_good_id = StoreGood.find_by(prepcenter_product_id: prepped_product_id).id
+        end
         Inventory.create!(
           store_id: store_id,
           quantity: nil,
