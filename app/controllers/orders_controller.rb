@@ -8,8 +8,8 @@ class OrdersController < ApplicationController
 
   def new
     @inventory = Inventory.new
-    store_name = params[:store].upcase
-    @inventories = Inventory.where(order_id: params[:id]).where.not(quantity_needed: 0).joins({:store_good => :distributor }).where("distributors.name = '#{store_name}'")
+    # store_name = params[:store].upcase
+    @inventories = Inventory.where(order_id: params[:id]).where.not(quantity_needed: 0).joins({:store_good => :distributor })
     @message = Order.find(params[:id]).message   
 
     @store_name = Order.find(params[:id]).store.name
@@ -47,9 +47,9 @@ class OrdersController < ApplicationController
     @store_name = Order.find(params[:id]).store.name
     
     @date = Order.find(params[:id]).created_at
-    store_name = params[:store].upcase
+    # store_name = params[:store].upcase
 
-    @inventories = Inventory.where(order_id: params[:id]).where.not(quantity_needed: 0).joins({:store_good => :distributor }).where("distributors.name = '#{store_name}'")
+    @inventories = Inventory.where(order_id: params[:id]).where.not(quantity_needed: 0).joins({:store_good => :distributor })
 
     @message = Order.find(params[:id]).message
   end
