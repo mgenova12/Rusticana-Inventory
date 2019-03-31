@@ -18,6 +18,7 @@ class ProductsController < ApplicationController
       price: params[:price],
       markup: params[:markup],
       distributor: params[:distributor]
+
     )
 
     if @product.save
@@ -40,7 +41,7 @@ class ProductsController < ApplicationController
       case_quantity: params[:case_quantity],
       price: params[:price],
       markup: params[:markup],
-      distributor: params[:distributor]      
+      distributor: params[:distributor]
     )
 
     redirect_to '/globals/products'

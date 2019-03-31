@@ -27,7 +27,23 @@
 		   <select class="form-control" name="measurement" required>
 		   		<%= measurement_options(@prepped_store_good) %>
 		    </select>	
-		  </div>		  		  
+		  </div>	
+	  	
+	  	<label>Delivery day</label>
+		  <div class='form-group'>
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@prepped_store_good, "Monday") %>
+		      Monday
+		    </label>
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@prepped_store_good, "Thursday") %>
+		      Thursday
+		    </label>	
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@prepped_store_good, "Both") %>
+		      Both Days
+		    </label>
+		  </div>		  	  		  
 
 		  <button type="submit" class="btn btn-primary">Edit Product</button>
 		</form>

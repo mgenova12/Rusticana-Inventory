@@ -99,8 +99,18 @@ module ProductsHelper
         end
       end
 
-      options_for_select(location_array)
+    options_for_select(location_array)
   end
+
+  def delivery_day_options(product, day)
+    if product.delivery_day == day
+      check_box_tag 'delivery_day', day, true
+    else
+      check_box_tag 'delivery_day', day
+    end
+        
+  end
+
 
 
 end

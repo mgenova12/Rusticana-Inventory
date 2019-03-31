@@ -29,7 +29,7 @@
 	<h3><u> Stores</u></h3>
 	<ul class="list-group">
 		<% @stores.each do |store| %>
-		  <a href="/<%= store.name %>/inventory/new"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(store.name) %></li></button></a>
+		  <a href="/<%= store.name %>/delivery_day"><button type="button"<li class="list-group-item list-group-item-action"><%= store_name_format(store.name) %></li></button></a>
 		<% end %>
 	</ul>
 </div>

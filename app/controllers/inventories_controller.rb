@@ -58,5 +58,10 @@ class InventoriesController < ApplicationController
 
   end
 
+  def delivery_day
+    
+
+  end
+
 
 end

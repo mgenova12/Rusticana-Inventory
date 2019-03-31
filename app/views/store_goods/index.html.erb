@@ -19,6 +19,7 @@
         <th class="sticky2">Max Amount </th>
         <th class="sticky2">Location</th>
         <th class="sticky2">Distributor</th>
+        <th class="sticky2">Delivery</th>
         <% if can? :manage, StoreGood %> 
           <th class="sticky2">Edit</th>
           <th class="sticky2">Delete </th>
@@ -37,7 +38,8 @@
             	<td><%= store_good.product.case_quantity %> </td>
             	<td><%= store_good.max_amount %> </td>
             	<td><%= store_good.location.name %> </td>	
-            	<td><%= store_good.distributor.name %> </td>	
+              <td><%= store_good.distributor.name %> </td>  
+            	<td><%= store_good.delivery_day %> </td>	
               <% if can? :manage, StoreGood %>
                 <td><%= link_to 'Edit', "/#{params[:store]}/products/#{store_good.id}/edit", class: "btn btn-primary"%></td>
                 <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>
@@ -48,7 +50,7 @@
     
       <thead>
         <tr> 
-          <th class="sticky text-center" colspan="10">Prepped Products </th>
+          <th class="sticky text-center" colspan="11">Prepped Products </th>
         </tr>
       </thead> 
     
@@ -62,7 +64,8 @@
               <td><%= store_good.prepcenter_product.case_quantity %></td>
               <td><%= store_good.max_amount %> </td>
               <td><%= store_good.location.name %> </td> 
-              <td><%= store_good.distributor.name %> </td>  
+              <td><%= store_good.distributor.name %> </td> 
+              <td><%= store_good.delivery_day %> </td> 
               <% if can? :manage, StoreGood %>
                 <td><%= link_to 'Edit', "/#{params[:store]}/products/prepcenter/#{store_good.id}/edit", class: "btn btn-primary"%></td>
                 <td><%= button_to "Delete", { action: "destroy", id: store_good.id }, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %> </td>

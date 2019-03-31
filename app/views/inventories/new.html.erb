@@ -2,18 +2,8 @@
 <h1><%= store_name_format(params[:store]) %> Inventory</h1>
 
 <%= form_tag "/#{params[:store]}/inventory", method: :post do %>
-	
-	<% if store %>
-	  <div class="form-group">
-	   <label>Select Delivery Day</label>
-	   <select class="form-control" name="order_day" required>
-	      <option value=""></option>
-	      <option value="Monday">Monday</option>
-	      <option value="Thursday">Thursday</option>
-	    </select> 
-	  </div>
-	<% end %>
-
+	<%= hidden_field_tag(:order_day, value = params[:delivery_day]) %>
+	  
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
@@ -31,7 +21,7 @@
 	     </thead>
 
 			<% @store_goods.each do |store_good| %>
-				<% if store_good.location_id == location.id %>
+				<% if (store_good.location_id == location.id) && (['Both', params[:delivery_day]].include?(store_good.delivery_day))%>
 
 					<%= fields_for "inventory[]", @inventory do |sg| %>
 					<tr>

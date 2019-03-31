@@ -42,7 +42,7 @@ class StoreGoodsController < ApplicationController
     store_id = Store.find_by(name: params[:store]).id    
     @store_good = StoreGood.find(params[:id])
     @locations = Location.where(store_id: store_id)
-    @distributors = Distributor.all    
+    @distributors = Distributor.all   
   end
 
   def update
@@ -53,7 +53,8 @@ class StoreGoodsController < ApplicationController
       location_id: params[:location_id],
       distributor_id: params[:distributor_id],
       measurement: params[:measurement],
-      replenish_by_each: params[:replenish_by_each]
+      replenish_by_each: params[:replenish_by_each],
+      delivery_day: params[:delivery_day]      
     )
 
     redirect_to "/#{params[:store]}/products"

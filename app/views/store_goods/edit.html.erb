@@ -37,6 +37,22 @@
 		  <%= check_box_tag 'replenish_by_each', "true" , @store_good.replenish_by_each %>
 		</div>	  
 
+	  	<label>Delivery day</label>
+		  <div class='form-group'>
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@store_good, "Monday") %>
+		      Monday
+		    </label>
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@store_good, "Thursday") %>
+		      Thursday
+		    </label>	
+		    <label class="checkbox-inline">
+			<%= delivery_day_options(@store_good, "Both") %>
+		      Both Days
+		    </label>
+		  </div>	 		
+
 
 	  <button type="submit" class="btn btn-primary">Edit Product</button>
 	</form>

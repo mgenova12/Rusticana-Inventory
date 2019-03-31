@@ -1,0 +1,10 @@
+<h1>Select Delivery Day</h1>
+
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Delievery Day
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="/<%= params[:store] %>/inventory/new/?delivery_day=Monday">Monday</a></li>
+    <li><a href="/<%= params[:store] %>/inventory/new/?delivery_day=Thursday">Thursday</a></li>
+  </ul>
+</div>

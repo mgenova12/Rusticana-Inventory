@@ -74,6 +74,8 @@ Rails.application.routes.draw do
   patch '/:store/products/prepcenter/:id' => 'prepped_store_goods#update'
   delete '/:store/products/prepcenter/:id' => 'prepped_store_goods#destroy'
 
+  get  '/:store/delivery_day' => 'inventories#delivery_day'
+
   get '/:store/inventory' => 'inventories#index'
   get '/:store/inventory/new' => 'inventories#new'
   post '/:store/inventory' => 'inventories#create'

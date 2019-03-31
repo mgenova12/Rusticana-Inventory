@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190126155658) do
+ActiveRecord::Schema.define(version: 20190330172706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20190126155658) do
     t.integer  "prepcenter_product_id"
     t.string   "measurement"
     t.boolean  "replenish_by_each"
+    t.string   "delivery_day"
   end
 
   create_table "stores", force: :cascade do |t|

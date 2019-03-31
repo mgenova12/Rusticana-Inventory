@@ -38,7 +38,8 @@ class PreppedStoreGoodsController < ApplicationController
       max_amount: params[:max_amount],
       location_id: params[:location_id],
       distributor_id: params[:distributor_id],
-      measurement: params[:measurement]
+      measurement: params[:measurement],
+      delivery_day: params[:delivery_day]
     )
 
     redirect_to "/#{params[:store]}/products"

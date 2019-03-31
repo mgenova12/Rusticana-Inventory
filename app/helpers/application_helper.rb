@@ -63,7 +63,7 @@ module ApplicationHelper
       if inventory.store_good.replenish_by_each && inventory.store_good.prepcenter_product.case_quantity
         ((inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1) / inventory.store_good.prepcenter_product.case_quantity) * inventory.quantity_needed 
       else
-        (inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1) * inventory.quantity_needed 
+        ((inventory.store_good.prepcenter_product.product.price / inventory.store_good.prepcenter_product.portion_size) * ((inventory.store_good.prepcenter_product.product.markup * 0.01)+1)) * inventory.quantity_needed 
       end
     end
   end
