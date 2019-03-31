@@ -2,6 +2,16 @@
 <h1> Sales Orders </h1>
 
 
+  <div class='sub-list'>
+    <ul> 
+        <li><a href="/financials/sales">All </a> </li>
+      <% @stores.each do |store| %>
+        <li><a href="/financials/sales?store_name=<%= store.name %>"><%= store_name_format(store.name) %> </a> </li>
+      <% end %>
+    </ul> 
+  </div>
+
+
 <div class="table-responsive">          
   <table class="table table-striped">
     <thead>
@@ -16,20 +26,20 @@
     <tbody>
 
 	<% @sales.each do |sale| %>
+    <% if sale.store.name == params[:store_name] || !params[:store_name] %>
+  	  <tr>
+  	    <td><%= sale.id %></td>
+  	    <td><%= sale.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
 
-	  <tr>
-	    <td><%= sale.id %></td>
-	    <td><%= sale.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
-
-      <%= quick_order_format(sale) %>
-      <%= paid_format(sale) %>
-      <% if sale.paid %>
-        <td><%= link_to 'View', "/financials/sales/#{sale.id}", class: "btn btn-primary"%></td> </td>
-      <% else %>
-        <td><%= link_to 'View', "/financials/sales/#{sale.id}/new", class: "btn btn-primary"%></td> </td>
-      <% end %>
-	  </tr>
-
+        <%= quick_order_format(sale) %>
+        <%= paid_format(sale) %>
+        <% if sale.paid %>
+          <td><%= link_to 'View', "/financials/sales/#{sale.id}", class: "btn btn-primary"%></td> </td>
+        <% else %>
+          <td><%= link_to 'View', "/financials/sales/#{sale.id}/new", class: "btn btn-primary"%></td> </td>
+        <% end %>
+  	  </tr>
+    <% end %>
 	<% end %>
 
     </tbody>

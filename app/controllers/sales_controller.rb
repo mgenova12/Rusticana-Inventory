@@ -4,6 +4,8 @@ class SalesController < ApplicationController
 
   def index 
     @sales = Order.where(status: 'Complete').reverse_order.page(params[:page]).per(15)
+
+    @stores = Store.where(label: 'Store')
   end
 
   def show
