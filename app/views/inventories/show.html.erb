@@ -3,9 +3,11 @@
 	<div class='sub-list'>
 		<ul> 
 			<li> <a href="/<%= params[:store] %>/inventory/all/<%= params[:order_id] %>">All </a> </li>
-			<% @inventories.map{|inv| inv.store_good.distributor}.uniq.each do |distributor| %>
-				<li><a href="/<%= params[:store] %>/inventory/<%= distributor.name %>/<%= params[:order_id] %>"><%= distributor.name %> </a> </li>
-			<% end %>
+
+				<% @distributors.each do |distributor| %>
+					<li><a href="/<%= params[:store] %>/inventory/<%= distributor.name %>/<%= params[:order_id] %>"><%= distributor.name %> </a> </li>
+				<% end %>
+	
 		</ul>
 	</div>
 
@@ -32,6 +34,7 @@
 	        </tr>
 	     </thead>
 			<% @inventories.each do |inventory| %>
+				<% if inventory.store_good %>
 					<% if (params[:distributor] == inventory.store_good.distributor.name) && ((params[:zeros] != 'zeros') && (inventory.quantity_needed > 0))%>
 						
 						<% if inventory.store_good.product && (inventory.store_good.product.item_type == location) %>
@@ -109,10 +112,8 @@
 						<% end %>								
 
 					<% end %>
-
-
-
 				<% end %>
+			<% end %>
 		<% end %>
 	  </table>	
 		
