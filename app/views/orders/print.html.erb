@@ -2,8 +2,6 @@
 <h1>Place Order For <%= store_name_format(@store_name) %></h1>
 <h4> <%= @date.strftime('%A, %d %b %Y %l:%M %p') %> </h4>
 
-<%= form_tag "/#{params[:store]}/orders", method: :post do %>
-
 	  <table class="table table-striped">
 	    <thead>
 	      <tr>
@@ -12,13 +10,15 @@
 	        <th class="sticky2">Product</th>
 	        <th class="sticky2">Current Quantity</th>
 	        <th class="sticky2">Quantity Needed</th>
+	        <th class="sticky2">On Truck</th>
+	        <th class="sticky2">Prepped</th>
 	      </tr>     
 	    </thead> 
 			<input type="hidden" name="order_id" value="<%= params[:id] %>">
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Non-Prepped Frozen</th>
+		          <th class="sticky text-center" colspan="7">Non-Prepped Frozen</th>
 		        </tr>
 		     </thead>
 			<% @inventories.each do |inventory| %>
@@ -27,10 +27,12 @@
 					<tr>	
 					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'frozen') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>
 						
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
@@ -42,7 +44,7 @@
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Non-Prepped Dry</th>
+		          <th class="sticky text-center" colspan="7">Non-Prepped Dry</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -51,11 +53,12 @@
 					<tr>	
 					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'dry') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
-						
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>						
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -66,7 +69,7 @@
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Non-Prepped Refrigerated</th>
+		          <th class="sticky text-center" colspan="7">Non-Prepped Refrigerated</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -75,11 +78,12 @@
 					<tr>	
 					 <% if inventory.store_good.product && (inventory.store_good.product.item_type == 'refrigerated') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
-						
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>						
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
@@ -90,7 +94,7 @@
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Prepped Frozen</th>
+		          <th class="sticky text-center" colspan="7">Prepped Frozen</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -99,10 +103,12 @@
 					<tr>	
 					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'frozen') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>						
 						
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
@@ -114,7 +120,7 @@
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Prepped Dry</th>
+		          <th class="sticky text-center" colspan="7">Prepped Dry</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -123,10 +129,12 @@
 					<tr>	
 					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'dry') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>						
 						
 
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
@@ -137,7 +145,7 @@
 
 		     <thead>
 		        <tr> 
-		          <th class="sticky text-center" colspan="5">Prepped Refrigerated</th>
+		          <th class="sticky text-center" colspan="7">Prepped Refrigerated</th>
 		        </tr>
 		     </thead>			
 			<% @inventories.each do |inventory| %>
@@ -146,12 +154,13 @@
 					<tr>	
 					 <% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'refrigerated') %>
 						<td><%= sg.check_box :out_of_stock, {checked: inventory.out_of_stock} %></td>
-						<td><%= sg.number_field :quantity_needed, class: 'form-control' %> </td>
+						<td><%= sg.number_field :quantity_needed, class: 'form-control',:disabled => true %> </td>
 						<td><%= inventory.store_good.prepcenter_product.name %> </td>
 						<td><%= inventory.quantity %> </td>
 						<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+						<td><input type="checkbox" value=""></td>
+						<td><input type="checkbox" value=""></td>						
 						
-
 						<%= sg.hidden_field :inventory_id, :value => inventory.id %>
 					</tr>
 					<% end %>
@@ -166,8 +175,6 @@
         <%= @message %>
       </div>
 
-	<button type="submit" class="btn btn-success">Complete Order</button>
-<% end %>
 
 
 

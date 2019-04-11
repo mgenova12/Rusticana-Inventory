@@ -10,6 +10,7 @@
         <th>Date placed</th>
         <th>Store </th>
         <th>Status </th>
+        <th>Print </th>
         <th>View/Create</th>
         <th>Edit</th>
       </tr>
@@ -21,13 +22,13 @@
 	    <td><%= order.id %></td>
 	    <td><%= order.created_at.strftime('%A, %d %b %Y %l:%M %p') %></td>	
       <%= quick_order_format(order) %>
-
-	   	<%= status_color(order.status) %>
-	    <% if order.status == 'Complete' %>
-        <td><%= link_to 'View', "/#{params[:store]}/orders/#{order.id}", class: "btn btn-primary"%></td> </td>
-        <td><%= link_to 'Edit', "/#{params[:store]}/orders/#{order.id}/new", class: "btn btn-primary"%></td> </td>
+      <%= status_color(order.status) %>
+      <td><%= link_to 'Print', "/#{params[:store]}/orders/#{order.id}/new/print", class: "btn btn-primary"%></td>
+      <% if order.status == 'Complete' %>
+        <td><%= link_to 'View', "/#{params[:store]}/orders/#{order.id}", class: "btn btn-primary"%></td>
+        <td><%= link_to 'Edit', "/#{params[:store]}/orders/#{order.id}/new", class: "btn btn-primary"%></td>
       <% else  %>
-        <td><%= link_to 'Create', "/#{params[:store]}/orders/#{order.id}/new", class: "btn btn-primary"%></td> </td>
+        <td><%= link_to 'Create', "/#{params[:store]}/orders/#{order.id}/new", class: "btn btn-primary"%></td> 
         <td> </td>
       <% end %>
 	 </tr>
