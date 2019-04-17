@@ -14,6 +14,73 @@
 
 	     <thead>
 	        <tr> 
+	          <th class="sticky text-center" colspan="4"> Prepped Refrigerated</th>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'refrigerated') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>	  
+	     
+
+
+	     <thead>
+	        <tr> 
+	          <th class="sticky text-center" colspan="4">Prepped Frozen</th>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'frozen') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>	 
+	     
+
+	     <thead>
+	        <tr> 
+	          <th class="sticky text-center" colspan="4">Prepped Dry</th>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'dry') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>	           
+
+	     <thead>
+	        <tr> 
+	          <th class="sticky text-center" colspan="4"> Non-Prepped Refrigerated</th>
+	        </tr>
+	     </thead>
+	     <% @inventories.each do |inventory| %>
+	     <tr>
+	     	<% if inventory.store_good.product && (inventory.store_good.product.item_type == 'refrigerated') %>
+	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
+	     		<td><%= inventory.store_good.product.name %> </td>
+				<td><%= inventory.quantity %> </td>
+				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>	     		
+	     	<% end %>
+	     </tr>
+	     <% end %>	     
+
+	     <thead>
+	        <tr> 
 	          <th class="sticky text-center" colspan="4">Non-Prepped Frozen</th>
 	        </tr>
 	     </thead>
@@ -47,72 +114,15 @@
 	     <% end %>
 
 
-	     <thead>
-	        <tr> 
-	          <th class="sticky text-center" colspan="4"> Non-Prepped Refrigerated</th>
-	        </tr>
-	     </thead>
-	     <% @inventories.each do |inventory| %>
-	     <tr>
-	     	<% if inventory.store_good.product && (inventory.store_good.product.item_type == 'refrigerated') %>
-	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
-	     		<td><%= inventory.store_good.product.name %> </td>
-				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>	     		
-	     	<% end %>
-	     </tr>
-	     <% end %>
 
 
-	     <thead>
-	        <tr> 
-	          <th class="sticky text-center" colspan="4">Prepped Frozen</th>
-	        </tr>
-	     </thead>
-	     <% @inventories.each do |inventory| %>
-	     <tr>
-	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'frozen') %>
-	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
-	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
-				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
-	     	<% end %>
-	     </tr>
-	     <% end %>
 
 
-	     <thead>
-	        <tr> 
-	          <th class="sticky text-center" colspan="4">Prepped Dry</th>
-	        </tr>
-	     </thead>
-	     <% @inventories.each do |inventory| %>
-	     <tr>
-	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'dry') %>
-	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
-	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
-				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
-	     	<% end %>
-	     </tr>
-	     <% end %>
 
 
-	     <thead>
-	        <tr> 
-	          <th class="sticky text-center" colspan="4"> Prepped Refrigerated</th>
-	        </tr>
-	     </thead>
-	     <% @inventories.each do |inventory| %>
-	     <tr>
-	     	<% if inventory.store_good.prepcenter_product && (inventory.store_good.prepcenter_product.item_type == 'refrigerated') %>
-	     		<%= out_of_stock_helper(inventory.out_of_stock) %>	
-	     		<td><%= inventory.store_good.prepcenter_product.name %> </td>
-				<td><%= inventory.quantity %> </td>
-				<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>	     		
-	     	<% end %>
-	     </tr>
-	     <% end %>	     
+
+
+	     
 
 
 	  </table>
