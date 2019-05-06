@@ -10,13 +10,15 @@
 	        <th class="sticky2">Product</th>
 	        <th class="sticky2">Count By</th>
 	        <th class="sticky2">Inventory</th>
+	        <th class="sticky2">Verified</th>
+	        <th class="sticky2">Corrective Action</th>
 	      </tr>     
 	    </thead> 
 
 		<% @locations.each do |location|  %>
 	     <thead>
 	        <tr> 
-	          <th class="sticky text-center" colspan="3"><%= location.name %></th>
+	          <th class="sticky text-center" colspan="5"><%= location.name %></th>
 	        </tr>
 	     </thead>
 
@@ -30,13 +32,13 @@
 							<td><%= store_good.measurement %> </td>
 							<td>
 								<%= sg.number_field :quantity, class:"form-control", :placeholder => store_good.product.case_quantity ? "#{store_good.product.case_quantity} in each case. Count by Item!" : nil, required: "true" %>
-
 								<%= sg.hidden_field :case_quantity, :value => store_good.product.case_quantity %>
 								<%= sg.hidden_field :measurement, :value => store_good.measurement %>
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
 								<%= sg.hidden_field :store_good_id, :value => store_good.id %>
 								<%= sg.hidden_field :replenish_by_each, :value => store_good.replenish_by_each %>
-							 </td>						
+							 </td>	
+							 <td> <%= sg.select(:verified, options_for_select([['', ''],['Yes', true], ['No', false]])) %> </td>				 <td> <%= sg.select(:corrective_action, options_for_select([['', ''],['None', 'None'], ['Discarded', 'Discarded']])) %> </td>		
 						<% else %>	
 							<td><%= store_good.prepcenter_product.name %></td>
 							<td><%= store_good.measurement %></td>
@@ -48,7 +50,9 @@
 								<%= sg.hidden_field :max_amount, :value => store_good.max_amount %>
 								<%= sg.hidden_field :store_good_id, :value => store_good.id %>	
 								<%= sg.hidden_field :replenish_by_each, :value => store_good.replenish_by_each %>	
-							 </td>							
+							 </td>	
+							 <td> <%= sg.select(:verified, options_for_select([['', ''],['Yes', true], ['No', false]])) %> </td>				
+							 <td> <%= sg.select(:corrective_action, options_for_select([['', ''],['None', 'None'], ['Discarded', 'Discarded']])) %> </td>		
 						<% end %>
 					</tr>
 					<% end %>

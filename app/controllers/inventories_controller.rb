@@ -37,7 +37,9 @@ class InventoriesController < ApplicationController
         quantity: inventory[:quantity],
         order_id: order.id,
         quantity_needed: quantity_needed(inventory),
-        store_good_id: inventory[:store_good_id]
+        store_good_id: inventory[:store_good_id],
+        verified: inventory[:verified],
+        corrective_action: inventory[:corrective_action],
       )
     end
 

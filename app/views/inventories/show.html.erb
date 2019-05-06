@@ -24,13 +24,15 @@
 	        <th class="sticky2">Product</th>
 	        <th class="sticky2">Current Quantity</th>
 	        <th class="sticky2">Quantity Needed</th>
+	        <th class="sticky2">Verified</th>
+	        <th class="sticky2">Corrective Action</th>
 	      </tr>     
 	    </thead> 
 
 		<% @item_types.each do |location|  %>
 	     <thead>
 	        <tr> 
-	          <th class="sticky text-center" colspan="3"><%= location.capitalize %></th>
+	          <th class="sticky text-center" colspan="5"><%= location.capitalize %></th>
 	        </tr>
 	     </thead>
 			<% @inventories.each do |inventory| %>
@@ -42,6 +44,8 @@
 								<td><%= inventory.store_good.product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 
@@ -50,6 +54,8 @@
 								<td><%= inventory.store_good.prepcenter_product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 						<% end %>
@@ -61,6 +67,8 @@
 								<td><%= inventory.store_good.product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 
@@ -69,6 +77,8 @@
 								<td><%= inventory.store_good.prepcenter_product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 						<% end %>	
@@ -80,6 +90,8 @@
 								<td><%= inventory.store_good.product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 
@@ -88,6 +100,8 @@
 								<td><%= inventory.store_good.prepcenter_product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 						<% end %>		
@@ -99,6 +113,8 @@
 								<td><%= inventory.store_good.product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 
@@ -107,6 +123,8 @@
 								<td><%= inventory.store_good.prepcenter_product.name %> </td>
 								<td><%= inventory.quantity %> </td>
 								<td><%= inventory.quantity_needed %> <%= prepped_measurement_label(inventory) %></td>
+								<td><%= inventory.verified %> </td>
+								<td><%= inventory.corrective_action %> </td>
 								<% sum += inventory.quantity_needed %>
 							</tr>
 						<% end %>								
